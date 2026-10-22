@@ -1,0 +1,4 @@
+interface:
+  display_name: "PowerSystemModelAudit · 电力系统模型审计"
+  short_description: "核查电力系统数学模型与代码，归因错误并补全文字遗漏的约束与证据"
+  default_prompt: "使用 $power-system-model-audit 审计电力系统优化求解模型，核查TeX与代码、独立验算，并在报告中补全遗漏约束。"

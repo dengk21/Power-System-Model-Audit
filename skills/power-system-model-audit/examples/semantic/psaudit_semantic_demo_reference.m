@@ -1,0 +1,6 @@
+function model=psaudit_semantic_demo_reference(p)
+% Reference formulation from math-spec.md, independent of candidate helper.
+model=struct('A',sparse([1 1]),'rhs',p.demand,'sense','=', ...
+    'lb',[0;0],'ub',[p.cheapCapacity;p.backupCapacity], ...
+    'obj',[p.cheapCost;p.backupCost]*p.hours,'modelsense','min');
+end

@@ -1,0 +1,23 @@
+# Local solver output and temporary files
+/outputs/
+__pycache__/
+*.py[cod]
+*.asv
+*.m~
+slprj/
+*.mex*
+
+# Credentials, local configuration, and editor state
+.env
+.env.*
+!.env.example
+*.lic
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Course inputs and historical evidence are distributed separately
+/电力系统分析与控制作业/
+/PowerSystemModelAudit/
+/测试benchmark/

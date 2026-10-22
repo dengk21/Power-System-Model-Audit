@@ -1,0 +1,500 @@
+{
+  "algorithm": "SHA-256",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 368,
+      "sha256": "1e990e68d8c83613e61b9dd8073ce603d78272fa6d8215ba588c31d33829fdbc"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3771,
+      "sha256": "d39e9f0e5b7a771623b4e530d008f417d64e3f5f49ed266b2745ac6e0855a21c"
+    },
+    {
+      "path": "docs/PACKAGING.md",
+      "bytes": 5679,
+      "sha256": "e4239a737f7c92fc54d9a0812d34b51ae5b5430d068f1b608b8120e6405f3560"
+    },
+    {
+      "path": "docs/PUBLICATION.md",
+      "bytes": 1237,
+      "sha256": "4557ff9e754a9c81e1a9480a262eb4383cf08c986e5016a4603de3737e624675"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "bytes": 2249,
+      "sha256": "ca6f3eeed5350360ad6421e9e454db17af25cf66d8d1ccdeb33f2a31493422f6"
+    },
+    {
+      "path": "docs/source-manifest.json",
+      "bytes": 28092,
+      "sha256": "1194c723a194aaf39cddcafe3a00302fd7bb6db127456bcfc9f01872aea83649"
+    },
+    {
+      "path": "skills/power-system-model-audit/SKILL.md",
+      "bytes": 11697,
+      "sha256": "ab05bbb127482d478f3a40c0244554b8a9558ef2f4504e1e6b2c635ca0e10f26"
+    },
+    {
+      "path": "skills/power-system-model-audit/agents/openai.yaml",
+      "bytes": 361,
+      "sha256": "b1628c30013b44dd80690c790ecff6eaeeb204db0c513c2f09ce2f5793b56bbf"
+    },
+    {
+      "path": "skills/power-system-model-audit/assets/audit-report.md",
+      "bytes": 3310,
+      "sha256": "f52f0662130688707794215b11ea494f840c471a8ec3616394f9c0f8459abadc"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/course/math-spec.md",
+      "bytes": 5701,
+      "sha256": "e84fa58e96c09dd21621c5b90cddf20fdee98d935e76952fb66f59e83e133817"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/course/psaudit_course_capture.m",
+      "bytes": 7337,
+      "sha256": "5fd35b3be647fcc873453a6630bf1331570b9978dd402392fece6908c4565514"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/course/psaudit_course_review_inventory.m",
+      "bytes": 18023,
+      "sha256": "cb8f9702a3a1e388c3b435695210951fa28fd491053762fcc32292f8d26e6c56"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/course/psaudit_course_review_notes.m",
+      "bytes": 1980,
+      "sha256": "09930f183a43d45b881f935081ae38b560e234a921c9503dbe7e4634dae013fd"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/course/psaudit_course_test_helpers.m",
+      "bytes": 2145,
+      "sha256": "a0c9e53fde1336d6af010b3e110761fab96b47da6ab3c1a7cd52497bb305db5e"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/course/psaudit_course_validate.m",
+      "bytes": 27774,
+      "sha256": "568b349c47f6c21035da50fa8ab9613ea18b9d3950fad1aff1f3f04450ac5cc0"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/course/psaudit_course_write_report.m",
+      "bytes": 5604,
+      "sha256": "1f095b3a1b830c869fb9d36fd0e62c25e32fede45884c2d85a8627223c085329"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/course/runbook.md",
+      "bytes": 5597,
+      "sha256": "eb084e1809c4edacc3b3307d37dd82446532232c03f1de65315bf4e9b7ec94f3"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw4/math-spec.md",
+      "bytes": 4565,
+      "sha256": "4b08ab3946932be7233c1c2b6983eca724922df67300e836cada1ad6d3ffdd66"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw4/psaudit_hw4_build_reference.m",
+      "bytes": 2584,
+      "sha256": "edca794947ff0cac5c5ffcbe04970717c45900e6b1ace4d8d3418a12680767a1"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw4/psaudit_hw4_capture_result.m",
+      "bytes": 2752,
+      "sha256": "6168d583072c0ee2de3c6243a161e79fba4542522fcf8ac0af2a1ce56a0cea70"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw4/psaudit_hw4_check_solution.m",
+      "bytes": 3510,
+      "sha256": "8d4476a9cc5d1c13245d66b4bce4876c3cac97501e5c0d3c268357643c41c7e0"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw4/psaudit_hw4_relation_inventory.m",
+      "bytes": 2693,
+      "sha256": "c7c5be8c9e531051d5b82278a5e7a53bc0a38ce28ce4f24f424240f491ef2fbe"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw4/psaudit_hw4_test_adapter.m",
+      "bytes": 2453,
+      "sha256": "ac361b20cdebae0ce903ea121011ad2948ebcf152a4dddae23ea242f11398f69"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw4/psaudit_hw4_test_reporting.m",
+      "bytes": 1608,
+      "sha256": "631c81032cb550c698880fd17639edd74a0ab9e92823a13106f5d8dfb3262262"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw4/psaudit_hw4_validate_suite.m",
+      "bytes": 2215,
+      "sha256": "f2879cecf73ab2843e822b6006a99cfb66a0ac8d4b5d9484d14262728be3f776"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw4/psaudit_hw4_write_report.m",
+      "bytes": 7224,
+      "sha256": "76f39950f40d1db3abd5c699c5dab786b79c3cabaa1336de7fede515056baafb"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw4/runbook.md",
+      "bytes": 6403,
+      "sha256": "289668475659e2d251fbcac567c091da0a7d3ff6c9790dcb98b5f3ca6e693000"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw4/source-map.md",
+      "bytes": 2201,
+      "sha256": "2990bd384b3eec08d80ea66c58cc6191b31e46e27509732ee206661e6d010590"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/math-spec.md",
+      "bytes": 3373,
+      "sha256": "42599231d8168b1ff2070d459a760ad720038fcb70929fae9cfdf20f88bbf6e3"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/psaudit_hw5_build_reference.m",
+      "bytes": 1752,
+      "sha256": "924649f78461cd5bc81696ec224d1b60e7c8bdd421f0b4fae96f64c304928ca7"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/psaudit_hw5_capture_result.m",
+      "bytes": 2876,
+      "sha256": "c90c8b376bca56b535a165925a8a18b51a3d459d9c559979717d35d4085611bb"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/psaudit_hw5_check_solution.m",
+      "bytes": 6282,
+      "sha256": "59f2fd89bc30ab199e61116c8de589c2aa705606cae25a543057a7b1cd864d61"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/psaudit_hw5_feasibility_probes.m",
+      "bytes": 2314,
+      "sha256": "2ecb33961a47b212bd569e4e4191074f4ca41fb8d0607f062be8f298c3422aca"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/psaudit_hw5_relation_inventory.m",
+      "bytes": 10831,
+      "sha256": "3476864ac37305cbd14c02822c76d06571cbb7315a60d4d4e3f975302f9126e7"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/psaudit_hw5_test_adapter.m",
+      "bytes": 3484,
+      "sha256": "773c1d8b0bbeb1b2e5841bc7eccabb2946823ffe3a6ca712e941581153afdddc"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/psaudit_hw5_validate_suite.m",
+      "bytes": 2995,
+      "sha256": "54fdce20c70861060bf556e435978f948db6ec32cc3ddc8305e80ad992c1c183"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/psaudit_hw5_write_report.m",
+      "bytes": 3383,
+      "sha256": "3a4c26aa70bb784a8fc9062ff61d62b6287f841678c218b40df03d376fbc2f15"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/repair/math-spec.md",
+      "bytes": 4374,
+      "sha256": "2b22d57cb55743eb9fdc7c7700c9cb6c3f1c046b3d6ceb9f298ae0ffa461ac7b"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/repair/psaudit_hw5_repair_affine.m",
+      "bytes": 1124,
+      "sha256": "c57385f3dc24be1ad20245c86cd2d8d04341ef646c626f1c7cbdc553c892522c"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/repair/psaudit_hw5_repair_candidate.m",
+      "bytes": 195,
+      "sha256": "c3f0163ea4e70b7a9b2da99192c52370dc225ab9dcb56eafc57c86ea0e3f10db"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/repair/psaudit_hw5_repair_checks.m",
+      "bytes": 1947,
+      "sha256": "6de1fcb6f8e49399b7a1b02b50e07032e47a2d3d967c514b8becbf9c57eac84d"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/repair/psaudit_hw5_repair_implementation.m",
+      "bytes": 1972,
+      "sha256": "b3c6a6323c66cc453698f5895a2e218eb938517a0d0a294d6a80fad00d31e31b"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/repair/psaudit_hw5_repair_manifest.m",
+      "bytes": 475,
+      "sha256": "3b2211569ef8ad019c7517dbe43d9ee51ef80bb7b8693d6e58e34d8001019d21"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/repair/psaudit_hw5_repair_model_items.m",
+      "bytes": 929,
+      "sha256": "f58a988dbcd90454bfd6de7f93825f4019d15d81767542112f8556dd4edba512"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/repair/psaudit_hw5_repair_original.m",
+      "bytes": 196,
+      "sha256": "22b6f5e0ecf353a03786d6622b555ce675fed6007255e3ea45dd6e0b7dac7dee"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/repair/psaudit_hw5_repair_reference.m",
+      "bytes": 2537,
+      "sha256": "e124f10760431b6e2e99b46af4d7b92397ec665eaace6e6a27278c6ea39001a8"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/repair/psaudit_hw5_repair_replay.m",
+      "bytes": 5502,
+      "sha256": "97d23e877a47a9d8dd5aafd5978dc5048248f382115101313713bc2ffd50cfb2"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/repair/psaudit_hw5_repair_run.m",
+      "bytes": 9296,
+      "sha256": "ac504c1cf94c11860d8d2ca052d93d933b0c5f12802467f79a395d0a75b6a2dc"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/repair/psaudit_hw5_repair_test_replay.m",
+      "bytes": 2079,
+      "sha256": "34166fd302afa284c4d56582743f811ea7ac1d76728194f5fd5ca0d814b5edac"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/hw5/runbook.md",
+      "bytes": 4242,
+      "sha256": "1895d91498758c9672467ead920f40f867fc79e168f0885f001cf6d01b3f4621"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/semantic/math-spec.md",
+      "bytes": 1025,
+      "sha256": "eac99cac5896a506895704e71fc5cf0d9360bd6a4769a825f74a29078bb9f439"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/semantic/psaudit_semantic_demo_candidate.m",
+      "bytes": 125,
+      "sha256": "43d36fa9ef821de3db287d4105a60bccd79da5121930092bbb665d8314ac7ef6"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/semantic/psaudit_semantic_demo_checks.m",
+      "bytes": 775,
+      "sha256": "3d65302cb8d29f6afa710a9d40a10bc0fe0bafad00993d0cd56945e69dcc3095"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/semantic/psaudit_semantic_demo_cost.m",
+      "bytes": 117,
+      "sha256": "bf99d2f14d91843126a8365eec9ef56fb7c139b61bbaa83b39dfcdd5378fd8a7"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/semantic/psaudit_semantic_demo_loose.m",
+      "bytes": 119,
+      "sha256": "c9968750aadbb9882d09d716b46b5f8330dafe92dd6b182e4fcf27fde0c21b4c"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/semantic/psaudit_semantic_demo_maximize.m",
+      "bytes": 125,
+      "sha256": "3634d9b0b8094ac5e0f766bac116817d1af08a5b5042c212fe53608a9dabafc9"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/semantic/psaudit_semantic_demo_model.m",
+      "bytes": 1290,
+      "sha256": "6352cdbbe182c41058d41676f57a9772549902a749383cffe001b7a4cc0bb144"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/semantic/psaudit_semantic_demo_reference.m",
+      "bytes": 319,
+      "sha256": "47fb748762fd26b2f30e32737ddb6b39466064b76e4955d80d887b4148115e6f"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/semantic/psaudit_semantic_demo_run.m",
+      "bytes": 8614,
+      "sha256": "388d3506941897039ffc359b84fd54ec2e441d9c44d8fe64515cfe424cbda380"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/semantic/psaudit_semantic_demo_tight.m",
+      "bytes": 119,
+      "sha256": "cbe7975fd341f06015dcbe3859088fdaac390eceedc7fb386bd80dfd0f911755"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/semantic/psaudit_semantic_demo_tiny.m",
+      "bytes": 117,
+      "sha256": "1434844c5d7295e43e66bdd000783aa1ffb009dac42df8fdcd78d930f186e434"
+    },
+    {
+      "path": "skills/power-system-model-audit/examples/semantic/runbook.md",
+      "bytes": 2130,
+      "sha256": "36524bbe0b3c62ecf232ce4d8b139ad4815715f8e9392cdd0fcbfd4eeab1d3e3"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/audit-workflow.md",
+      "bytes": 4422,
+      "sha256": "c2d1d5d2630aabc17dfddc5f8d14c6d7cd91039713dd6416028934239f5fd6bb"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/capabilities.md",
+      "bytes": 3805,
+      "sha256": "057d4416f0c0cfd8b4bcbcb57d061f244322978c4afbed27d10fb6bb6e0aa4d3"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/diagnostic-repair-loop.md",
+      "bytes": 3830,
+      "sha256": "f39f5c07ea73e437198bcc7e1059c6dbf54eb8ba84d916801c05785cf978fe96"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/math-model-review.md",
+      "bytes": 4756,
+      "sha256": "f33274b4fa0efd8cfc7cfbf821c30c72f0386d558e61d744d5dba5decd0e9570"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/power-system-checks.md",
+      "bytes": 2308,
+      "sha256": "5f0de1a78c059d04d5be996bcf365271d1f63c97a3abbd41d0f53a297f24898b"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/running.md",
+      "bytes": 4628,
+      "sha256": "1b23c65df7aa06edb1c6c1b9d88c0e2834fb491316ecfc53293722fc08903e11"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/semantic-verification.md",
+      "bytes": 6439,
+      "sha256": "4c1864f37c65331062663b68a36dfe85c6decbf246db84dd1f561dcfad244db9"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/tool-catalog.md",
+      "bytes": 5796,
+      "sha256": "163a04bea922e163579f383fe57765047ebed4ea18ec00e55f72af6a49fb656f"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/verifier-contract.md",
+      "bytes": 7593,
+      "sha256": "1e458c14dc1587a24c045a4301783444ddd410799fe4850ebb635311d1522415"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_ac_network.m",
+      "bytes": 991,
+      "sha256": "9c21b0e9857453ab8f073319c91c97c9f58c18c05c209ef4aa0e6492ccb02133"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_check_commitment.m",
+      "bytes": 2575,
+      "sha256": "0a61d1a623a2bb579418876c570a1944606ac15d891b5adf765ea6b2c3e786ed"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_check_relations.m",
+      "bytes": 2767,
+      "sha256": "95f6ddb3cc6213a3bc1ccf932d18707ab84cada438f794900dbe0a55b58bf342"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_compare_affine.m",
+      "bytes": 6636,
+      "sha256": "72a5e2d750a9261494eaa406a41daac60b1109f826266777f7169d8feb6cf05a"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_dc_network.m",
+      "bytes": 996,
+      "sha256": "abed287ef876d4d15364c614a9ba31c284fee17ceeb25c076b685b1e1bd4821a"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_evaluate_witnesses.m",
+      "bytes": 3387,
+      "sha256": "d1b88854ee424a5145178a4d188a66cfb4d9f7d0f742218d264f9470bb8151af"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_execution_context.m",
+      "bytes": 2707,
+      "sha256": "80b8a3397be5921315a7b8c3f8de8272a9a77cdda93d1fc4daa26ec4dbb0bccd"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_frequency_extremum.m",
+      "bytes": 1264,
+      "sha256": "d96bb2cfbe7a53c2005588a7ed4adfae1ad5f394134f81a9a418c0e6ed191723"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_hash_file.m",
+      "bytes": 384,
+      "sha256": "0014283fb8cacc483d97b2cbd8243d33e0814462889401e3628d1eeeef8411b0"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_read_diagnostic.m",
+      "bytes": 1334,
+      "sha256": "fc2e7b52a28d9f942b930d390652a824f818fb44c7aed4dab52f44e1fc11153b"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_reconstruct_storage.m",
+      "bytes": 1139,
+      "sha256": "63086a5ca013cd92c1b70897f9345519c321c7f7917e7e7b04e5a003ad3326be"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_repair_gate.m",
+      "bytes": 1243,
+      "sha256": "f5d7650ef925eebd33b5c231ceb05fef5c374b42c88c328f75cfb0565c7253b7"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_review_inventory.m",
+      "bytes": 5019,
+      "sha256": "8400d45c84a30044f39e9d2194b497d974d67244ac2788146e149762b77f4b95"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_run.m",
+      "bytes": 7131,
+      "sha256": "c8d1eacc20527f7d9c2e27d65024f3a1a464c0af91ab796f61e886216f77a278"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_test_affine.m",
+      "bytes": 2727,
+      "sha256": "95394e6ff28158461b0af37828f884f7ef80c227c99cf1ef0f2424736b888baa"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_test_core.m",
+      "bytes": 2445,
+      "sha256": "65fda66161f148394ddf007bb4af213c8ea59a8f5891b53dba73422bf914e0fe"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_test_execution_and_witnesses.m",
+      "bytes": 4019,
+      "sha256": "f950cae6513b942f337550ccfbfbf87251d4e5785723b7ca9ffc5dbea8792ff5"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_test_model_review.m",
+      "bytes": 2873,
+      "sha256": "5702a1cc28915cb002b67e4d38d48f053285a176356805db8bb4509c694e1ec7"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_test_repair_gate.m",
+      "bytes": 1016,
+      "sha256": "006b7923ec5b75b132ef5027cb6ce83a1eccf155700f91e238c29b686bd0bd81"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_test_report_data.m",
+      "bytes": 2606,
+      "sha256": "dc753d5053611f305235b9714782050ab6cb98fc262d9ea66a5b8bce7f461e56"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_test_run.m",
+      "bytes": 3045,
+      "sha256": "327008f35d44d415dc8107bae98b48fb9b7a4f905d710c992d9ca7d7edb540bb"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_validate_semantic_candidate.m",
+      "bytes": 13456,
+      "sha256": "3432992e9e2b6bd72ddaba3dc0e30113c0e33736dd589c3bb305a8568c5fc6dd"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_write_audit_report.m",
+      "bytes": 4431,
+      "sha256": "0cc2e0b844c61628ca9c57c291d703d33ec01b780bbffe0e8531fdf96d5e4029"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_write_model_review.m",
+      "bytes": 1700,
+      "sha256": "513e04c573903a73b955f4a39be0d6aff8c48bf07320455130cf574888893464"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_write_witnesses.m",
+      "bytes": 1278,
+      "sha256": "ec1b0b132ed27bc3992353732b13476c353cce3837a439cb6a1c516df634fb9f"
+    },
+    {
+      "path": "tools/run_semantic_demo.m",
+      "bytes": 752,
+      "sha256": "007cb101676a5af068f67f4b5b07eabe52843407bf704d140c986fab2e2a8a55"
+    },
+    {
+      "path": "tools/run_smoke_tests.m",
+      "bytes": 2357,
+      "sha256": "1cee7ba3ed2643dc364b1252393e1e1df9c5db2190fe9d3c053dec43198299bf"
+    },
+    {
+      "path": "tools/verify_package.py",
+      "bytes": 3603,
+      "sha256": "ab9a7397250cdfeacc65db38eb75cf30dd81ddbdfb300281998ea06529554fb1"
+    }
+  ]
+}
