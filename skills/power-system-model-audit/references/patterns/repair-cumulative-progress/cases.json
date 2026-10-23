@@ -1,0 +1,152 @@
+[
+  {
+    "id": "normal",
+    "category": "normal",
+    "data": {
+      "faulted": true,
+      "repair_h": 3,
+      "dt_h": 1,
+      "max_progress": 44,
+      "progress": [
+        0,
+        1,
+        3,
+        10
+      ],
+      "available": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "coverage_before": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "expected": "PASS",
+    "basis": "3h完成，后续累计到10h仍允许保持可用。"
+  },
+  {
+    "id": "violation",
+    "category": "violation",
+    "data": {
+      "faulted": true,
+      "repair_h": 3,
+      "dt_h": 1,
+      "max_progress": 44,
+      "progress": [
+        0,
+        1,
+        3,
+        10
+      ],
+      "available": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "coverage_before": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "expected": "VIOLATION",
+    "basis": "1h尚不足3h就可用，是提前完成。"
+  },
+  {
+    "id": "equivalent",
+    "category": "equivalent",
+    "data": {
+      "faulted": true,
+      "repair_h": 3,
+      "dt_h": 1,
+      "max_progress": 44,
+      "progress": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "available": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "coverage_before": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "expected": "PASS",
+    "basis": "不同并行累计序列具有相同完成阈值逻辑。"
+  },
+  {
+    "id": "not-applicable",
+    "category": "not_applicable",
+    "data": {
+      "faulted": false,
+      "repair_h": 3,
+      "dt_h": 1,
+      "max_progress": 44,
+      "progress": [
+        0,
+        1,
+        3,
+        10
+      ],
+      "available": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "coverage_before": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "expected": "NOT_APPLICABLE",
+    "basis": "健康支路不需要维修阈值。"
+  },
+  {
+    "id": "missing-or-invalid",
+    "category": "data",
+    "data": {
+      "faulted": true,
+      "repair_h": 2.5,
+      "dt_h": 1,
+      "max_progress": 44,
+      "progress": [
+        0,
+        1,
+        3,
+        10
+      ],
+      "available": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "coverage_before": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "expected": "DATA_INSUFFICIENT",
+    "basis": "2.5h阈值与1h步长不对齐，不能套用离散间隙形式。"
+  }
+]

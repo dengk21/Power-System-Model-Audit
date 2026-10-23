@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "note": "Semantic family recognition requires source-bound structural evidence. Names or keywords alone are insufficient; novelty is assessed separately from whether the formulation is correct.",
+  "families": {
+    "ed": {"title": "经济调度", "roles": ["dispatch_decisions", "supply_demand_relation", "operating_limits"]},
+    "dcopf": {"title": "直流最优潮流", "roles": ["dispatch_decisions", "active_network_relation", "network_limits"]},
+    "acopf": {"title": "交流最优潮流", "roles": ["dispatch_decisions", "active_reactive_network", "voltage_limits"]},
+    "uc": {"title": "机组组合", "roles": ["commitment_states", "dispatch_decisions", "intertemporal_operation"]},
+    "scuc": {"title": "安全约束机组组合", "roles": ["commitment_states", "dispatch_decisions", "security_scenarios"]},
+    "storage": {"title": "储能调度", "roles": ["energy_state", "charge_discharge_decisions", "energy_conversion"]},
+    "mobile-resource": {"title": "移动资源调度", "roles": ["resource_locations", "travel_feasibility", "resource_service"]},
+    "restoration": {"title": "配电网恢复", "roles": ["availability_states", "network_supply", "restoration_decisions"]},
+    "stochastic-program": {"title": "随机优化", "roles": ["uncertainty_scenarios", "probability_model", "scenario_decisions"]},
+    "robust-program": {"title": "鲁棒优化", "roles": ["uncertainty_set", "worst_case_semantics", "robust_decisions"]}
+  }
+}

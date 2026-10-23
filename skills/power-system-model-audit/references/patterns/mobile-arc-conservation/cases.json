@@ -1,0 +1,187 @@
+[
+  {
+    "id": "normal",
+    "category": "normal",
+    "data": {
+      "representation": "unique-endpoint-arcs",
+      "arcs": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "positions": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "flows": [
+        [
+          0,
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    "expected": "PASS",
+    "basis": "唯一0→1弧连接两期位置。"
+  },
+  {
+    "id": "violation",
+    "category": "violation",
+    "data": {
+      "representation": "unique-endpoint-arcs",
+      "arcs": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "positions": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "flows": [
+        [
+          1,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "expected": "VIOLATION",
+    "basis": "使用0→0弧却宣称到达1是瞬移。"
+  },
+  {
+    "id": "equivalent",
+    "category": "equivalent",
+    "data": {
+      "representation": "unique-endpoint-arcs",
+      "arcs": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "positions": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "flows": [
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ]
+    },
+    "expected": "PASS",
+    "basis": "重排弧列并同步重排流量不改变关系。"
+  },
+  {
+    "id": "not-applicable",
+    "category": "not_applicable",
+    "data": {
+      "representation": "multi-path-tensor"
+    },
+    "expected": "NOT_APPLICABLE",
+    "basis": "多路径张量不使用本卡片的唯一弧表示。"
+  },
+  {
+    "id": "missing-or-invalid",
+    "category": "data",
+    "data": {
+      "representation": "unique-endpoint-arcs",
+      "arcs": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "positions": [
+        [
+          1,
+          0
+        ]
+      ],
+      "flows": [
+        [
+          0,
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    "expected": "DATA_INSUFFICIENT",
+    "basis": "T与T−1维度不符。"
+  }
+]

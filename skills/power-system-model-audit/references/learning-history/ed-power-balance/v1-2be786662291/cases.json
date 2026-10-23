@@ -1,0 +1,72 @@
+[
+  {
+    "id": "normal",
+    "category": "normal",
+    "data": {
+      "lossless": true,
+      "generation": [
+        40,
+        60
+      ],
+      "demand": [
+        100
+      ]
+    },
+    "expected": "PASS",
+    "basis": "40+60=100。"
+  },
+  {
+    "id": "violation",
+    "category": "violation",
+    "data": {
+      "lossless": true,
+      "generation": [
+        40,
+        50
+      ],
+      "demand": [
+        100
+      ]
+    },
+    "expected": "VIOLATION",
+    "basis": "40+50小于100。"
+  },
+  {
+    "id": "equivalent",
+    "category": "equivalent",
+    "data": {
+      "lossless": true,
+      "generation": [
+        60,
+        40
+      ],
+      "demand": [
+        30,
+        70
+      ]
+    },
+    "expected": "PASS",
+    "basis": "设备重排及负荷拆分后总量不变。"
+  },
+  {
+    "id": "not-applicable",
+    "category": "not_applicable",
+    "data": {
+      "lossless": false
+    },
+    "expected": "NOT_APPLICABLE",
+    "basis": "含网损模型不可直接用无损式。"
+  },
+  {
+    "id": "missing-or-invalid",
+    "category": "data",
+    "data": {
+      "lossless": true,
+      "generation": [
+        100
+      ]
+    },
+    "expected": "DATA_INSUFFICIENT",
+    "basis": "缺负荷不能证明平衡。"
+  }
+]

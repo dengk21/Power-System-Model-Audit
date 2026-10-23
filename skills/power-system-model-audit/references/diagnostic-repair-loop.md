@@ -28,6 +28,6 @@
 
 psaudit_repair_gate接收经核实的scopeVerified、referenceVerified、hasValidSolution、checks、referenceAccepted、objectiveConsistent、fullCoverage、unresolvedDefinition。它是证据门控，不产生规范或代替Agent审阅；任一门控不足则拒绝或推迟。费用增加/下降幅度不是通用回滚标准，补回约束可合理增加成本。
 
-新数值候选使用[语义重放层](semantic-verification.md)的`psaudit_validate_semantic_candidate`读取已绑定实际结果后再调用门控。冻结输入内声明工况、全部关系ID、形状、单位与容差；不能由候选删检查项或放松容差。参考轨迹先经独立规范验证，再判断其是否被候选排除。成本变化仅展示。确认数值反例即可拒绝，其他未决工况仍保留；无反例但有缺项/休眠表示差异时暂缓，全部通过才接受。真实LP与零求解重放见[示例](../examples/semantic/runbook.md)。
+新数值候选使用[语义重放层](semantic-verification.md)的`psaudit_validate_semantic_candidate`读取已绑定实际结果后再调用门控。冻结输入内声明工况、全部关系ID、形状、单位与容差；不能由候选删检查项或放松容差。参考轨迹先经独立规范验证，再判断其是否被候选排除。成本变化仅展示。确认数值反例即可拒绝，其他未决工况仍保留；无反例但有缺项/休眠表示差异时暂缓，全部通过才接受。真实LP与零求解重放由独立项目示例提供，项目入口归属见[运行说明](running.md)。
 
 验收通过只适用于声明的工况和参考版本，不证明完整可行域等价。报告分别统计确认错误的修复、文档修正/补全、争议推迟、等价保留及新增求解；不要把不同动作合并成自动代码修复成功率。

@@ -1,0 +1,91 @@
+[
+  {
+    "id": "normal",
+    "category": "normal",
+    "data": {
+      "resource": "MESS",
+      "dt_h": 1,
+      "pmax": 200,
+      "travel_h": [
+        0.4
+      ],
+      "charge": [
+        120
+      ],
+      "discharge": [
+        0
+      ]
+    },
+    "expected": "PASS",
+    "basis": "0.4+120/200=1。"
+  },
+  {
+    "id": "violation",
+    "category": "violation",
+    "data": {
+      "resource": "MESS",
+      "dt_h": 1,
+      "pmax": 200,
+      "travel_h": [
+        0.4
+      ],
+      "charge": [
+        200
+      ],
+      "discharge": [
+        0
+      ]
+    },
+    "expected": "VIOLATION",
+    "basis": "0.4+200/200=1.4，超时。"
+  },
+  {
+    "id": "equivalent",
+    "category": "equivalent",
+    "data": {
+      "resource": "MESS",
+      "dt_h": 1,
+      "pmax": 200,
+      "travel_h": [
+        0.4
+      ],
+      "charge": [
+        60
+      ],
+      "discharge": [
+        60
+      ]
+    },
+    "expected": "PASS",
+    "basis": "总充放电功率相同，本局部时间约束结果相同；未检验互斥。"
+  },
+  {
+    "id": "not-applicable",
+    "category": "not_applicable",
+    "data": {
+      "resource": "IC"
+    },
+    "expected": "NOT_APPLICABLE",
+    "basis": "通信车无此储能功率约束。"
+  },
+  {
+    "id": "missing-or-invalid",
+    "category": "data",
+    "data": {
+      "resource": "MESS",
+      "dt_h": 0,
+      "pmax": 200,
+      "travel_h": [
+        0.4
+      ],
+      "charge": [
+        120
+      ],
+      "discharge": [
+        0
+      ]
+    },
+    "expected": "DATA_INSUFFICIENT",
+    "basis": "Δt必须为正。"
+  }
+]

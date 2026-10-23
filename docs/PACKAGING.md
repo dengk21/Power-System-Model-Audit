@@ -1,4 +1,21 @@
+# 当前封装与依赖边界 v0.16
+
+2026-10-23：Skill和项目适配器分离。`skills/power-system-model-audit/`只包含知识、规范、通用工具、空白模板及通用工具测试；安装Skill不安装固定课程适配器。
+
+- `projects/course-audit/`是独立课程项目适配器，保留旧实现、规范和入口；原始模型/数据/历史求解结果仍不随包提供。
+- `tools/run_smoke_tests.m`运行六组通用内核检查；独立课程项目的`run_adapter_tests.m`运行三组本地适配器fixture。历史九组合计不得误称当前Skill内有九组。
+- `tools/run_semantic_demo.m`显式加载独立项目的LP示例，需要有效Gurobi许可；不会因复制Skill自动获得该示例。
+- 新项目适配器由Agent在项目审计目录生成验证，生命周期见Skill内`references/project-adapters.md`。初始化骨架不表示数学审阅或测试已完成。
+- `tools/refresh_manifests.py`重建完整仓库清单，Skill清单仅统计Skill树。`verify_package.py`同时检查Skill不携带项目examples或固定课程分派器。
+- 课程目录Skill是受控同步副本。移出旧资源使用`sync_workspace_skill.py --retire-managed`，拒绝删除已独立修改的文件。旧MAT和冻结规范不改字节，不自动重签路径。
+
+当前测试与迁移记录见`docs/PUBLICATION.md`的v0.16节。以下为历史封装说明，涉及Skill内examples、九组测试和原目录的描述仅适用于对应旧版。
+
+---
+
 # 公开包整理记录
+
+当前维护说明（v0.14，2026-10-22）：Git仓库中的Skill已成为唯一维护源，课程目录副本由 `tools/sync_workspace_skill.py` 同步。`tools/refresh_manifests.py` 根据Git管理的文件生成当前来源和包清单；旧v0.13来源记录保存在 `source-manifest-v0.13.json`。以下2026-10-20段落描述历史封装过程，不是当前双源维护规则。
 
 整理日期：2026-10-20（Asia/Shanghai）。方法版本仍为 v0.13，语义验收契约仍为 v0.12。本文件是封装与依赖记录，README、课程报告和海报由作者后续补充。
 

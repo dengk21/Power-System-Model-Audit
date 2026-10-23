@@ -1,0 +1,40 @@
+{
+  "id": "mobile-arc-conservation",
+  "title": "逐车位置与稀疏移动弧守恒",
+  "family": "mobile",
+  "tags": [
+    "移动资源",
+    "MESS",
+    "CREW",
+    "IC",
+    "mobile",
+    "弧守恒"
+  ],
+  "scope": {
+    "mobility_representation": "unique-endpoint-arcs",
+    "position_domain": "binary_one_hot"
+  },
+  "checker": "mobile-flow",
+  "sources": [
+    {
+      "project": "resilience",
+      "path": "funs/resilience_build_and_solve.m",
+      "sha256": "2a59d8cd6ce8c9ad956ceb770c493a742155c664e0bcddc73b97a9050b99ef9d",
+      "role": "ACTIVE_IMPLEMENTATION"
+    }
+  ],
+  "schema_version": 1,
+  "version": 1,
+  "extraction": "CODE_OBSERVED",
+  "validation": "LOCAL_TESTED",
+  "reuse": "CONDITIONAL",
+  "review": {
+    "summary": "按现有来源提取关系并将局部代数与来源模型完整验证分开。",
+    "basis": "节点流守恒；两个不同终点不可能同时对应同一one-hot到达状态。",
+    "reviewer": "Codex; 2026-10-22",
+    "independent_basis": true
+  },
+  "cases_sha256": "c18b1acfa5d0108498d4543a1dbefd943420485cfb5daa0d531285a17847a89f",
+  "checker_sha256": "1e20382de51d22802918c6c6f08d44bd6c14836772b12de5e995b90ab4b86cfb",
+  "card_sha256": "bc6cab6c15e359e557534e77a877f94ec0ab111187f1398e5b5d2b8d3f430063"
+}

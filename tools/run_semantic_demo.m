@@ -8,7 +8,7 @@ assert(~isfolder(outputDirectory) && ~isfile(outputDirectory), 'Use a new output
 oldPath = path;
 pathGuard = onCleanup(@() path(oldPath)); %#ok<NASGU>
 skill = fullfile(repo, 'skills', 'power-system-model-audit');
-addpath(fullfile(skill, 'scripts'), fullfile(skill, 'examples', 'semantic'));
+addpath(fullfile(skill, 'scripts'), fullfile(repo, 'projects', 'course-audit', 'examples', 'semantic'));
 assert(exist('gurobi', 'file') ~= 0, 'Configure the licensed Gurobi MATLAB interface first');
 summary = psaudit_semantic_demo_run(outputDirectory);
 end

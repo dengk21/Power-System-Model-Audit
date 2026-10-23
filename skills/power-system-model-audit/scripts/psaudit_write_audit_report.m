@@ -55,4 +55,5 @@ end
 for k=1:numel(document.links),x=document.links(k);fprintf(fid,'- [%s](<%s>)\n',x.label,strrep(x.path,'\','/'));end
 for k=1:numel(document.notes),fprintf(fid,'\n%s\n',document.notes{k});end
 fprintf(fid,'\n脚本填充数值，数学语义来自经审阅清单。补全/修正为候选实文；未自动改原TeX或源码。当前结果不证明任意模型正确、可行域等价或未认证的最优性。\n');
+psaudit_write_brief_report(file,document);
 end

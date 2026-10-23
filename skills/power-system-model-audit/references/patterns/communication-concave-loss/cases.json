@@ -1,0 +1,147 @@
+[
+  {
+    "id": "normal",
+    "category": "normal",
+    "data": {
+      "curve": "concave",
+      "slopes": [
+        2,
+        1
+      ],
+      "intercepts": [
+        0,
+        2
+      ],
+      "phi_max": 6,
+      "count": 1,
+      "power_w": [
+        0,
+        2,
+        4
+      ],
+      "loss_mbps": [
+        6,
+        2,
+        0
+      ]
+    },
+    "expected": "PASS",
+    "basis": "曲线在0/2/4W的流量为0/4/6，损失为6/2/0。"
+  },
+  {
+    "id": "violation",
+    "category": "violation",
+    "data": {
+      "curve": "concave",
+      "slopes": [
+        2,
+        1
+      ],
+      "intercepts": [
+        0,
+        2
+      ],
+      "phi_max": 6,
+      "count": 1,
+      "power_w": [
+        0,
+        2,
+        4
+      ],
+      "loss_mbps": [
+        6,
+        1,
+        0
+      ]
+    },
+    "expected": "VIOLATION",
+    "basis": "2W时损失至少2，填1不满足上图。"
+  },
+  {
+    "id": "equivalent",
+    "category": "equivalent",
+    "data": {
+      "curve": "concave",
+      "slopes": [
+        2,
+        1
+      ],
+      "intercepts": [
+        0,
+        2
+      ],
+      "phi_max": 6,
+      "count": 2,
+      "power_w": [
+        0,
+        4,
+        8
+      ],
+      "loss_mbps": [
+        12,
+        4,
+        0
+      ]
+    },
+    "expected": "PASS",
+    "basis": "两站总功率和总流量成倍缩放，单站关系相同。"
+  },
+  {
+    "id": "not-applicable",
+    "category": "not_applicable",
+    "data": {
+      "curve": "convex",
+      "slopes": [
+        2,
+        1
+      ],
+      "intercepts": [
+        0,
+        2
+      ],
+      "phi_max": 6,
+      "count": 1,
+      "power_w": [
+        0,
+        2,
+        4
+      ],
+      "loss_mbps": [
+        6,
+        2,
+        0
+      ]
+    },
+    "expected": "NOT_APPLICABLE",
+    "basis": "凸曲线不能用凹曲线最小直线包络。"
+  },
+  {
+    "id": "missing-or-invalid",
+    "category": "data",
+    "data": {
+      "curve": "concave",
+      "slopes": [
+        1,
+        2
+      ],
+      "intercepts": [
+        0,
+        2
+      ],
+      "phi_max": 6,
+      "count": 1,
+      "power_w": [
+        0,
+        2,
+        4
+      ],
+      "loss_mbps": [
+        6,
+        2,
+        0
+      ]
+    },
+    "expected": "DATA_INSUFFICIENT",
+    "basis": "斜率递增违背本卡片的凹性条件。"
+  }
+]

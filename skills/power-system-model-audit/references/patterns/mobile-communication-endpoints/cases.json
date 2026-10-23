@@ -1,0 +1,141 @@
+[
+  {
+    "id": "normal",
+    "category": "normal",
+    "data": {
+      "resource": "MESS",
+      "enabled": true,
+      "arcs": [
+        [
+          0,
+          1
+        ]
+      ],
+      "flow": [
+        1
+      ],
+      "coverage_t": [
+        1,
+        1
+      ],
+      "coverage_next": [
+        0,
+        1
+      ]
+    },
+    "expected": "PASS",
+    "basis": "出发地t覆盖且终点在t、t+1均覆盖。"
+  },
+  {
+    "id": "violation",
+    "category": "violation",
+    "data": {
+      "resource": "MESS",
+      "enabled": true,
+      "arcs": [
+        [
+          0,
+          1
+        ]
+      ],
+      "flow": [
+        1
+      ],
+      "coverage_t": [
+        1,
+        0
+      ],
+      "coverage_next": [
+        0,
+        1
+      ]
+    },
+    "expected": "VIOLATION",
+    "basis": "目的地到达前才有通信，不满足下发时覆盖。"
+  },
+  {
+    "id": "equivalent",
+    "category": "equivalent",
+    "data": {
+      "resource": "MESS",
+      "enabled": true,
+      "arcs": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "flow": [
+        0,
+        1
+      ],
+      "coverage_t": [
+        1,
+        1
+      ],
+      "coverage_next": [
+        0,
+        1
+      ]
+    },
+    "expected": "PASS",
+    "basis": "增加零流量自环列不影响跨节点汇总。"
+  },
+  {
+    "id": "not-applicable",
+    "category": "not_applicable",
+    "data": {
+      "resource": "IC",
+      "enabled": true,
+      "arcs": [
+        [
+          0,
+          1
+        ]
+      ],
+      "flow": [
+        1
+      ],
+      "coverage_t": [
+        1,
+        1
+      ],
+      "coverage_next": [
+        0,
+        1
+      ]
+    },
+    "expected": "NOT_APPLICABLE",
+    "basis": "IC移动不受此组约束。"
+  },
+  {
+    "id": "missing-or-invalid",
+    "category": "data",
+    "data": {
+      "resource": "MESS",
+      "enabled": true,
+      "arcs": [
+        [
+          0,
+          1
+        ]
+      ],
+      "flow": [
+        1
+      ],
+      "coverage_t": [
+        1,
+        1
+      ],
+      "coverage_next": [
+        1
+      ]
+    },
+    "expected": "DATA_INSUFFICIENT",
+    "basis": "两期覆盖向量必须同形。"
+  }
+]

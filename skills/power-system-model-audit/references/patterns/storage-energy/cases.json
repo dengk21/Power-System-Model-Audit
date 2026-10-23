@@ -1,0 +1,110 @@
+[
+  {
+    "id": "normal",
+    "category": "normal",
+    "data": {
+      "self_discharge_model": "none",
+      "energy_unit": "kWh",
+      "power_unit": "kW",
+      "energy": [
+        100,
+        109
+      ],
+      "charge": [
+        10
+      ],
+      "discharge": [
+        0
+      ],
+      "eta_c": 0.9,
+      "eta_d": 0.9,
+      "dt_h": 1,
+      "capacity": 200
+    },
+    "expected": "PASS",
+    "basis": "一小时输入10kW、充电效率0.9，增加9kWh。"
+  },
+  {
+    "id": "violation",
+    "category": "violation",
+    "data": {
+      "self_discharge_model": "none",
+      "energy_unit": "kWh",
+      "power_unit": "kW",
+      "energy": [
+        100,
+        110
+      ],
+      "charge": [
+        10
+      ],
+      "discharge": [
+        0
+      ],
+      "eta_c": 0.9,
+      "eta_d": 0.9,
+      "dt_h": 1,
+      "capacity": 200
+    },
+    "expected": "VIOLATION",
+    "basis": "110意味着漏掉充电损耗。"
+  },
+  {
+    "id": "equivalent",
+    "category": "equivalent",
+    "data": {
+      "self_discharge_model": "none",
+      "energy_unit": "MWh",
+      "power_unit": "MW",
+      "energy": [
+        0.1,
+        0.109
+      ],
+      "charge": [
+        0.01
+      ],
+      "discharge": [
+        0
+      ],
+      "eta_c": 0.9,
+      "eta_d": 0.9,
+      "dt_h": 1,
+      "capacity": 0.2
+    },
+    "expected": "PASS",
+    "basis": "同时把kW/kWh换成MW/MWh，物理轨迹相同。"
+  },
+  {
+    "id": "not-applicable",
+    "category": "not_applicable",
+    "data": {
+      "self_discharge_model": "hourly"
+    },
+    "expected": "NOT_APPLICABLE",
+    "basis": "每小时自放电需要不同递推，当前局部工具不适用。"
+  },
+  {
+    "id": "missing-or-invalid",
+    "category": "data",
+    "data": {
+      "self_discharge_model": "none",
+      "energy_unit": "kWh",
+      "power_unit": "kW",
+      "energy": [
+        100
+      ],
+      "charge": [
+        10
+      ],
+      "discharge": [
+        0
+      ],
+      "eta_c": 0.9,
+      "eta_d": 0.9,
+      "dt_h": 1,
+      "capacity": 200
+    },
+    "expected": "DATA_INSUFFICIENT",
+    "basis": "T个功率间隔须有T+1个状态。"
+  }
+]

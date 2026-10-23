@@ -1,0 +1,216 @@
+{
+  "snapshotDate": "2026-10-22",
+  "sourceProject": "Power-Communication-Network-Resilience-Model",
+  "priority": "active_code_and_loaded_configuration_over_TeX",
+  "kind": "code-derived mathematical reference, not an independently certified physical specification",
+  "solverCalls": 0,
+  "fullNumericalAdapterImplemented": false,
+  "files": [
+    {
+      "path": "Case1.m",
+      "bytes": 1444,
+      "sha256": "40d3538002991e2f81416fed6a980757fe887b681ab203c72f2f02c12e1b4963",
+      "role": "source_or_input"
+    },
+    {
+      "path": "Case2.m",
+      "bytes": 1094,
+      "sha256": "2ae0704e6078bf278c8b83e2f29a843d113ac770025049295c3187cefc8b42a4",
+      "role": "source_or_input"
+    },
+    {
+      "path": "Case3.m",
+      "bytes": 1079,
+      "sha256": "3c54d2aedb5ccab4b857b1e044b8c42d7450b4867e49ec652d15e82990f93801",
+      "role": "source_or_input"
+    },
+    {
+      "path": "Case4.m",
+      "bytes": 1076,
+      "sha256": "998381609ad1187363629dde4a16fe7f4c603f29a1af6f82d9cb52e7df7ff5bb",
+      "role": "source_or_input"
+    },
+    {
+      "path": "Case5.m",
+      "bytes": 1175,
+      "sha256": "f8c2289355d4fe76a97b28f1b22acb5ddc17f4dacaa2b20f85e165f40ca78879",
+      "role": "source_or_input"
+    },
+    {
+      "path": "Run_all.m",
+      "bytes": 4522,
+      "sha256": "d12b35452dca469a41ddc265c97a28b10891f93721bac663c1401d3a34174b64",
+      "role": "source_or_input"
+    },
+    {
+      "path": "Data_generation.m",
+      "bytes": 13470,
+      "sha256": "147ecb944f178168722ec85ae5b738f449ee6046f8841fc5d2cccf572f95949a",
+      "role": "source_or_input"
+    },
+    {
+      "path": "funs/run_resilience_case.m",
+      "bytes": 7281,
+      "sha256": "003d4622bfe828ed51f51e54ad5100488a93db1c26e6597a7814d1a531ed4594",
+      "role": "source_or_input"
+    },
+    {
+      "path": "funs/resilience_load_base.m",
+      "bytes": 4735,
+      "sha256": "7f14faf115392b0d38eedac1c9655e7437e0d432ba37faf9c5cc1315eae0579a",
+      "role": "source_or_input"
+    },
+    {
+      "path": "funs/resilience_build_and_solve.m",
+      "bytes": 43320,
+      "sha256": "2a59d8cd6ce8c9ad956ceb770c493a742155c664e0bcddc73b97a9050b99ef9d",
+      "role": "source_or_input"
+    },
+    {
+      "path": "funs/GIS_trafficData_Gen.m",
+      "bytes": 6191,
+      "sha256": "a6087cd2a3ed2e3a2c31448aadf80ad6575f90e15e59e4ee45b4a84be2005c90",
+      "role": "source_or_input"
+    },
+    {
+      "path": "funs/resilience_select_concave_pwl.m",
+      "bytes": 2470,
+      "sha256": "e78914c67e57d6b3d91a88a68d2ed5ab4716a5a0998fcf23458b2110fc4db666",
+      "role": "source_or_input"
+    },
+    {
+      "path": "funs/resilience_comm_objective_power_linear.m",
+      "bytes": 1923,
+      "sha256": "219154bc08119fe6a08f875f9a324cbe2b7fb02219d939e8d040a930a2ad21f5",
+      "role": "source_or_input"
+    },
+    {
+      "path": "funs/Base_station_T_delay_cal.m",
+      "bytes": 4222,
+      "sha256": "a376625a0dd1f5973f25aba154bfe2d046e5f166b92da32e4c734bb8c53478bf",
+      "role": "source_or_input"
+    },
+    {
+      "path": "funs/resilience_compute_comm_metrics.m",
+      "bytes": 4025,
+      "sha256": "ae3ecab8c4f9a845c069a2a22584872370e95ce7bfd38375205ba6e99d7ced84",
+      "role": "source_or_input"
+    },
+    {
+      "path": "funs/resilience_export_json.m",
+      "bytes": 14449,
+      "sha256": "61f6ad0295b39ecf2e411e0b881a208544c5ae72b0186f1f8220d575b014e55c",
+      "role": "source_or_input"
+    },
+    {
+      "path": "Latex/项目报告.tex",
+      "bytes": 23955,
+      "sha256": "9a76c43e13857155586ee746c3a2dc8eaae0d7d7909f8809ac8341561c215c89",
+      "role": "comparison_only"
+    },
+    {
+      "path": "results/Base_Parameters.mat",
+      "bytes": 91713,
+      "sha256": "a8813fe56fbcbf965b9a8ae7a84611649fd4e2361662ce3ad4c88939616ef4ea",
+      "role": "source_or_input"
+    },
+    {
+      "path": "results/Traffic_Path_Data.mat",
+      "bytes": 61143,
+      "sha256": "0af555e57715ca7a99b09bd0ff7639cc856d4ed3018b80fad5cc968917eddc68",
+      "role": "source_or_input"
+    },
+    {
+      "path": "results/Phi_PTRX_linear_fit_params.mat",
+      "bytes": 4482,
+      "sha256": "aa154aedcecb1e5f8d83e0dd2a1ceea2a5ac0df2c2c00d3f14422fe49e63d6c7",
+      "role": "source_or_input"
+    },
+    {
+      "path": "assets/33bus_branch_Geo.csv",
+      "bytes": 578,
+      "sha256": "57c7231df6db917dd06703903fe6597101455c8ee833740786ac3958c67a8c7d",
+      "role": "source_or_input"
+    },
+    {
+      "path": "assets/GIS2_net.csv",
+      "bytes": 626,
+      "sha256": "1edac877e58308901516cc4d0c92e451ed6ddfbaaa134ab4d6f61b17709859ec",
+      "role": "source_or_input"
+    }
+  ],
+  "buildConstraintSections": [
+    {
+      "line": 251,
+      "label": "% --- 3.1 连续松弛移动弧变量边界 ---"
+    },
+    {
+      "line": 262,
+      "label": "% --- 3.2 负荷削减 ---"
+    },
+    {
+      "line": 268,
+      "label": "% --- 3.3 柴油发电机 ---"
+    },
+    {
+      "line": 273,
+      "label": "% --- 3.4 光伏 ---"
+    },
+    {
+      "line": 278,
+      "label": "% --- 3.5 MESS 充放电门控与 SOC ---"
+    },
+    {
+      "line": 285,
+      "label": "% --- 3.6 MESS 初始/固定位置 ---"
+    },
+    {
+      "line": 299,
+      "label": "% --- 3.7 MESS 稀疏弧调度（流守恒 + 最短行驶时间） ---"
+    },
+    {
+      "line": 324,
+      "label": "% --- 3.8 MESS SOC 动态 ---"
+    },
+    {
+      "line": 333,
+      "label": "% --- 3.9 维修车初始/固定位置 ---"
+    },
+    {
+      "line": 344,
+      "label": "% --- 3.10 维修车稀疏弧调度 ---"
+    },
+    {
+      "line": 365,
+      "label": "% --- 3.11 移动资源功能性通信依赖 ---"
+    },
+    {
+      "line": 404,
+      "label": "% --- 3.12 LinDistFlow 潮流模型 ---"
+    },
+    {
+      "line": 512,
+      "label": "% --- 3.13 虚拟流根节点与连通性 ---"
+    },
+    {
+      "line": 528,
+      "label": "% --- 3.14 基站功率与储能 ---"
+    },
+    {
+      "line": 576,
+      "label": "% --- 3.14b 应急过渡期 (t = 1..T_em)：仅冻结 MESS 出力 ---"
+    },
+    {
+      "line": 587,
+      "label": "% --- 3.15 基站覆盖 & 通信可用 ---"
+    },
+    {
+      "line": 609,
+      "label": "% --- 3.16 IC 初始/固定位置 ---"
+    },
+    {
+      "line": 620,
+      "label": "% --- 3.17 IC 稀疏弧调度 ---"
+    }
+  ]
+}

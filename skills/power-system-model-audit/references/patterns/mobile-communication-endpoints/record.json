@@ -1,0 +1,54 @@
+{
+  "id": "mobile-communication-endpoints",
+  "title": "跨节点移动的端点通信门控",
+  "family": "mobile-communication",
+  "tags": [
+    "通信",
+    "端点",
+    "自环",
+    "endpoint",
+    "Case1"
+  ],
+  "scope": {
+    "resource": [
+      "MESS",
+      "CREW"
+    ],
+    "comm_rule": "cross_node_endpoints"
+  },
+  "checker": "endpoint-gating",
+  "sources": [
+    {
+      "project": "resilience",
+      "path": "funs/resilience_build_and_solve.m",
+      "sha256": "2a59d8cd6ce8c9ad956ceb770c493a742155c664e0bcddc73b97a9050b99ef9d",
+      "role": "ACTIVE_IMPLEMENTATION"
+    },
+    {
+      "project": "resilience",
+      "path": "Case1.m",
+      "sha256": "40d3538002991e2f81416fed6a980757fe887b681ab203c72f2f02c12e1b4963",
+      "role": "ACTIVE_IMPLEMENTATION"
+    },
+    {
+      "project": "resilience",
+      "path": "Case2.m",
+      "sha256": "2ae0704e6078bf278c8b83e2f29a843d113ac770025049295c3187cefc8b42a4",
+      "role": "ACTIVE_IMPLEMENTATION"
+    }
+  ],
+  "schema_version": 1,
+  "version": 1,
+  "extraction": "CODE_OBSERVED",
+  "validation": "LOCAL_TESTED",
+  "reuse": "CONDITIONAL",
+  "review": {
+    "summary": "按现有来源提取关系并将局部代数与来源模型完整验证分开。",
+    "basis": "三个必要端点/时间条件逐一检查；自环对应零跨节点流。",
+    "reviewer": "Codex; 2026-10-22",
+    "independent_basis": true
+  },
+  "cases_sha256": "2d3e571fe83efb81642d61fa417653d3abc2568be6b7f0632c67aaa0a54cafd3",
+  "checker_sha256": "1e20382de51d22802918c6c6f08d44bd6c14836772b12de5e995b90ab4b86cfb",
+  "card_sha256": "37071a5c8a81f870a58d7982842a6f8f38ce2b0c33a9aec7960786c481025650"
+}

@@ -31,7 +31,7 @@ def verify():
     actual = {
         p.relative_to(ROOT).as_posix()
         for p in ROOT.rglob("*")
-        if p.is_file() and not (set(p.relative_to(ROOT).parts) & ignored)
+        if p.is_file() and p.name != '.DS_Store' and not (set(p.relative_to(ROOT).parts) & ignored)
     }
     unexpected = actual - set(tracked) - {"docs/package-manifest.json"}
     errors.extend(f"Unlisted file: {name}" for name in sorted(unexpected))
@@ -52,6 +52,13 @@ def verify():
                 errors.append(f"Core non-Markdown file changed: {item['path']}")
     if changed != set(source["packagingEdits"]):
         errors.append("Packaging edit list does not match the source manifest")
+
+    skill_root = ROOT / "skills/power-system-model-audit"
+    if (skill_root / "examples").exists():
+        errors.append("Project examples must be outside the Skill")
+    for name in ("psaudit_run.m", "psaudit_test_run.m"):
+        if (skill_root / "scripts" / name).exists():
+            errors.append("Fixed course entrypoint must be project-owned: " + name)
 
     links_checked = 0
     for name in tracked:

@@ -1,0 +1,46 @@
+{
+  "id": "communication-concave-loss",
+  "title": "凹分段流量曲线的损失上图",
+  "family": "communication",
+  "tags": [
+    "通信",
+    "凹函数",
+    "PWL",
+    "SOS2",
+    "epigraph",
+    "流量损失"
+  ],
+  "scope": {
+    "curve": "concave",
+    "objective": "positive_weight_loss_minimization"
+  },
+  "checker": "concave-loss",
+  "sources": [
+    {
+      "project": "resilience",
+      "path": "funs/resilience_build_and_solve.m",
+      "sha256": "2a59d8cd6ce8c9ad956ceb770c493a742155c664e0bcddc73b97a9050b99ef9d",
+      "role": "ACTIVE_IMPLEMENTATION"
+    },
+    {
+      "project": "resilience",
+      "path": "funs/resilience_select_concave_pwl.m",
+      "sha256": "e78914c67e57d6b3d91a88a68d2ed5ab4716a5a0998fcf23458b2110fc4db666",
+      "role": "ACTIVE_IMPLEMENTATION"
+    }
+  ],
+  "schema_version": 1,
+  "version": 1,
+  "extraction": "CODE_OBSERVED",
+  "validation": "LOCAL_TESTED",
+  "reuse": "CONDITIONAL",
+  "review": {
+    "summary": "按现有来源提取关系并将局部代数与来源模型完整验证分开。",
+    "basis": "max_j[Phi_max-(m_j P+b_j)]=Phi_max-min_j(m_j P+b_j)。",
+    "reviewer": "Codex; 2026-10-22",
+    "independent_basis": true
+  },
+  "cases_sha256": "5ba499759ea351efd6154a9b10c6950e5479b8df8b0efb1abec20fd769ef0df6",
+  "checker_sha256": "1e20382de51d22802918c6c6f08d44bd6c14836772b12de5e995b90ab4b86cfb",
+  "card_sha256": "7dfbc036f76d7c31628dada9f17f0c225e7bd2fdd0398e64e6459c413f059c6e"
+}
