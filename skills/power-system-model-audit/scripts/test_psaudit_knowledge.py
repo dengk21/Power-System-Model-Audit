@@ -6,6 +6,9 @@ from pathlib import Path
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
+from contextlib import redirect_stdout, redirect_stderr
+import io
 
 import psaudit_knowledge as k
 
@@ -37,6 +40,10 @@ class KnowledgeTests(unittest.TestCase):
         shutil.copytree(self.folder, target)
         record = k.read(target / "record.json")
         record.update(id=name, version=version, revision_note="Rechecked changed source against energy conservation and all boundary fixtures.")
+        spec = k.read(target / "project-checks.json")
+        spec["pattern_id"] = name
+        k.write(target / "project-checks.json", spec)
+        record["project_checks_sha256"] = k.digest(target / "project-checks.json")
         k.write(target / "record.json", record)
         return target
 
@@ -44,6 +51,93 @@ class KnowledgeTests(unittest.TestCase):
         for folder in k.folders():
             record = k.load_pattern(folder)
             self.assertTrue(all(x["passed"] for x in k.test_pattern(folder, record)), folder.name)
+
+    def test_search_reads_only_metadata_without_loading_or_testing_cards(self):
+        original = k.read
+        def metadata_only(path):
+            self.assertIn(Path(path).name, {'record.json', 'discovery.json'})
+            return original(path)
+        with patch.object(k, 'read', side_effect=metadata_only), \
+                patch.object(k, 'load_pattern', side_effect=AssertionError('Card body loaded')), \
+                patch.object(k, 'test_pattern', side_effect=AssertionError('Fixture executed')):
+            rows = k.search_records('储能', self.context, 1)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]['tests_state'], 'NOT_RUN')
+        self.assertEqual(rows[0]['use'], 'CANDIDATE_METADATA_ONLY')
+        self.assertEqual(rows[0]['freshness'], 'NOT_CHECKED')
+
+    def test_search_can_discover_damaged_card_without_misreporting_verification(self):
+        (self.folder / 'card.md').unlink()
+        (self.folder / 'checker.py').unlink()
+        self.assertEqual(k.search_records('storage-energy', {}, 1)[0]['id'], 'storage-energy')
+        with self.assertRaises((ValueError, OSError)):
+            k.inspect_pattern(self.folder, self.roots, self.context)
+
+    def test_index_rebuild_does_not_load_unrelated_checker_implementations(self):
+        with patch.object(k, 'load_pattern', side_effect=AssertionError('Unneeded full card load')):
+            k.build_index()
+        self.assertIn('储能', (k.SKILL / 'references/pattern-index.md').read_text(encoding='utf-8'))
+
+    def test_search_cli_does_not_report_vacuous_test_success(self):
+        output = io.StringIO()
+        with redirect_stdout(output):
+            self.assertEqual(k.main(['search', 'storage-energy', '--limit', '1']), 0)
+        result = json.loads(output.getvalue())
+        self.assertEqual(result['state'], 'METADATA_ONLY')
+        self.assertNotIn('all_local_tests_passed', result)
+
+    def test_nodal_synonyms_find_same_card_without_executing_checkers(self):
+        for query in ('KCL', '节点负荷', '节点净注入', '基尔霍夫电流定律', 'ＢＵＳ power balance'):
+            rows = k.search_records(query, {}, 1)
+            self.assertEqual(rows[0]['id'], 'dc-nodal-power-balance', query)
+            self.assertTrue(rows[0]['matched_terms'])
+
+    def test_family_relation_and_scope_filters_are_independent(self):
+        rows = k.search_records('', {}, families=['dcopf'], relations=['nodal_balance'])
+        self.assertEqual([x['id'] for x in rows], ['dc-nodal-power-balance'])
+        self.assertEqual(k.search_records('储能', {}, scope_filter='match'), [])
+        self.assertNotIn('storage-energy', [x['id'] for x in k.search_records('storage-energy', {'energy_state': 'T'}, scope_filter='compatible')])
+        self.assertEqual(k.search_records('storage-energy', {'energy_state': 'T'}, scope_filter='any')[0]['applicability']['state'], 'MISMATCH')
+
+    def test_english_abbreviations_do_not_match_inside_unrelated_words(self):
+        self.assertEqual(k.search_records('mucus', {}), [])
+        self.assertFalse(k.contains('scuc', 'uc'))
+
+    def test_search_metadata_edit_does_not_change_mathematical_record(self):
+        before = k.digest(self.folder / 'record.json')
+        path = self.folder / 'discovery.json'; meta = k.read(path)
+        meta['aliases'].append('synthetic unique alias'); k.write(path, meta)
+        self.assertEqual(k.search_records('synthetic unique alias', {}, 1)[0]['id'], 'storage-energy')
+        self.assertEqual(before, k.digest(self.folder / 'record.json'))
+        self.assertTrue(k.inspect_pattern(self.folder, self.roots, self.context)['tests_passed'])
+
+    def test_verify_requires_explicit_selection(self):
+        with redirect_stderr(io.StringIO()):
+            self.assertEqual(k.main(['verify']), 2)
+
+    def test_verify_executes_only_selected_card(self):
+        output = io.StringIO()
+        with patch.object(k, 'test_pattern', wraps=k.test_pattern) as spy, redirect_stdout(output):
+            code = k.main(['verify', '--pattern', 'storage-energy', '--context', 'energy_state=T+1',
+                           '--context', 'self_discharge=none', '--source', 'demo=' + str(self.source)])
+        self.assertEqual(code, 0)
+        self.assertEqual([Path(x.args[0]).name for x in spy.call_args_list], ['storage-energy'])
+        self.assertTrue(json.loads(output.getvalue())['all_local_tests_passed'])
+
+    def test_incompatible_or_incomplete_scope_does_not_execute_fixtures(self):
+        with patch.object(k, 'test_pattern', side_effect=AssertionError('Unneeded execution')), \
+                patch.object(k, 'load_pattern', side_effect=AssertionError('Unneeded card body load')):
+            for context in ({}, {'energy_state': 'T', 'self_discharge': 'none'}):
+                row = k.inspect_pattern(self.folder, self.roots, context)
+                self.assertEqual(row['tests_state'], 'SKIPPED_SCOPE_OR_REUSE')
+                self.assertFalse(row['tests_passed'])
+                self.assertNotEqual(row['use'], 'CONDITIONAL_REFERENCE')
+
+    def test_explicit_full_validation_still_executes_with_missing_context(self):
+        row = k.inspect_pattern(self.folder, {}, {}, force_tests=True)
+        self.assertEqual(len(row['tests']), 5)
+        self.assertTrue(row['tests_passed'])
+        self.assertEqual(row['use'], 'REVIEW_REQUIRED')
 
     def test_matching_scope_and_source_are_conditional_not_error(self):
         result = k.inspect_pattern(self.folder, self.roots, self.context)
@@ -132,11 +226,12 @@ class KnowledgeTests(unittest.TestCase):
     def test_revision_retains_previous_record_and_sources(self):
         before = (self.folder / "record.json").read_bytes()
         expected = k.digest(self.folder / "record.json")
-        c = self.candidate("storage-energy", 2)
+        previous_version = self.record["version"]
+        c = self.candidate("storage-energy", previous_version + 1)
         k.register(c, self.roots, expected)
-        archive = k.SKILL / "references/learning-history/storage-energy" / ("v1-" + expected[:12])
+        archive = k.SKILL / "references/learning-history/storage-energy" / ("v%d-" % previous_version + expected[:12])
         self.assertEqual((archive / "record.json").read_bytes(), before)
-        self.assertEqual(k.read(self.folder / "record.json")["version"], 2)
+        self.assertEqual(k.read(self.folder / "record.json")["version"], previous_version + 1)
 
     def test_conflicting_revision_does_not_overwrite(self):
         before = (self.folder / "record.json").read_bytes()

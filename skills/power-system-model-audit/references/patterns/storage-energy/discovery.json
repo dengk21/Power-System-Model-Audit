@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "aliases": [
+    "SOC递推",
+    "荷电状态",
+    "储能能量",
+    "充放电效率",
+    "能量守恒",
+    "state of charge",
+    "battery energy"
+  ],
+  "relation_tags": [
+    "energy_recursion",
+    "storage_state",
+    "T_plus_one_boundary",
+    "energy_domain"
+  ],
+  "families": [
+    "storage",
+    "mobile-resource"
+  ]
+}

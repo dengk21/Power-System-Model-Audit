@@ -17,7 +17,7 @@ class ProjectTests(unittest.TestCase):
         (self.skill / 'check.m').write_text('independent checker')
         (self.project / 'model.m').write_text('model source')
         (self.project / 'parameters.m').write_text('parameters')
-        p.initialize(self.project)
+        p.initialize(self.project, profile='legacy')
         self.adapter = self.project / p.ADAPTER
         (self.project / 'PowerSystemModelAudit/tests').mkdir()
         self.evidence = 'PowerSystemModelAudit/tests/check.log'
@@ -39,6 +39,8 @@ class ProjectTests(unittest.TestCase):
 
     def test_scaffold_is_not_an_audit(self):
         self.assertEqual(p.status(self.project, self.skill)['state'], 'UNPREPARED')
+        self.assertEqual(p.read(self.adapter / 'project.json')['relation_inventory'], 'relations.json')
+        self.assertFalse(p.read(self.adapter / 'relations.json')['enumeration_complete'])
         self.assertIn('AdapterNotImplemented', (self.adapter / 'run_audit.m').read_text())
         with self.assertRaises(ValueError): self.freeze()
 

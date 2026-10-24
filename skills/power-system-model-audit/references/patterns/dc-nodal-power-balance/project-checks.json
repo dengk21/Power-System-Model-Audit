@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "pattern_id": "dc-nodal-power-balance",
+  "families": [
+    "dcopf",
+    "uc",
+    "scuc"
+  ],
+  "inputs": {
+    "generation_by_node": "独立设备—节点映射后的逐节点×时段供给",
+    "demand_by_node": "原始节点×时段负荷及明确列出的其他净用电",
+    "branch_flow": "被审结果中的有向支路×时段潮流",
+    "incidence": "按真实节点ID与支路方向建立的关联矩阵"
+  },
+  "relations": [
+    "node_active_balance",
+    "generation_node_mapping",
+    "load_node_mapping"
+  ],
+  "project_output": "Return node-by-time relation items to the generic numeric kernel; preserve physical node IDs in mapping."
+}

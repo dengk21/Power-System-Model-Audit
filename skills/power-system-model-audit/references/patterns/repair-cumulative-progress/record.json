@@ -22,18 +22,29 @@
       "role": "ACTIVE_IMPLEMENTATION"
     }
   ],
-  "schema_version": 1,
-  "version": 1,
+  "schema_version": 2,
+  "version": 2,
   "extraction": "CODE_OBSERVED",
   "validation": "LOCAL_TESTED",
   "reuse": "CONDITIONAL",
   "review": {
     "summary": "按现有来源提取关系并将局部代数与来源模型完整验证分开。",
     "basis": "离散阈值真值表：H<R时u=0，H≥R时u=1；上升沿还需通信。",
-    "reviewer": "Codex; 2026-10-22",
+    "reviewer": "Codex; 2026-10-23",
     "independent_basis": true
   },
   "cases_sha256": "66877111f7fe5f8a3bd846ad68e08cea282a73d6e8d72134e07097396d59dd64",
-  "checker_sha256": "1e20382de51d22802918c6c6f08d44bd6c14836772b12de5e995b90ab4b86cfb",
-  "card_sha256": "8aec171b9cf598f0791406c26f3de4f19afbf9f36fcb722a82e5254fcbcfad83"
+  "checker_sha256": "cfe0ca55f9a19f31e084a12c210f679b3bb21b9880de42ba869af8d2a7a0b9d5",
+  "card_sha256": "4558078c18225c46f9439fcb54fbf3f8d4f13de6a5e5e5d4563e39457c0d5676",
+  "checker_spec": {
+    "id": "repair-progress",
+    "file": "checker.py",
+    "api_version": 1
+  },
+  "checker_dependencies": {
+    "psaudit_pattern_checks.py": "1f53bbc49d1d230a8f2b85ac181bd2b71cf7b65b914b927cc00bee1431381fc5",
+    "psaudit_pattern_numeric.py": "34fd799a5ea3b9f1480948c2c0d5934c4046896bb0619724014dc11616440b9d"
+  },
+  "project_checks_sha256": "1a3314647093593607436c2e0cd32ee6bc6d18b62bc996e6e61f13fa04a83730",
+  "revision_note": "Split original fixture evaluator into a card-local module, preserving mathematical function bodies and all fixture bytes/labels. Added independently reviewed project-check input/relationship contract; no complete project solve or universal equivalence claim."
 }

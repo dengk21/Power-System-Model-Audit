@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "aliases": [
+    "全网功率平衡",
+    "供需平衡",
+    "发用电平衡",
+    "economic dispatch",
+    "system power balance"
+  ],
+  "relation_tags": [
+    "system_balance",
+    "active_power_conservation",
+    "system_active_power_balance"
+  ],
+  "families": [
+    "ed",
+    "dcopf",
+    "uc",
+    "scuc"
+  ]
+}

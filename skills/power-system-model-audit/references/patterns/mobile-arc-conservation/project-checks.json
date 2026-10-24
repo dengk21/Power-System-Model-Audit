@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "pattern_id": "mobile-arc-conservation",
+  "families": [
+    "mobile-resource",
+    "restoration"
+  ],
+  "inputs": {
+    "positions": "资源×节点×T+1的二值位置",
+    "flows": "资源×稀疏弧×T的移动量",
+    "arcs": "每条有向弧的原始端点映射"
+  },
+  "relations": [
+    "position_one_hot",
+    "outgoing_conservation",
+    "incoming_conservation",
+    "flow_domain"
+  ],
+  "project_output": "MATLAB relation builders return items to psaudit_check_relations; Agent maps actual variables and verifies all applicable indices.",
+  "validation": "Project normal/violation/equivalent/not-applicable/missing-data controls; card fixtures are not project evidence."
+}

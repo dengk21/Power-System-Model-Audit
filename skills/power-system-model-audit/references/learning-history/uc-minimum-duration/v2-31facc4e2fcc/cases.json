@@ -1,0 +1,83 @@
+[
+  {
+    "id": "normal",
+    "category": "normal",
+    "data": {
+      "model_type": "UC",
+      "state": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "minimum_on": 2,
+      "minimum_off": 2,
+      "periodic": true
+    },
+    "expected": "PASS",
+    "basis": "循环序列中开停均恰好2期。"
+  },
+  {
+    "id": "violation",
+    "category": "violation",
+    "data": {
+      "model_type": "UC",
+      "state": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "minimum_on": 2,
+      "minimum_off": 2,
+      "periodic": true
+    },
+    "expected": "VIOLATION",
+    "basis": "仅开机1期不满足2期要求。"
+  },
+  {
+    "id": "equivalent",
+    "category": "equivalent",
+    "data": {
+      "model_type": "UC",
+      "state": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "minimum_on": 2,
+      "minimum_off": 2,
+      "periodic": true
+    },
+    "expected": "PASS",
+    "basis": "循环时间原点平移不改变持续期。"
+  },
+  {
+    "id": "not-applicable",
+    "category": "not_applicable",
+    "data": {
+      "model_type": "ED"
+    },
+    "expected": "NOT_APPLICABLE",
+    "basis": "不含运行状态的ED不适用启停关系。"
+  },
+  {
+    "id": "missing-or-invalid",
+    "category": "data",
+    "data": {
+      "model_type": "UC",
+      "state": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "minimum_on": 2,
+      "minimum_off": 2,
+      "periodic": false
+    },
+    "expected": "DATA_INSUFFICIENT",
+    "basis": "非周期必须给初态和明确末端策略。"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "pattern_id": "ed-power-balance",
+  "families": [
+    "ed",
+    "dcopf",
+    "uc",
+    "scuc"
+  ],
+  "inputs": {
+    "generation": "各时段供给，MW；与负荷相同系统边界",
+    "demand": "各时段需求，MW；核实单位与可控用电"
+  },
+  "relations": [
+    "system_active_power_balance"
+  ],
+  "project_output": "MATLAB relation builders return items to psaudit_check_relations; Agent maps actual variables and verifies all applicable indices.",
+  "validation": "Project normal/violation/equivalent/not-applicable/missing-data controls; card fixtures are not project evidence."
+}

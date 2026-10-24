@@ -1,0 +1,206 @@
+[
+  {
+    "id": "nodal-normal",
+    "category": "normal",
+    "expected": "PASS",
+    "basis": "逐节点稳态有功守恒；同总负荷但错配节点应被检出，反向支路与功率等价。",
+    "data": {
+      "network": "lossless_dc",
+      "power_unit": "MW",
+      "generation_by_node": [
+        [
+          100,
+          80
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "demand_by_node": [
+        [
+          20,
+          30
+        ],
+        [
+          80,
+          50
+        ]
+      ],
+      "incidence": [
+        [
+          1,
+          -1
+        ]
+      ],
+      "branch_flow": [
+        [
+          80,
+          50
+        ]
+      ]
+    }
+  },
+  {
+    "id": "nodal-violation",
+    "category": "violation",
+    "expected": "VIOLATION",
+    "basis": "逐节点稳态有功守恒；同总负荷但错配节点应被检出，反向支路与功率等价。",
+    "data": {
+      "network": "lossless_dc",
+      "power_unit": "MW",
+      "generation_by_node": [
+        [
+          100,
+          80
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "demand_by_node": [
+        [
+          10,
+          30
+        ],
+        [
+          90,
+          50
+        ]
+      ],
+      "incidence": [
+        [
+          1,
+          -1
+        ]
+      ],
+      "branch_flow": [
+        [
+          80,
+          50
+        ]
+      ]
+    }
+  },
+  {
+    "id": "nodal-equivalent",
+    "category": "equivalent",
+    "expected": "PASS",
+    "basis": "逐节点稳态有功守恒；同总负荷但错配节点应被检出，反向支路与功率等价。",
+    "data": {
+      "network": "lossless_dc",
+      "power_unit": "MW",
+      "generation_by_node": [
+        [
+          100,
+          80
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "demand_by_node": [
+        [
+          20,
+          30
+        ],
+        [
+          80,
+          50
+        ]
+      ],
+      "incidence": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "branch_flow": [
+        [
+          -80,
+          -50
+        ]
+      ]
+    }
+  },
+  {
+    "id": "nodal-not_applicable",
+    "category": "not_applicable",
+    "expected": "NOT_APPLICABLE",
+    "basis": "逐节点稳态有功守恒；同总负荷但错配节点应被检出，反向支路与功率等价。",
+    "data": {
+      "network": "lossy_ac",
+      "power_unit": "MW",
+      "generation_by_node": [
+        [
+          100,
+          80
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "demand_by_node": [
+        [
+          20,
+          30
+        ],
+        [
+          80,
+          50
+        ]
+      ],
+      "incidence": [
+        [
+          1,
+          -1
+        ]
+      ],
+      "branch_flow": [
+        [
+          80,
+          50
+        ]
+      ]
+    }
+  },
+  {
+    "id": "nodal-data",
+    "category": "data",
+    "expected": "DATA_INSUFFICIENT",
+    "basis": "逐节点稳态有功守恒；同总负荷但错配节点应被检出，反向支路与功率等价。",
+    "data": {
+      "network": "lossless_dc",
+      "power_unit": "MW",
+      "generation_by_node": [
+        [
+          100,
+          80
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "demand_by_node": [
+        [
+          20,
+          30
+        ],
+        [
+          80,
+          50
+        ]
+      ],
+      "incidence": [
+        [
+          1,
+          -1
+        ]
+      ]
+    }
+  }
+]

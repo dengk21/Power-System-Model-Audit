@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "pattern_id": "uc-minimum-duration",
+  "families": [
+    "uc",
+    "scuc"
+  ],
+  "inputs": {
+    "state": "机组×T开停机二值状态",
+    "minimum_on": "最小开机时段数",
+    "minimum_off": "最小停机时段数",
+    "initial_state": "初始状态及必要的已持续时长",
+    "boundary_policy": "周期或截断边界的独立规范"
+  },
+  "relations": [
+    "minimum_on_window",
+    "minimum_off_window",
+    "state_domain"
+  ],
+  "project_output": "MATLAB relation builders return items to psaudit_check_relations; Agent maps actual variables and verifies all applicable indices.",
+  "validation": "Project normal/violation/equivalent/not-applicable/missing-data controls; card fixtures are not project evidence."
+}

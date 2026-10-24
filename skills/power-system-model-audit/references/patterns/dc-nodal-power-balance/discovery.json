@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "aliases": [
+    "KCL",
+    "基尔霍夫电流定律",
+    "节点负荷",
+    "节点功率平衡",
+    "节点净注入",
+    "nodal balance",
+    "bus power balance"
+  ],
+  "relation_tags": [
+    "nodal_balance",
+    "active_power_conservation",
+    "node_active_balance",
+    "generation_node_mapping",
+    "load_node_mapping"
+  ],
+  "families": [
+    "dcopf",
+    "uc",
+    "scuc"
+  ]
+}

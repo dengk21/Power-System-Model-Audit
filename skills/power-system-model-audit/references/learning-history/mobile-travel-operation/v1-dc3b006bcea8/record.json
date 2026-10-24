@@ -1,0 +1,39 @@
+{
+  "id": "mobile-travel-operation",
+  "title": "行驶与储能运行共享调度时段",
+  "family": "mobile-storage",
+  "tags": [
+    "MESS",
+    "移动储能",
+    "行驶",
+    "travel",
+    "运行时间"
+  ],
+  "scope": {
+    "resource": "MESS",
+    "power_semantics": "interval_average"
+  },
+  "checker": "travel-operation",
+  "sources": [
+    {
+      "project": "resilience",
+      "path": "funs/resilience_build_and_solve.m",
+      "sha256": "2a59d8cd6ce8c9ad956ceb770c493a742155c664e0bcddc73b97a9050b99ef9d",
+      "role": "ACTIVE_IMPLEMENTATION"
+    }
+  ],
+  "schema_version": 1,
+  "version": 1,
+  "extraction": "CODE_OBSERVED",
+  "validation": "LOCAL_TESTED",
+  "reuse": "CONDITIONAL",
+  "review": {
+    "summary": "按现有来源提取关系并将局部代数与来源模型完整验证分开。",
+    "basis": "时间预算守恒：行驶0.4h后以200kW额定功率可运行0.6h。",
+    "reviewer": "Codex; 2026-10-22",
+    "independent_basis": true
+  },
+  "cases_sha256": "4e8f055e1cf0d29aa27885e3c559dc9675d4908ba157ae2ba7b7d100999075d1",
+  "checker_sha256": "1e20382de51d22802918c6c6f08d44bd6c14836772b12de5e995b90ab4b86cfb",
+  "card_sha256": "3a64937a207d29f51ac6aa56a8fa9ac4286e5280fe542cc308b89be71f27c655"
+}

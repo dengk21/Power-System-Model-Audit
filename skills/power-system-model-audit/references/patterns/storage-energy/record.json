@@ -23,18 +23,29 @@
       "role": "ACTIVE_IMPLEMENTATION"
     }
   ],
-  "schema_version": 1,
-  "version": 1,
+  "schema_version": 2,
+  "version": 2,
   "extraction": "CODE_OBSERVED",
   "validation": "LOCAL_TESTED",
   "reuse": "CONDITIONAL",
   "review": {
     "summary": "按现有来源提取关系并将局部代数与来源模型完整验证分开。",
     "basis": "能量守恒及输入/输出效率定义，独立手算100+0.9×10=109。",
-    "reviewer": "Codex; 2026-10-22",
+    "reviewer": "Codex; 2026-10-23",
     "independent_basis": true
   },
   "cases_sha256": "a485247951309eb8306dbb0b46afa5b1c8c8ecad4f01bfcc0a81ba1b1eb564ad",
-  "checker_sha256": "1e20382de51d22802918c6c6f08d44bd6c14836772b12de5e995b90ab4b86cfb",
-  "card_sha256": "8909dc5956e24994ef49be74f952786b295e02fe295d4316a2fc32156dab239d"
+  "checker_sha256": "7d29d440e7f6651a09a92d9dcbbe69f76f1f435d8fdeeac35b00acd8f9b88923",
+  "card_sha256": "f351836aeb14ee4fcded877dab750c6293b9fbc7e923e86f45a0b6c4b4faa73f",
+  "checker_spec": {
+    "id": "storage-energy",
+    "file": "checker.py",
+    "api_version": 1
+  },
+  "checker_dependencies": {
+    "psaudit_pattern_checks.py": "1f53bbc49d1d230a8f2b85ac181bd2b71cf7b65b914b927cc00bee1431381fc5",
+    "psaudit_pattern_numeric.py": "34fd799a5ea3b9f1480948c2c0d5934c4046896bb0619724014dc11616440b9d"
+  },
+  "project_checks_sha256": "27823b38b6925efb7360ffd89597f279bf05b7fbd918196163fad0ee2cf515d7",
+  "revision_note": "Split original fixture evaluator into a card-local module, preserving mathematical function bodies and all fixture bytes/labels. Added independently reviewed project-check input/relationship contract; no complete project solve or universal equivalence claim."
 }

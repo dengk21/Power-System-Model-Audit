@@ -37,18 +37,29 @@
       "role": "ACTIVE_IMPLEMENTATION"
     }
   ],
-  "schema_version": 1,
-  "version": 1,
+  "schema_version": 2,
+  "version": 2,
   "extraction": "CODE_OBSERVED",
   "validation": "LOCAL_TESTED",
   "reuse": "CONDITIONAL",
   "review": {
     "summary": "按现有来源提取关系并将局部代数与来源模型完整验证分开。",
     "basis": "三个必要端点/时间条件逐一检查；自环对应零跨节点流。",
-    "reviewer": "Codex; 2026-10-22",
+    "reviewer": "Codex; 2026-10-23",
     "independent_basis": true
   },
   "cases_sha256": "2d3e571fe83efb81642d61fa417653d3abc2568be6b7f0632c67aaa0a54cafd3",
-  "checker_sha256": "1e20382de51d22802918c6c6f08d44bd6c14836772b12de5e995b90ab4b86cfb",
-  "card_sha256": "37071a5c8a81f870a58d7982842a6f8f38ce2b0c33a9aec7960786c481025650"
+  "checker_sha256": "23bf9439eaec1669bf35ab7ba98236a75f7eb8a382c42a40445fa7785b0ac32d",
+  "card_sha256": "2ade504d52d98159ef485a3902174d7f7c73fd04519532dae036aaf598e51612",
+  "checker_spec": {
+    "id": "endpoint-gating",
+    "file": "checker.py",
+    "api_version": 1
+  },
+  "checker_dependencies": {
+    "psaudit_pattern_checks.py": "1f53bbc49d1d230a8f2b85ac181bd2b71cf7b65b914b927cc00bee1431381fc5",
+    "psaudit_pattern_numeric.py": "34fd799a5ea3b9f1480948c2c0d5934c4046896bb0619724014dc11616440b9d"
+  },
+  "project_checks_sha256": "01dec9e66baced78675d662f582c191a9a5ad21a6fb3a1f0ed261b0ecfdc999d",
+  "revision_note": "Split original fixture evaluator into a card-local module, preserving mathematical function bodies and all fixture bytes/labels. Added independently reviewed project-check input/relationship contract; no complete project solve or universal equivalence claim."
 }

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "aliases": [
+    "端点通信",
+    "通信门控",
+    "起终点通信",
+    "endpoint connectivity"
+  ],
+  "relation_tags": [
+    "endpoint_communication",
+    "communication_gating",
+    "departure_communication",
+    "arrival_communication",
+    "next_step_arrival_communication"
+  ],
+  "families": [
+    "mobile-resource",
+    "restoration"
+  ]
+}

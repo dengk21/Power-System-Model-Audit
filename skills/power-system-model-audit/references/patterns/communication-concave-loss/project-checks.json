@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "pattern_id": "communication-concave-loss",
+  "families": [
+    "restoration"
+  ],
+  "inputs": {
+    "power_w": "非负节点功率，W；声明定义域",
+    "loss_mbps": "损失变量，Mbps",
+    "segments": "凹PWL斜率/截距、数量和最大流量",
+    "objective_weight": "正权重损失最小化的独立依据"
+  },
+  "relations": [
+    "loss_epigraph",
+    "power_domain",
+    "loss_bounds"
+  ],
+  "project_output": "MATLAB relation builders return items to psaudit_check_relations; Agent maps actual variables and verifies all applicable indices.",
+  "validation": "Project normal/violation/equivalent/not-applicable/missing-data controls; card fixtures are not project evidence."
+}

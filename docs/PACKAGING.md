@@ -1,3 +1,9 @@
+# 当前封装 1.1
+
+2026-10-24发布标签为`v1.1`。`docs/project/`加入当前报告PDF/TeX、文档类及海报PDF/PPTX；Release单独提供阅读附件。纯Skill安装包仍只包含Skill清单资源，源码ZIP由发布提交直接归档。更新与验证记录见`releases/v1.1.md`和`PUBLICATION.md`的v1.1发布封装节。
+
+1.1更新精简项目接入、显式测试运行采集、MATLAB事实导出和兼容性回归；当前操作见Skill的project-adapters.md。以下版本段落保留历史封装背景，旧目录与测试数量不作为当前入口。当前Skill版本以SKILL.md和source-manifest.json为准。
+
 # 当前封装与依赖边界 v0.16
 
 2026-10-23：Skill和项目适配器分离。`skills/power-system-model-audit/`只包含知识、规范、通用工具、空白模板及通用工具测试；安装Skill不安装固定课程适配器。

@@ -21,8 +21,8 @@
       "role": "MATHEMATICAL_REFERENCE"
     }
   ],
-  "schema_version": 1,
-  "version": 2,
+  "schema_version": 2,
+  "version": 3,
   "extraction": "RECONCILED",
   "validation": "LOCAL_TESTED",
   "reuse": "CONDITIONAL",
@@ -33,7 +33,17 @@
     "independent_basis": true
   },
   "cases_sha256": "79c58982af85f9373ae68eaadf972b9f6a23236a9f2b079fca24dbaf38d81e2e",
-  "checker_sha256": "1e20382de51d22802918c6c6f08d44bd6c14836772b12de5e995b90ab4b86cfb",
-  "card_sha256": "cd138c83aecf7ec692d99d2690ba141fb09e71227eef3b1b7c70d86e751ced48",
-  "revision_note": "Reference relocated to project-owned adapter. Exact mathematical specification SHA-256 unchanged; formulas, scope and independent fixture expectations rechecked unchanged. No new full-model validation."
+  "checker_sha256": "9fd90f7f2fed231eeb98fd5f42df2493520730c960a9111e2fdb9c6e6ba869b6",
+  "card_sha256": "81dd92df7bef56c4303e16fcc9c807fdabf6d08694e54205258a326088abcbd8",
+  "revision_note": "Split original fixture evaluator into a card-local module, preserving mathematical function bodies and all fixture bytes/labels. Added independently reviewed project-check input/relationship contract; no complete project solve or universal equivalence claim.",
+  "checker_spec": {
+    "id": "ed-balance",
+    "file": "checker.py",
+    "api_version": 1
+  },
+  "checker_dependencies": {
+    "psaudit_pattern_checks.py": "1f53bbc49d1d230a8f2b85ac181bd2b71cf7b65b914b927cc00bee1431381fc5",
+    "psaudit_pattern_numeric.py": "34fd799a5ea3b9f1480948c2c0d5934c4046896bb0619724014dc11616440b9d"
+  },
+  "project_checks_sha256": "005e0cac1591f728b10d1111c70dc326aed00de22714019fac11fc1bd830f602"
 }

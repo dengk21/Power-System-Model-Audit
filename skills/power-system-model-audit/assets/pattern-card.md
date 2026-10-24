@@ -28,3 +28,9 @@
 ## 来源
 
 记录项目标识、相对文件路径、具体位置及版本；SHA-256绑定保存在同目录record.json。
+
+## 项目专项检查
+
+可在同目录添加仅检索用的discovery.json，包含schema_version=1及aliases/relation_tags/families文本数组；别名和关系标签帮助发现，不作为数学依据或项目执行依赖。
+
+project-checks.json列出触发模型族、规范输入及关系ID。按实际活动代码核查适用条件和变量映射后，在项目内生成专项检查器并测试，返回items交给通用内核。card旁checker.py只验证知识fixture；它不直接替代项目适配器。未匹配关系及新耦合继续独立审计。

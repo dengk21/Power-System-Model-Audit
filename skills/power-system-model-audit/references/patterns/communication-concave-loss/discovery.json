@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "aliases": [
+    "凹分段损失",
+    "损失上图",
+    "凹函数上图",
+    "concave epigraph",
+    "piecewise linear loss"
+  ],
+  "relation_tags": [
+    "concave_epigraph",
+    "communication_loss",
+    "loss_epigraph",
+    "power_domain",
+    "loss_bounds"
+  ],
+  "families": [
+    "restoration"
+  ]
+}

@@ -1,0 +1,184 @@
+\documentclass[chinese]{iarticle}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{1em}
+\author{邓康~电博61 2026310543}
+\title{Power System Model Audit\\电力系统优化模型的自动校核与修正}
+\date{2026.10.24}
+\begin{document}
+\maketitle
+
+\section{项目背景与目标}
+
+电力系统优化模型通过功率平衡、网络潮流、机组启停和储能状态等约束描述运行规律。AI 辅助编程加快了模型实现与修改，但索引错位、系数偏差和边界遗漏仍可能使模型偏离物理含义。即使代码正常运行、求解器返回最优解，所求解的约束也可能写错。如何从物理关系出发核查模型，是本项目关注的问题。
+
+本项目开发了 Power System Model Audit，以 Agent Skill 的形式接入 AI Agent，自动校核并修正电力系统优化模型的约束错误。方案将自学习知识卡与独立数值验证结合：先对应数学描述和实际执行的代码，再根据模型条件选取知识卡、建立项目校验模型，输出错误位置、数值证据和修复建议。Skill 采用模块化结构，通用工具跨项目复用，并优先利用已有结果完成检验，以适应求解耗时较长的电力系统模型。
+
+\section{Skill 设计与实现}
+
+\subsection{工作流与实现结构}
+
+Skill 的名称为 \texttt{power-system-model-audit}，当前版本为1.1。\texttt{SKILL.md} 规定任务入口和审计步骤，参考文档与知识卡提供核查依据，\texttt{scripts/} 提供通用数值内核，项目适配器负责具体变量、公式和运行环境的接入，\texttt{assets/} 提供报告模板\cite{skill}。
+
+工作流如图\ref{fig:workflow}所示，依次完成识别输入、公式与代码映射、激活知识卡、建立校验模型、数值检验和输出结果。输入包括数学描述、活动代码、参数和已有结果；映射阶段双向核对公式与实现；知识卡按适用条件部分激活，再由 Skill 内核与项目适配器执行独立检验。输出既包含校验证据与修复建议，也可将新识别的典型约束送入学习流程，经提炼、去重和验证后存入知识卡库，供后续任务检索。
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw=blue!55!black,fill=blue!4,rounded corners=2pt,
+    text width=4cm,minimum height=1.05cm,align=center,font=\small},
+  knowledge/.style={box,draw=orange!65!black,fill=orange!5},
+  flow/.style={-{Stealth[length=2mm]},thick,draw=blue!60!black},
+  learn/.style={-{Stealth[length=2mm]},thick,draw=orange!70!black},
+  node distance=7mm and 7mm]
+\node[box] (input) {01 识别输入\\文字、代码、参数与结果};
+\node[box,right=of input] (mapping) {02 公式与代码映射\\约束双向对齐};
+\node[box,right=of mapping] (activate) {03 激活知识卡\\条件匹配、部分激活};
+\node[box,below=of activate] (adapter) {04 建立校验模型\\Skill 内核与项目适配器};
+\node[box,left=of adapter] (numeric) {05 数值检验\\独立重建、数值验证};
+\node[box,left=of numeric] (output) {06 输出结果\\校验证据、修复建议};
+\node[knowledge,below=11mm of output] (library) {知识卡库\\条件检索、跨任务复用};
+\node[knowledge,right=of library] (save) {保存新知识卡\\结构化记录、版本迭代};
+\node[knowledge,right=of save] (extract) {提炼新约束模式\\提炼、去重、独立验证};
+\draw[flow] (input)--(mapping);
+\draw[flow] (mapping)--(activate);
+\draw[flow] (activate)--(adapter);
+\draw[flow] (adapter)--(numeric);
+\draw[flow] (numeric)--(output);
+\draw[learn] (output.south)--++(0,-4mm)-|(extract.north);
+\draw[learn] (extract)--(save);
+\draw[learn] (save)--(library);
+\draw[flow] (library.west)--++(-5mm,0)|-([yshift=5mm]input.north)-|(activate.north);
+\end{tikzpicture}
+\caption{模型校核主流程与知识学习回路。知识卡库提供可复用关系，项目适配器完成具体模型接入。}
+\label{fig:workflow}
+\end{figure}
+
+\subsection{插件化、可复用、轻量化与自学习}
+
+\textbf{插件化。}Skill 以标准入口接入 Agent，将公式核查、工具调用和报告生成组织为连续任务。用户安装 Skill、接入项目后，即可提交模型开展审计。1.1版将首次接入分为静态审阅与数值审计：前者准备配置、关系清单和审阅文档，后者再接入实际数值入口\cite{onboarding}。
+
+\textbf{可复用。}通用数学校验内核处理残差、系数、数组形状和结果一致性；项目适配器负责变量映射、拓扑、边界与具体耦合公式。独立依据和变量映射集中在 \texttt{review.md}，逐关系公式、单位与覆盖范围在 \texttt{relations.json} 中维护。这种分工使同一套内核能够服务不同项目，模型特有的检查则随项目保存。
+
+\textbf{轻量化。}Agent 先读取知识卡元数据，匹配条件后加载相关正文和测试，按阶段调用所需工具。默认 \texttt{replay} 模式使用已有结果重建关系，新增求解预算为零；需要构造反例或捕获新结果时，再按预算执行 \texttt{diagnose} 或 \texttt{capture}。对于单次求解较慢的模型，可先通过静态核查、残差重算和系数比较定位问题，再安排必要的求解。
+
+\textbf{自学习。}Agent 从审计任务中提炼典型约束，与卡库比较、去重，完成独立验证和版本登记后保存为新知识卡。当前卡库有9张卡片及45项局部公式测试，覆盖功率平衡、储能递推、最小开停机时间和移动资源等关系。经典结构按规则自动积累，创新或不确定结构经确认后登记。
+
+以储能能量递推卡为例，卡片记录数学关系、效率定义、时间单位、状态索引、常见错误和局部测试。核查时先匹配储能结构及边界条件，再由项目适配器检验全部适用时段。新的项目关系经过验证后，也可沿图\ref{fig:workflow}中的学习回路进入卡库。
+
+\subsection{模型语义复核与错误归因}
+
+语义复核同时检查数学描述、活动代码和独立物理依据。Agent 从文字寻找实现，也从实际送入求解器的表达式回查正文，追踪配置覆盖、变量映射和隐含约束。重点核对 MW 与 MWh、每小时与每次成本、时间步长、设备及节点对应关系、启停计数和初末边界。辅助变量、冗余约束和代数等价形式结合推导判断，正文遗漏而代码正确的关系整理为可直接补入报告的数学说明。
+
+报告按数学模型错误、代码实现错误、双方共同错误、文档缺口和参考争议等类别记录来源，并标明严重程度。例如，原式和代码使用同一错误时间窗口时归为双方共同错误；纯有功 DC 模型核查有功关系，AC 模型还需核查无功平衡。每项结论对应具体源码位置、公式和检查证据。
+
+\subsection{独立数值检验}
+
+MATLAB 内核 \texttt{psaudit\_check\_relations} 接收适配器独立构造的实际量、期望量、关系方向和容差，检查全部适用索引，并记录违规数量与位置。等式残差取 $|a-e|$，上界取 $\max(a-e,0)$，下界取 $\max(e-a,0)$；默认尺度下阈值为
+\begin{equation}
+  \tau=\varepsilon_{\mathrm{abs}}+
+  \varepsilon_{\mathrm{rel}}\max\{1,|a|,|e|\}.
+\end{equation}
+输入先经过有限性、数组形状和有效解状态检查，再分别重算节点注入、支路潮流、机组状态、成本分项与储能能量。例如，储能工具从独立初值 $\widehat E_0=E_0$ 累计重建
+\begin{equation}
+  \widehat E_t=(1-\rho_t)\widehat E_{t-1}
+  +\eta_{\mathrm c,t}P_{\mathrm c,t}\Delta t_t
+  -\frac{P_{\mathrm d,t}\Delta t_t}{\eta_{\mathrm d,t}},
+  \label{eq:storage}
+\end{equation}
+其中 $\rho_t$ 为每步损失比例，功率、能量和时长分别使用 MW、MWh 和 h。该通式包含自放电项，当前储能知识卡采用 $\rho_t=0$、$T+1$ 个能量状态的形式。独立初值递推可检验错误起点或共同错误公式造成的偏差。
+
+对当前解中未激活的关系，\texttt{psaudit\_compare\_affine} 按行与变量标识对齐独立系数、常数、单位和方向。例如，充电功率为零时，漏乘 $\Delta t$ 仍可能产生零残差，系数比较可定位这一差异。可行域检查则分别寻找“参考允许、实现拒绝”和“参考禁止、实现放行”的轨迹，识别过紧与过松约束。
+
+\newpage
+\subsection{修复与验收}
+
+确认错误后，Agent 修改候选副本并保留基线与每轮记录。\texttt{psaudit\_\allowbreak validate\_\allowbreak semantic\_\allowbreak candidate} 核对输入、规范、源码、检查器和结果版本，重建冻结工况下的关系、目标与完整数组，再检查候选是否接纳已验证的参考轨迹。经济优化任务核对同输入下的独立参考最优值，轨迹成员关系采用可行性模式验收\cite{semantic}。
+
+验收依据为独立约束、参考轨迹及相应的最优性要求。正确补回约束可能使费用上涨，因此费用变化作为分析记录。1.1版还提供 \texttt{collect} 工具，自动采集执行状态、耗时、输出和依赖快照，生成文件哈希与验收记录，使每次修复能够追溯到实际执行的模型\cite{onboarding}。
+
+\section{与 ReLoop 的校验机制比较}
+
+ReLoop 通过结构化生成和两层验证改进优化建模：L1检查执行状态并利用不可行子系统等信息定位问题，L2扰动参数、重新求解，再根据目标响应判断约束或目标项是否存在\cite{reloop}。以下比较集中于L2行为检验与本项目的独立数值校验。
+
+两者的区别在于校验依据。参数扰动提供约束是否起作用的信号，而本项目从物理定义独立重建数学关系，直接核查系数、索引、边界与可行域。一个系数写错的模型仍可能对扰动产生响应；正确存在但经济上不活跃的项也可能响应很弱。因此，响应本身不足以判定语义正确，缺少响应也需要结合模型结构分析。ReLoop论文的Table~3及附录I讨论了相应检测范围\cite{reloop}。
+
+本项目将既有模型深度校验、约束与数值独立验证、过松与过紧约束检查纳入同一流程；通过重放已有结果支持长耗时求解模型；通过电力系统专项知识卡和版本登记实现跨任务积累。ReLoop主要通过执行诊断和参数扰动取得校验信号，本项目则将领域关系、通用数值内核和项目适配器结合，适合对已有电力系统模型开展持续校核。
+
+\section{对照实验与结果分析}
+
+\subsection{实验设计}
+
+实验基于电力系统分析与控制探索课模型构造的定向挑战集v2。24个变体来自同一网络机组组合（Unit Commitment，UC）与储能骨架，包含3台机组、3个节点、2条支路、2套储能和12个时段。其中14个变体含18个确定错误，5个仅含警告或证据不足事项，5个为正确或等价对照。错误涉及数学与实现归因、休眠系数、可行域过紧、版本与导出映射、修复验收策略以及末期覆盖等内容。
+
+三组使用相同的原始项目、参数与已有结果，用户指令统一为“帮我看一下这里哪里有错”。A为基础Agent，具有基本计算与求解能力；B为Skill文本引导，在A基础上加入通用方法；C为Skill完全体，在B基础上增加数学工具与该模型族的独立参考适配器。模型统一为 \texttt{gpt-6.1-sol/high}，每例使用独立进程和全新上下文，各重复两次，每组48项，共144项审计。每项限480秒，至多20次求解，单次10秒、累计60秒。数值后端使用 MATLAB、YALMIP 与 Gurobi。
+
+全部回答封存后，先进行盲归一，再对照冻结事件表核对实质依据\cite{audit}。修复阶段对全部144项使用相同指令“把你确认的错误修好。”，统一执行修改后的 MATLAB，检查原工况、压力工况、未展示混合工况、目标、完整轨迹与导出映射，再由独立 AI 上下文审阅数学文字、实现、检查器和验收规则。本节实验采用v0.15版Skill；当前1.1版的对照实验因额度和时间限制尚未开展。
+
+\newpage
+\subsection{实验结果}
+
+表\ref{tab:comparison}汇总最终修复结果。总校验修复任务准确率按全部48项任务的完整验收计算，算例错误修复准确率按28项含确定错误的任务计算，约束错误修复准确率按36个确定错误事件计算，数值校验通过率按48项任务的数值验收计算\cite{repair}。
+
+\begin{table}[H]
+\centering
+\caption{基于探索课模型变体的校验与修复结果。}
+\label{tab:comparison}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{5.2cm}XXX}
+\toprule
+评价指标 & A：基础Agent & B：Skill文本引导 & C：Skill完全体\\
+\midrule
+总校验修复任务准确率 & 91.67\% & 91.67\% & 100\%\\
+算例错误修复准确率 & 96.43\% & 96.43\% & 100\%\\
+约束错误修复准确率 & 97.22\% & 97.22\% & 100\%\\
+数值校验通过率 & 95.83\% & 91.67\% & 100\%\\
+\bottomrule
+\end{tabularx}
+\par\smallskip
+\begin{minipage}{\linewidth}\footnotesize
+统计采用最终提交结果：C组包含M356、M139、M334三项追加复跑结果，A/B保留原批次结果。原批次全部任务完整验收为44/48、44/48、45/48；追加后为44/48、44/48、48/48。
+\end{minipage}
+\end{table}
+
+审计阶段，A/B/C的完整审计通过数分别为42/48、45/48、45/48；三组均已实质指出全部36个确定错误事件，严格得分差异主要来自严重程度和来源分类。文档字段得分分别为4/14、11/14、9/14。方法文本提高了审计归类和文档补全的完整性，工具与参考适配器进一步提供了修复验收依据。审计阶段求解调用合计为109、49、79次，任务墙钟累计为4504.10、7008.00、6987.58秒\cite{audit}。
+
+\subsection{典型错误与修复实例}
+
+M338的储能实现和本地检查器共同将放电效率相乘，内部检查可以得到一致残差；按式\eqref{eq:storage}从独立初值重建后，可定位其与能量守恒定义的差异。这一案例说明，校验模型需要从物理依据重建关键关系。
+
+M139在保留正确容量约束后费用上涨，追加修复将4\%费用漂移否决规则改为独立可行性、参考最优值和成员关系验收。M334修正了1.01倍容量放大及验收策略，独立检查记录其原解12期各超限0.0817472 MW。M356则将仅可行结果重新分类，并补充经济目标、独立成本、最优界及gap等最优性判断依据\cite{repair}。
+
+课程HW5提供了完整模型修复实例：二变量最小开/关机时间窗口多计一期，修复将 \texttt{HMatrix} 的补零首行移至末行，使计数从动作当期开始。修正版在原始工况核对独立参考最优值，在“恰好开机4期”和“跨日恰好停机4期”两条完整参考轨迹上执行成员验收，3/3工况接受；原版拒绝后两条轨迹。该次捕获共9次真实MIP调用，各工况25类独立规范检查及5类完整成员检查通过\cite{hw5}。
+
+\section{AI 的应用与项目成果}
+
+开发阶段，AI辅助将模型检查需求整理为Skill规则，编写MATLAB工具、项目适配器、测试与报告脚本，并根据运行记录迭代实现。运行阶段，AI Agent读取数学定义和活动源码，建立公式与代码映射，匹配知识卡，选择工具、解释残差并生成修复补丁；MATLAB与求解器承担数值计算。审计中提炼的典型关系经过验证后保存为知识卡，逐步扩充可复用的电力系统知识。
+
+项目成果包括1.1版Skill、知识卡库、MATLAB数值内核、项目接入与自动采集工具，以及简报和专业报告模板。课程适配器、两机LP演示、历史修复候选、完整轨迹和实验记录分别保存，使用方法在README中说明。
+
+1.1版通过131项Python工具与兼容性回归，MATLAB R2025b完成数组形状、非有限值、中文导出与JSON格式检查\cite{release}。
+
+\newpage
+\section{总结与后续工作}
+
+本项目将电力系统优化模型的公式与代码核查、独立数值检验和修复验收封装为Agent Skill，并通过插件化接入、通用内核与项目适配器分离、知识卡按需激活和跨任务学习实现模块化复用。探索课模型变体实验显示，Skill方法改善了审计归类和文档补全；最终修复结果中，Skill完全体完成48/48项任务的完整验收。HW5案例进一步展示了从时间窗口错误定位到完整参考轨迹验收的过程。
+
+当前数值工具主要面向MATLAB，新模型接入需要建立相应的独立依据和项目适配器。后续将扩大跨模型族测试，加入专家复核，开展1.1版统一预算的对照实验，并完善Agent直接调试修改后模型的接口。
+
+\begin{thebibliography}{9}
+\small
+\setlength{\itemsep}{1pt}
+\bibitem{skill} 项目维护源. \texttt{skills/power-system-model-audit/SKILL.md}；\texttt{references/audit-workflow.md}；知识卡与\texttt{scripts/}，1.1版，2026-10-23.
+\bibitem{onboarding} 项目维护源. \texttt{references/project-adapters.md}；\texttt{scripts/psaudit\_collect.py}；\texttt{scripts/psaudit\_project.py}，1.1版.
+\bibitem{semantic} 项目维护源. \texttt{references/semantic-verification.md}；\texttt{references/diagnostic-repair-loop.md}，v0.12契约.
+\bibitem{reloop} Lian J. J., Sun Y., Chen H., Zhang C., Qin H., Teo C.-P. ReLoop: Structured Modeling and Behavioral Verification for Reliable LLM-Based Optimization. NeurIPS 2026. \href{https://arxiv.org/abs/2602.15983v6}{arXiv:2602.15983v6}.
+\bibitem{audit} 项目实验记录.《新评测审计结果》，2026-10-17；v2实验目录中 \texttt{grading/results.json}、\texttt{descriptive-comparison.json} 及 \texttt{postscore-matching-decomposition.json}.
+\bibitem{repair} 项目实验记录.《修复评测结果》《C组三例验证记录》，2026-10-20；v2目录中 \texttt{repair-grading/results.json}、\texttt{descriptive-comparison.json} 及追加前归档评分.
+\bibitem{hw5} 项目修复记录. \texttt{hw5-repair-v012-20261015/run-03/audit\_report.md} 及完整候选脚本，2026-10-15.
+\bibitem{release} 项目发布记录. \texttt{docs/PUBLICATION.md} 的1.1节；\texttt{references/capabilities.md}，2026-10-23.
+\end{thebibliography}
+
+\end{document}

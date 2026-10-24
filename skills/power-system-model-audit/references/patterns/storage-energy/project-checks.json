@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "pattern_id": "storage-energy",
+  "families": [
+    "storage",
+    "mobile-resource"
+  ],
+  "inputs": {
+    "energy": "设备×T+1能量状态；注明kWh或MWh",
+    "charge": "设备×T时段平均充电功率",
+    "discharge": "设备×T时段平均放电功率",
+    "eta_c": "输入侧充电效率，(0,1]",
+    "eta_d": "输出侧放电效率，(0,1]",
+    "dt_h": "调度步长，h"
+  },
+  "relations": [
+    "energy_recursion",
+    "T_plus_one_boundary",
+    "energy_domain"
+  ],
+  "project_output": "MATLAB relation builders return items to psaudit_check_relations; Agent maps actual variables and verifies all applicable indices.",
+  "validation": "Project normal/violation/equivalent/not-applicable/missing-data controls; card fixtures are not project evidence."
+}

@@ -23,18 +23,29 @@
       "role": "ACTIVE_IMPLEMENTATION"
     }
   ],
-  "schema_version": 1,
-  "version": 1,
+  "schema_version": 2,
+  "version": 2,
   "extraction": "CODE_OBSERVED",
   "validation": "LOCAL_TESTED",
   "reuse": "CONDITIONAL",
   "review": {
     "summary": "按现有来源提取关系并将局部代数与来源模型完整验证分开。",
     "basis": "节点流守恒；两个不同终点不可能同时对应同一one-hot到达状态。",
-    "reviewer": "Codex; 2026-10-22",
+    "reviewer": "Codex; 2026-10-23",
     "independent_basis": true
   },
   "cases_sha256": "c18b1acfa5d0108498d4543a1dbefd943420485cfb5daa0d531285a17847a89f",
-  "checker_sha256": "1e20382de51d22802918c6c6f08d44bd6c14836772b12de5e995b90ab4b86cfb",
-  "card_sha256": "bc6cab6c15e359e557534e77a877f94ec0ab111187f1398e5b5d2b8d3f430063"
+  "checker_sha256": "aab9b4428b635b8ebe10e2aef1a9bed583af523fdceb723e4add0cb921375654",
+  "card_sha256": "bdefc6f5d465e742da0cf4143225da07681b457fba5031b4b8f1915e39adaf0b",
+  "checker_spec": {
+    "id": "mobile-flow",
+    "file": "checker.py",
+    "api_version": 1
+  },
+  "checker_dependencies": {
+    "psaudit_pattern_checks.py": "1f53bbc49d1d230a8f2b85ac181bd2b71cf7b65b914b927cc00bee1431381fc5",
+    "psaudit_pattern_numeric.py": "34fd799a5ea3b9f1480948c2c0d5934c4046896bb0619724014dc11616440b9d"
+  },
+  "project_checks_sha256": "e7a3602e11d87c3ba5a96c3c7c9ff0639c7f4233ca17cee7cf4f56ce43273ffe",
+  "revision_note": "Split original fixture evaluator into a card-local module, preserving mathematical function bodies and all fixture bytes/labels. Added independently reviewed project-check input/relationship contract; no complete project solve or universal equivalence claim."
 }

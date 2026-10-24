@@ -4,12 +4,20 @@
 
 | 当前函数 | 职责 | 位置 |
 | --- | --- | --- |
-| psaudit_project.py | 项目骨架初始化、声明依赖检查、绑定版本及旧记录归档；不执行模型 | scripts/ |
+| psaudit_project.py | 精简/旧版初始化、review升级、声明依赖检查及冻结；collect仅执行明确给出的测试命令 | scripts/ |
+| psaudit_collect.py | 由project collect调用，运行明确给出的测试命令，保存退出状态/耗时/快照/日志，从一次runtime facts生成待审验收；不自动发现或调用求解器 | scripts/ |
+| psaudit_observe / psaudit_write_facts | MATLAB测量实际数组形状/数值范围并导出测试事实；单位和物理索引解释由项目断言核对 | scripts/ |
+| psaudit_project_acceptance.py | 核对项目审阅的输入观察、关系/控制证据及测试时文件快照；不执行或证明测试 | scripts/ |
+| psaudit_relation_inventory.py | 源码关系清单、无card关系、分类遗漏与覆盖缺口核对；不解析任意源码或证明完整性 | scripts/ |
+| psaudit_fixture_cache.py | 内容和环境绑定的card局部fixture缓存；不缓存项目结果、来源状态或适用资格 | scripts/ |
 | test_psaudit_project.py | 项目与Skill分离、源码/工具变化、冲突及归档回归 | scripts/ |
-| psaudit_knowledge.py | 自动学习计划/本机偏好、约束检索、来源快照/变更、局部回归、候选登记与版本归档 | scripts/ |
+| psaudit_knowledge.py | search元数据/别名/关系及条件筛选；verify选择card，可显式缓存；validate全库重验；另有策略/快照/登记/更新 | scripts/ |
 | psaudit_learning_policy.py | 检查Agent的模型族结构证据，生成学习/询问/跳过策略，保存本机偏好 | scripts/ |
 | test_psaudit_learning_policy.py | 经典与混合结构、三种选择、偏好持久化/撤销、来源变化及自动操作门控回归 | scripts/ |
-| psaudit_pattern_checks.py | 八类具名局部数学关系检查器；不执行模型源码或求解器 | scripts/ |
+| psaudit_pattern_checks.py | 固定card局部checker.py的ID/API/依赖绑定与执行，不集中存放领域公式 | scripts/ |
+| psaudit_pattern_numeric.py | fixture共用数值原语 | scripts/ |
+| psaudit_card_checks.py | 按结构证据/条件/映射规划card并在项目内生成专项骨架与汇集入口 | scripts/ |
+| checker.py / project-checks.json | 每张card独立的fixture实现与项目专项生成契约 | references/patterns/<id>/ |
 | test_psaudit_knowledge.py | 来源过期、适用条件、修订冲突、卡片/fixture变化及受控同步回归 | scripts/ |
 | psaudit_write_brief_report | 从同一份审阅数据生成极简行动清单 | scripts/ |
 | psaudit_check_relations | 等式/上下界、容差与全索引证据 | scripts/ |

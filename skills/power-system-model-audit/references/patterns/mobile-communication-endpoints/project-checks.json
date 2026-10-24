@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "pattern_id": "mobile-communication-endpoints",
+  "families": [
+    "mobile-resource",
+    "restoration"
+  ],
+  "inputs": {
+    "flows": "逐资源逐弧逐时段移动量",
+    "arcs": "有向弧起终点",
+    "coverage": "逐节点T+1通信状态",
+    "enabled": "资源类别和门控开关的实际配置"
+  },
+  "relations": [
+    "departure_communication",
+    "arrival_communication",
+    "next_step_arrival_communication"
+  ],
+  "project_output": "MATLAB relation builders return items to psaudit_check_relations; Agent maps actual variables and verifies all applicable indices.",
+  "validation": "Project normal/violation/equivalent/not-applicable/missing-data controls; card fixtures are not project evidence."
+}

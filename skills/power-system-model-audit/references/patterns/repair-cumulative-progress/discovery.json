@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "aliases": [
+    "维修进度",
+    "修复完成",
+    "并行抢修",
+    "累计维修",
+    "repair progress"
+  ],
+  "relation_tags": [
+    "repair_progress",
+    "completion_state",
+    "cumulative_repair_progress",
+    "completion_threshold",
+    "monotone_availability",
+    "completion_reporting"
+  ],
+  "families": [
+    "restoration"
+  ]
+}

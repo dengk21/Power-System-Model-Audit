@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "pattern_id": "mobile-travel-operation",
+  "families": [
+    "storage",
+    "mobile-resource"
+  ],
+  "inputs": {
+    "travel_h": "逐资源时段内行驶时长，h",
+    "charge": "逐资源时段平均充电功率",
+    "discharge": "逐资源时段平均放电功率",
+    "pmax": "充放电功率与时间折算基准",
+    "dt_h": "调度步长，h"
+  },
+  "relations": [
+    "shared_travel_operation_time",
+    "nonnegative_operation"
+  ],
+  "project_output": "MATLAB relation builders return items to psaudit_check_relations; Agent maps actual variables and verifies all applicable indices.",
+  "validation": "Project normal/violation/equivalent/not-applicable/missing-data controls; card fixtures are not project evidence."
+}

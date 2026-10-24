@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "aliases": [
+    "最小开机时间",
+    "最小停机时间",
+    "最小开停机",
+    "机组组合",
+    "unit commitment",
+    "minimum up down time"
+  ],
+  "relation_tags": [
+    "minimum_up_down",
+    "commitment_duration",
+    "minimum_on_window",
+    "minimum_off_window",
+    "state_domain"
+  ],
+  "families": [
+    "uc",
+    "scuc"
+  ]
+}

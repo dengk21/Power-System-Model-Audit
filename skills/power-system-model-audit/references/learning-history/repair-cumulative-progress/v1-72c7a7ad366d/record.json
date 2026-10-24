@@ -1,0 +1,39 @@
+{
+  "id": "repair-cumulative-progress",
+  "title": "并行维修累计与完成上报",
+  "family": "restoration",
+  "tags": [
+    "抢修",
+    "维修车",
+    "CREW",
+    "repair",
+    "并行"
+  ],
+  "scope": {
+    "repair_rule": "parallel_cumulative_occupancy",
+    "reporting": "previous_step_coverage"
+  },
+  "checker": "repair-progress",
+  "sources": [
+    {
+      "project": "resilience",
+      "path": "funs/resilience_build_and_solve.m",
+      "sha256": "2a59d8cd6ce8c9ad956ceb770c493a742155c664e0bcddc73b97a9050b99ef9d",
+      "role": "ACTIVE_IMPLEMENTATION"
+    }
+  ],
+  "schema_version": 1,
+  "version": 1,
+  "extraction": "CODE_OBSERVED",
+  "validation": "LOCAL_TESTED",
+  "reuse": "CONDITIONAL",
+  "review": {
+    "summary": "按现有来源提取关系并将局部代数与来源模型完整验证分开。",
+    "basis": "离散阈值真值表：H<R时u=0，H≥R时u=1；上升沿还需通信。",
+    "reviewer": "Codex; 2026-10-22",
+    "independent_basis": true
+  },
+  "cases_sha256": "66877111f7fe5f8a3bd846ad68e08cea282a73d6e8d72134e07097396d59dd64",
+  "checker_sha256": "1e20382de51d22802918c6c6f08d44bd6c14836772b12de5e995b90ab4b86cfb",
+  "card_sha256": "8aec171b9cf598f0791406c26f3de4f19afbf9f36fcb722a82e5254fcbcfad83"
+}

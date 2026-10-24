@@ -29,18 +29,29 @@
       "role": "ACTIVE_IMPLEMENTATION"
     }
   ],
-  "schema_version": 1,
-  "version": 1,
+  "schema_version": 2,
+  "version": 2,
   "extraction": "CODE_OBSERVED",
   "validation": "LOCAL_TESTED",
   "reuse": "CONDITIONAL",
   "review": {
     "summary": "按现有来源提取关系并将局部代数与来源模型完整验证分开。",
     "basis": "max_j[Phi_max-(m_j P+b_j)]=Phi_max-min_j(m_j P+b_j)。",
-    "reviewer": "Codex; 2026-10-22",
+    "reviewer": "Codex; 2026-10-23",
     "independent_basis": true
   },
   "cases_sha256": "5ba499759ea351efd6154a9b10c6950e5479b8df8b0efb1abec20fd769ef0df6",
-  "checker_sha256": "1e20382de51d22802918c6c6f08d44bd6c14836772b12de5e995b90ab4b86cfb",
-  "card_sha256": "7dfbc036f76d7c31628dada9f17f0c225e7bd2fdd0398e64e6459c413f059c6e"
+  "checker_sha256": "3d1116a3ba4cd97bce4b48eebf34b286b998bb1d501ff131d3bd9f263df7e1bc",
+  "card_sha256": "c24c202733ce078511d9163e18c132f9ceed302408b6d88fcf383e6af9a9a2eb",
+  "checker_spec": {
+    "id": "concave-loss",
+    "file": "checker.py",
+    "api_version": 1
+  },
+  "checker_dependencies": {
+    "psaudit_pattern_checks.py": "1f53bbc49d1d230a8f2b85ac181bd2b71cf7b65b914b927cc00bee1431381fc5",
+    "psaudit_pattern_numeric.py": "34fd799a5ea3b9f1480948c2c0d5934c4046896bb0619724014dc11616440b9d"
+  },
+  "project_checks_sha256": "47be0e2c8c82fa03ddcc2024ee08a89305f0b73bc7c785dfc9afe518f6b3cbbd",
+  "revision_note": "Split original fixture evaluator into a card-local module, preserving mathematical function bodies and all fixture bytes/labels. Added independently reviewed project-check input/relationship contract; no complete project solve or universal equivalence claim."
 }

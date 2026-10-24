@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "aliases": [
+    "行驶充放电互斥",
+    "移动储能运行",
+    "travel operation exclusion"
+  ],
+  "relation_tags": [
+    "travel_operation",
+    "mobility_power_exclusion",
+    "shared_travel_operation_time",
+    "nonnegative_operation"
+  ],
+  "families": [
+    "storage",
+    "mobile-resource"
+  ]
+}

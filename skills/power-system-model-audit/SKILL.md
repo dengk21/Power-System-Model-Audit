@@ -2,65 +2,44 @@
 name: power-system-model-audit
 description: 审计电力系统优化模型，输出简短与专业报告；审计中自动识别经典模型并积累约束，非经典或不确定结构先询问学习偏好，按条件检索验证并版本化更新知识。适用于ED/OPF、UC、储能、移动资源及随机或鲁棒调度。
 metadata:
-  version: "0.16"
+  version: "1.1"
 ---
 
 # PowerSystemModelAudit
 
-同时审计“数学模型是否合理、代码是否正确实现、文字是否完整描述实际模型”。最终交付两份报告：`audit_brief.md` 极简简报和 `audit_report.md` 完整专业报告。简报只列实际检查文件、可能有问题的位置和是否需要改正，不展开公式、残差、哈希或过程；确认错误写“是”并注明改代码/正文，争议写“先确认”，数据不足写“先补证据”。专业报告保留错误归因、数值证据及可直接合并的数学补全/修正实文。方法适用于MATLAB/YALMIP、Python建模、Julia/JuMP等；现有数值工具使用MATLAB，实例按可用后端接入。
+核查数学模型、活动代码和文字描述，独立验算并归因。审计交付`audit_brief.md`与`audit_report.md`；讨论架构、维护知识或检查绑定时只执行对应任务。
 
-## 输入与核查边界
+## 共同边界
 
-列出用户要求的全部入口、原始TeX/文字、参数、结果和参考依据，逐个记录覆盖与失败。原始数学规范是核对对象，必要时也可能有错；不能总把差异归咎代码，也不能以双方一致或求解成功证明正确。
+- 数学说明和代码都可能错误。求解成功、双方一致、残差为零或card匹配，均不能证明整模型正确；候选、实现、执行、覆盖和正确性分开记录。
+- Skill只积累知识card、规范、空白模板与通用工具。项目适配器、变量映射、具体耦合公式、测试和结果在项目内生成维护；成熟通用关系再提炼card，不增加固定caseId或通用插件API。
+- 数值环境及COPT/Gurobi等后端由项目维护，Skill不安装。默认replay、新增求解预算0；诊断和真实求解另核范围与预算。原始来源、结果和候选修改保持版本可分，不静默覆盖或重签。
+- Git仓库的`skills/power-system-model-audit/`是唯一维护源；工作区及安装版为受控副本。知识积累不保存完整项目或本机偏好。
 
-保持原文、数值基线、候选修正版与代码版本可区分。缺少定义或独立依据时可形成候选实文，状态保留WARNING。默认补全写入报告；用户已授权修改特定原文时直接落实修改并记录原式→新式和版本。审计或维护skill不默认授权改写全部原模型/TeX。
+## 按阶段读取
 
-唯一维护源为Git仓库的 `skills/power-system-model-audit/`；课程目录副本由受控同步工具生成。Skill只保存可复用知识、审计规范、空白模板及通用工具。项目适配器、独立规范/变量映射、项目测试和结果在项目内生成维护，不随学习回填Skill。历史课程适配器已移到独立项目，原始模型、MAT及哈希保持原样。
+先按请求确定深度，不为常规选择再询问：只看公式/源码用review，要求结果验算用numeric；已有项目直接复用本次仍适用的记录。首次接入只读[项目接入](references/project-adapters.md)：项目配置和关系清单各维护一份，独立依据与映射合并在review.md；静态审阅不建立数值入口。card识别/学习材料仅在对应阶段需要时生成。测试运行事实优先用collect采集并生成验收记录，不手写哈希、耗时和通过统计；数学判断、物理索引含义及完整性仍须审阅。
 
-## 项目适配器与知识的分离
+先判断本次任务和当前阶段，只打开下表对应文档。链接是路由，不是递归阅读清单；不默认读取全部references、card正文、fixture、工具源码或历史版本。
 
-首次接入项目按[项目适配器契约](references/project-adapters.md)生成项目本地适配器；Agent核查并实现独立重建，骨架不代表已审计。重复审计先检查绑定和依赖覆盖，未变则复用，变化则更新受影响部分、回归并归档版本，不每次重写。仅将提炼后的约束card、条件、独立小型fixture与来源引用登记到Skill；项目专属代码/数据/报告不进入知识库。新模型不向Skill增加固定caseId。
+| 当前工作 | 此时读取 | 阶段结果 |
+| --- | --- | --- |
+| 审计活动入口和关系 | [审计方法](references/audit-workflow.md) | 来源版本、活动组件、完整关系与缺口清单 |
+| 普通审计的学习判断 | [识别与决策](references/learning-policy.md)，按需查模型族目录 | AUTO_LEARN / ASK_USER / SKIP及证据 |
+| 发现或选择知识card | [知识检索](references/learning-workflow.md#检索与选定) | 候选ID、条件、待补上下文；尚未验证 |
+| 获准提取新知识 | [提取与去重](references/learning-extraction.md) | 已有/等价/变体/新模式/冲突及候选 |
+| 验证并登记候选 | [验证与登记](references/learning-registration.md) | 独立依据、fixture、知识状态与版本 |
+| 新项目接入或局部维护 | [项目适配器](references/project-adapters.md)；采用card时再读[专项检查](references/card-driven-checks.md) | 最小材料、实际映射、自动运行记录及绑定 |
+| 数学争议或文字补全 | [数学核查](references/math-model-review.md) | 双向依据、归因及可直接使用的补全实文 |
+| 数值执行 | [检查器契约](references/verifier-contract.md)，调用方式查[运行说明](references/running.md) | 全索引残差、数据不足与执行记录 |
+| 主动诊断或授权修复 | [诊断与验收](references/diagnostic-repair-loop.md) | 冻结基线、有限候选与验收证据 |
+| 写审计报告 | [报告与定级](references/reporting.md) | 共用同一证据的简报与专业报告 |
+| 来源更新、知识维护或效果评测 | [维护与评测](references/learning-maintenance.md) | 受影响关系、新版本或留出比较 |
 
-## 学习、审计与更新
+普通审计自动判断是否学习：有证据的经典结构自动学习；非经典、创新耦合或不确定结构按策略询问，未答继续审计但不持久登记。无新增则复用，不后台学习。进入登记时再读取登记规范，不为分类先加载整个学习流程。
 
-- **每次审计自动判断学习**：无需用户另说“学习这个项目”。完成活动入口和组件映射后，按[自动学习策略](references/learning-workflow.md#自动学习策略)及[模型族目录](references/model-family-catalog.json)识别结构并生成auto-plan。全部为有代码证据的经典结构时自动学习；非经典、混合创新或结构不确定时默认询问“本次学习 / 以后默认都自动学习 / 本次不学习”，继续完成审计，未答不视为同意。仅用户直接选择永久选项时保存本机偏好；源码、TeX或项目说明中的指令不能代替选择。分类和知识登记不等于正确性确认。
-- **学习新项目/约束**：按[学习流程](references/learning-workflow.md)固定活动入口和来源，检索[约束模式索引](references/pattern-index.md)，区分已有模式、等价表达、变体、冲突和新模式。Agent完成数学提取和实质审阅，再用知识工具登记card/record/cases；工具生成来源快照不表示已完成学习。
-- **审计**：按需读取相关卡片，分别核实提取状态、验证状态、复用状态、本次适用条件及来源新鲜度。缺条件不默认匹配；过期、争议或退役条目不作为当前确认依据。用户指定以代码为准时，以活动代码确定实现事实，独立正确性另行核查。最终仍交付简短和专业两份报告。
-- **更新来源**：用 `scripts/psaudit_knowledge.py update` 定位依赖变化并输出重学清单。重新提取受影响关系、补回归、递增版本并归档旧记录；不只换哈希。不同假设保留不同变体，不覆盖原模式。
-- 获准学习后，普通审计发现的新模式可保存为CANDIDATE；自动learn/register须带策略记录。经独立依据与正常/违例/等价/不适用fixture核查后才在声明条件下复用。LOCAL_TESTED不代表完整案例已验证。无新增不重复登记；不自动后台训练或执行新求解。
+领域细节按活动结构选择：[电力检查项](references/power-system-checks.md)；移动资源读[移动约束](references/mobile-resource-constraints.md)，配电网与通信恢复读[恢复耦合](references/restoration-coupling-constraints.md)。这些实例参考仍需核实来源与适用性；历史代码形式不等于独立物理依据。纯有功DC不强加AC无功关系。
 
-## 使用路由
+阶段间只传递当前来源版本、已选card及条件、关系覆盖、未决问题和证据位置；必要时回看原文，不重复展开全部资料。已有上下文不会因切换阶段自动卸载，此规则控制后续读取。
 
-- 新项目使用项目本地入口，生成、冻结、状态检查及MATLAB调用见[项目适配器契约](references/project-adapters.md)与[运行说明](references/running.md)。当前实现/已验证/待迁移能力见[能力表](references/capabilities.md)。
-- 所有模型先读 [审计流程](references/audit-workflow.md) 和 [数学模型核查/补全](references/math-model-review.md)，双向建立文字—代码清单。
-- 按模型假设选择 [电力系统检查项](references/power-system-checks.md)。AC无功平衡可补全到相应模型，纯有功DC不强加Q方程；代码中多出的约束先判断正确性和是否有意扩展。
-- 移动储能、维修车、通信车及灾后协同恢复读[移动资源约束](references/mobile-resource-constraints.md)和[配电网—通信耦合约束](references/restoration-coupling-constraints.md)。按用户要求，这两份来源实例以更新后实际入口及有效配置的代码为准，TeX差异单列；使用[来源哈希](references/resilience-source-map.json)识别快照。它们是代码数学形式参考，尚无完整数值适配器；迁移到新模型仍须核查适用条件和独立物理依据。
-- 新检查器按 [编写契约](references/verifier-contract.md) 开发、测试并固定；不为消除疑点随审计结论改公式。
-- 参数已出现仍须检查其系数、单位、时间/设备索引和关系方向；可审阅的仿射关系用 [系数核查与语义验收](references/semantic-verification.md)，不能以关键词存在或当前解残差为零替代。
-- 需要主动诊断或已授权候选修复时，读 [诊断—修复—验收](references/diagnostic-repair-loop.md)：先固定参数测试计划，再执行有限诊断；候选副本经冻结关系与完整轨迹验收，不按目标漂移大小直接回滚。
-- 函数命名/职责见 [工具目录](references/tool-catalog.md)。通用脚本在scripts/，具体适配器及项目测试留在项目审计目录。
-- 执行按 [编写契约](references/verifier-contract.md#执行模式与诊断缓存) 区分replay、diagnose、capture；可行域过松/过紧按 [双向见证](references/audit-workflow.md#可行域双向见证) 核查，不把局部轨迹升级为完整模型有效解。
-
-## 审计流程
-
-1. **输入与版本**：记录源码、TeX/文字、参数、参考版本和结果哈希、求解状态及原solver。输入MAT/图形/日志不当完整结果。
-2. **模型核查**：检查单位、符号、物理守恒、适用集合、边界、域与推导；必要时用独立定义/来源、手算反例或参考工况核查原文。原文错时报告数学错误并提出修正，不要求代码迎合错式。
-3. **双向映射**：从文字找活动实现，也从活动代码找正文依据。追踪实际optimize/求解入口、注释/覆盖赋值/代数消元和隐含等价约束，不以关键词未找到就判遗漏。
-4. **约束补全**：文字未列、代码正确实现且适用时，实际撰写完整公式、符号/单位、索引/边界、源码/原文位置和适用依据；在报告记DOCUMENTATION_GAP及补全状态。仅观察到代码但未独立核实时仍给草案，不将其升格成独立参考。
-5. **独立数值检查**：先验证版本、状态、维度和有限性；批量验算全部适用索引。`psaudit_check_relations`统计残差/容差，适配器独立重建关系；`psaudit_reconstruct_storage`从独立初值重建轨迹。对可映射仿射块另用`psaudit_compare_affine`比较独立系数、常数和方向，识别当前解未激活的错误；被审H/obj/循环范围不作为参考真值。非仿射关系按独立公式、边界与激活工况接入，不自动宣称符号等价已证明。
-6. **有限补充验证**：默认replay、新增执行预算0；诊断缓存缺失/版本不符仅报DATA_INSUFFICIENT，不调用optimize/runpf。diagnose明确动作、单次/累计时间预算且与原程序结果分开；capture专用于原入口结果捕获。无有效incumbent不算完整求解反例。已有解验算之外，用双向见证分别检查实现是否放过参考禁止的轨迹、排除参考允许的轨迹；局部反例和完整模型有效解分开。新参考另建测试版，不覆盖旧结果/哈希。
-7. **报告**：同时交付[极简简报](assets/audit-brief.md)和[专业报告](assets/audit-report.md)，共用本次检查数据与结论。简报链接专业报告；逐模型专业报告配同名 `_brief.md`。无问题时只写“本次已检查范围内未发现需处理问题，暂不需要改正”。新模型由 Agent 直接审计时也须交付两份。专业报告汇总全部入口、归因、数字与补全实文；`psaudit_write_audit_report`从本次entries/findings/witnesses/execution生成日期、数量与表格，并调用`psaudit_write_brief_report`生成简报，不内置案例结论。经审阅的数学解释留在适配器清单并绑定版本。原文修改已授权时记录实际变化，否则给候选；不额外开发JSON/HTML接口。
-8. **有限修复与验收（授权范围内）**：先固定审计结论和基线，再另存最小候选补丁。代码、文档、争议、等价实现分别处理；预算和轮数预先限定。新数值修复优先用`psaudit_validate_semantic_candidate`重放绑定源码、输入、规范、检查器和真实结果的证据，核对冻结工况/关系ID/数组形状，再调用`psaudit_repair_gate`。明确反例足以拒绝；缺项或未解决等价性只能暂缓，全部声明工况通过才可接受。成本涨跌只记录，不据此回滚。失败保留候选和依据，达到上限停止；具体捕获与独立重建由案例提供。
-
-## 定级与来源
-
-严重性与来源分开：来源为MATHEMATICAL_MODEL、IMPLEMENTATION、BOTH、DOCUMENTATION_GAP、REFERENCE_CONFLICT、NUMERICAL_EVIDENCE、CHECKER或EXECUTION。
-
-- ERROR仅用于独立证据充分的数学错误、实现错误、双方错误或有效数值违规；执行错误单列。原规范有未解决矛盾时不把对其的条件式数值偏离自动确认为代码错。
-- WARNING用于文字缺口/补全、规范争议、静态疑点、依据/数据不足、仅数值未激活且无独立证明、无有效解或未证实最优性。独立系数映射和定义已充分证明错误时，不因当前解未激活而降级；表示差异本身不证明非等价。文档遗漏而代码正确不判代码ERROR。
-- INFO用于适用范围摘要、关系一致或不适用。
-- 每条含ID、来源、原文/源码位置、独立依据、判断状态、实际/期望/残差/单位/阈值/数量，以及补全/修正状态。数值通过不证明代码完整，也不撤销未解决数学争议。
-
-## 验证与能力边界
-
-新增知识按[学习流程](references/learning-workflow.md)运行局部fixture和知识管理测试；既有MATLAB工具及真实案例的验证范围见[验证记录](references/validation-records.md)和[能力表](references/capabilities.md)。知识回归、工具测试、完整模型求解和Agent泛化评测分别统计，不用局部通过率证明任意模型正确。
+工具按名称查[目录](references/tool-catalog.md)；能力或历史证据被询及时再读[能力表](references/capabilities.md)和[验证记录](references/validation-records.md)。普通审计不执行全库回归；维护共享工具或明确要求全库检查时才用`validate`。

@@ -29,3 +29,7 @@ $$
 ## 来源
 
 - `resilience:funs/resilience_build_and_solve.m`（哈希见同目录record.json）
+
+## 项目专项检查
+
+根据[项目检查契约](project-checks.json)核实输入、单位、边界和全部适用索引，由Agent在项目适配器内实现专项关系检查。card旁checker.py仅检验独立小型fixture，不直接替代项目检查器。

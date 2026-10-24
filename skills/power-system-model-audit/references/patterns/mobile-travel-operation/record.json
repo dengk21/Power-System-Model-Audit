@@ -22,18 +22,29 @@
       "role": "ACTIVE_IMPLEMENTATION"
     }
   ],
-  "schema_version": 1,
-  "version": 1,
+  "schema_version": 2,
+  "version": 2,
   "extraction": "CODE_OBSERVED",
   "validation": "LOCAL_TESTED",
   "reuse": "CONDITIONAL",
   "review": {
     "summary": "按现有来源提取关系并将局部代数与来源模型完整验证分开。",
     "basis": "时间预算守恒：行驶0.4h后以200kW额定功率可运行0.6h。",
-    "reviewer": "Codex; 2026-10-22",
+    "reviewer": "Codex; 2026-10-23",
     "independent_basis": true
   },
   "cases_sha256": "4e8f055e1cf0d29aa27885e3c559dc9675d4908ba157ae2ba7b7d100999075d1",
-  "checker_sha256": "1e20382de51d22802918c6c6f08d44bd6c14836772b12de5e995b90ab4b86cfb",
-  "card_sha256": "3a64937a207d29f51ac6aa56a8fa9ac4286e5280fe542cc308b89be71f27c655"
+  "checker_sha256": "1e8d4547bd2695afc8d689a90d5b1108aa7051ad54a58355f602fd572f76d6e2",
+  "card_sha256": "5b96da26225fa97d7be5d74ac35d857e38fbe9cbf5b4dbb6c750803e1ddc8762",
+  "checker_spec": {
+    "id": "travel-operation",
+    "file": "checker.py",
+    "api_version": 1
+  },
+  "checker_dependencies": {
+    "psaudit_pattern_checks.py": "1f53bbc49d1d230a8f2b85ac181bd2b71cf7b65b914b927cc00bee1431381fc5",
+    "psaudit_pattern_numeric.py": "34fd799a5ea3b9f1480948c2c0d5934c4046896bb0619724014dc11616440b9d"
+  },
+  "project_checks_sha256": "d5e3a846fb8886332af03d2e8404d0261e2de17cd1d5a54c39912658f5dcec9f",
+  "revision_note": "Split original fixture evaluator into a card-local module, preserving mathematical function bodies and all fixture bytes/labels. Added independently reviewed project-check input/relationship contract; no complete project solve or universal equivalence claim."
 }

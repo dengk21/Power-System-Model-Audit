@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "pattern_id": "repair-cumulative-progress",
+  "families": [
+    "restoration"
+  ],
+  "inputs": {
+    "progress": "逐故障累计维修量",
+    "available": "逐故障恢复状态",
+    "coverage_before": "上一时段覆盖/通信状态",
+    "repair_h": "维修需求与时段步长",
+    "occupancy": "逐车位置及并行维修贡献"
+  },
+  "relations": [
+    "cumulative_repair_progress",
+    "completion_threshold",
+    "monotone_availability",
+    "completion_reporting"
+  ],
+  "project_output": "MATLAB relation builders return items to psaudit_check_relations; Agent maps actual variables and verifies all applicable indices.",
+  "validation": "Project normal/violation/equivalent/not-applicable/missing-data controls; card fixtures are not project evidence."
+}

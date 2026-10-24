@@ -5,6 +5,7 @@
 | 模式 | 模型族 | 提取/验证/复用 | 关键词 |
 | --- | --- | --- | --- |
 | [凹分段流量曲线的损失上图](patterns/communication-concave-loss/card.md) | communication | CODE_OBSERVED / LOCAL_TESTED / CONDITIONAL | 通信, 凹函数, PWL, SOS2, epigraph, 流量损失 |
+| [无损DC节点有功平衡](patterns/dc-nodal-power-balance/card.md) | DCOPF/UC | RECONCILED / LOCAL_TESTED / CONDITIONAL | 节点, 功率平衡, 负荷, KCL, nodal, DCOPF |
 | [无损有功发用电平衡](patterns/ed-power-balance/card.md) | ED/DCOPF | RECONCILED / LOCAL_TESTED / CONDITIONAL | ED, 经济调度, 功率平衡, balance |
 | [逐车位置与稀疏移动弧守恒](patterns/mobile-arc-conservation/card.md) | mobile | CODE_OBSERVED / LOCAL_TESTED / CONDITIONAL | 移动资源, MESS, CREW, IC, mobile, 弧守恒 |
 | [跨节点移动的端点通信门控](patterns/mobile-communication-endpoints/card.md) | mobile-communication | CODE_OBSERVED / LOCAL_TESTED / CONDITIONAL | 通信, 端点, 自环, endpoint, Case1 |

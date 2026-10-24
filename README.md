@@ -2,7 +2,7 @@
 
 面向电力系统优化模型的数学规范—代码双向审计工具与 Agent Skill。
 
-当前方法版本 **v0.16**，语义验收契约 **v0.12**。
+当前版本 **1.1**，发布标签 **v1.1**，语义验收契约 **v0.12**。
 
 工具同时核查数学说明、活动代码与数值结果，区分数学模型错误、实现错误、双方错误、文档遗漏及参考争议，并生成带来源、数值证据和数学补全内容的 Markdown 审计报告。求解成功或当前解残差为零，不等于模型语义正确。
 
@@ -12,11 +12,25 @@ v0.14增加持续学习工作流：按模式保存公式/条件、来源及反�
 
 v0.15把学习接入普通审计：无需额外声明“学习这个项目”。Agent根据活动代码识别经典结构并自动积累；含非经典机制或尚未确认的结构时，询问“本次学习 / 以后默认都自动学习 / 本次不学习”。永久偏好保存在本机，不随仓库发布。识别为经典模型不代表其约束正确，自动学习仍须提取、去重和审阅，未验证知识保持候选状态。
 
+## 1.1：按需接入与自动运行记录
+
+静态审阅使用review，数值审计使用numeric；默认只生成配置、关系清单、合并审阅文档及未实现数值入口。card材料按需创建，旧项目布局继续兼容。明确执行本地测试时可用collect自动采集命令、退出状态、耗时、代码快照和一次测试事实，生成待审验收记录；审阅后直接freeze，不重复抄写哈希、形状和控制结果。详见[项目接入](skills/power-system-model-audit/references/project-adapters.md)。本次不新增模型效果评测或优化求解。
+
 ## 项目与Skill分离（v0.16）
 
 Skill只积累可复用的约束知识、审计规范和通用工具。新模型的适配器、数学规范、变量映射、测试和结果保存在模型项目自己的审计目录。首次接入由Agent生成并验证；后续先检查源码、参数、工具和卡片依赖，未变复用，有变局部更新并保留历史。现有课程适配器移到`projects/course-audit/`，不继续扩充Skill内固定caseId。
 
 详见[项目适配器契约](skills/power-system-model-audit/references/project-adapters.md)。`psaudit_project.py init`只生成未实现骨架，不等于自动审计；完整语义提取、独立依据和测试仍由Agent完成。
+
+## card驱动的项目检查
+
+新模型先追踪结构并匹配card条件，再在项目适配器内生成专项检查；通用内核负责残差与索引。知识fixture检查器已按card独立拆分，新card不修改集中注册表。工具生成骨架，Agent完成实际数学映射、测试和集成，详见[card驱动专项检查](skills/power-system-model-audit/references/card-driven-checks.md)。数值后端可由项目配置COPT、Gurobi等，Skill不安装这些环境。
+
+v0.18分开记录候选匹配与逐关系数值覆盖，card专项冻结须绑定项目实际输入观察、关系执行和控制测试证据。跨模块耦合公式和测试由项目适配器维护；Skill规定盘点及验收方法，当前不建立通用检查器接口。验收记录只表明已审阅证据被绑定，不证明完整模型正确。
+
+v0.19按阶段加载规则：主入口缩减约64%，学习分为识别、提取、登记和维护。`search`只查元数据，不执行检查器；选定ID并确认条件后，用`verify --pattern ID`显式核对来源及fixture。普通任务不运行全库validate，项目规划先排除不适用候选再加载完整知识包。具体用法见[知识检索](skills/power-system-model-audit/references/learning-workflow.md)。
+
+v0.20补充[源码关系清单](skills/power-system-model-audit/references/relation-inventory.md)，将无card的目标、边界和耦合保留在覆盖分母；检索支持card独立别名、关系标签、模型族与适用条件筛选。重复知识验证可使用[局部fixture缓存](skills/power-system-model-audit/references/fixture-cache.md)，来源和项目条件仍逐次核对，项目数值通过结论不缓存。项目公式和数值环境的归属保持原边界。
 
 ## 学习与更新
 
@@ -47,14 +61,15 @@ python3 skills/power-system-model-audit/scripts/test_psaudit_learning_policy.py
 | [移动资源参考](skills/power-system-model-audit/references/mobile-resource-constraints.md) / [电力—通信恢复参考](skills/power-system-model-audit/references/restoration-coupling-constraints.md) | 从更新后活动代码整理的公式、开关、边界与来源哈希；尚无完整数值适配器 |
 | [报告模板](skills/power-system-model-audit/assets/audit-report.md) | 审计输出模板 |
 | [运行工具](tools/) | 自包含测试、独立 LP 示例与包完整性检查 |
+| [项目报告与海报](docs/project/README.md) | 当前5页报告、可编辑TeX、A1海报PDF与PPTX |
 
 此仓库发布可分发的方法、工具与适配器。原课程作业、讲义、历史求解结果、全量 benchmark、第三方求解器及本机配置未随包提供。课程适配器仍需对应输入和证据，不能仅凭此仓库重放完整课程实验。
 
 ## 从Release安装Skill
 
-在[Releases](https://github.com/dengk21/Power-System-Model-Audit/releases/latest)下载`power-system-model-audit-v0.16.zip`。解压后将整个`power-system-model-audit/`目录放入客户端技能目录（Codex个人目录通常为`~/.codex/skills/`），重新加载技能即可。已有同名Skill时先保留本地新增知识。纯Skill安装无需课程适配器或完整仓库。
+在[Releases](https://github.com/dengk21/Power-System-Model-Audit/releases/latest)下载`power-system-model-audit-v1.1.zip`。解压后将整个`power-system-model-audit/`目录放入客户端技能目录（Codex个人目录通常为`~/.codex/skills/`），重新加载技能即可。已有同名Skill时先保留本地新增知识。纯Skill安装无需课程适配器或完整仓库。
 
-需要开发和运行示例时下载`PowerSystemModelAudit-v0.16-source.zip`，或克隆仓库。各资产的SHA-256见Release附件`SHA256SUMS.txt`。依赖、迁移及验证范围见[v0.16发布说明](docs/releases/v0.16.md)。
+需要开发和运行示例时下载`PowerSystemModelAudit-v1.1-source.zip`，或克隆仓库。各资产的SHA-256见Release附件`SHA256SUMS.txt`。依赖、迁移及验证范围见[v1.1发布说明](docs/releases/v1.1.md)。
 
 ## 快速开始
 

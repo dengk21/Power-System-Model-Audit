@@ -1,0 +1,40 @@
+{
+  "id": "storage-energy",
+  "title": "储能能量递推与T+1边界",
+  "family": "storage",
+  "tags": [
+    "storage",
+    "储能",
+    "SOC",
+    "能量",
+    "效率",
+    "T+1"
+  ],
+  "scope": {
+    "energy_state": "T+1",
+    "self_discharge": "none"
+  },
+  "checker": "storage-energy",
+  "sources": [
+    {
+      "project": "resilience",
+      "path": "funs/resilience_build_and_solve.m",
+      "sha256": "2a59d8cd6ce8c9ad956ceb770c493a742155c664e0bcddc73b97a9050b99ef9d",
+      "role": "ACTIVE_IMPLEMENTATION"
+    }
+  ],
+  "schema_version": 1,
+  "version": 1,
+  "extraction": "CODE_OBSERVED",
+  "validation": "LOCAL_TESTED",
+  "reuse": "CONDITIONAL",
+  "review": {
+    "summary": "按现有来源提取关系并将局部代数与来源模型完整验证分开。",
+    "basis": "能量守恒及输入/输出效率定义，独立手算100+0.9×10=109。",
+    "reviewer": "Codex; 2026-10-22",
+    "independent_basis": true
+  },
+  "cases_sha256": "a485247951309eb8306dbb0b46afa5b1c8c8ecad4f01bfcc0a81ba1b1eb564ad",
+  "checker_sha256": "1e20382de51d22802918c6c6f08d44bd6c14836772b12de5e995b90ab4b86cfb",
+  "card_sha256": "8909dc5956e24994ef49be74f952786b295e02fe295d4316a2fc32156dab239d"
+}

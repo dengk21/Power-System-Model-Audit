@@ -1,0 +1,56 @@
+{
+  "schema_version": 2,
+  "id": "dc-nodal-power-balance",
+  "title": "无损DC节点有功平衡",
+  "family": "DCOPF/UC",
+  "tags": [
+    "节点",
+    "功率平衡",
+    "负荷",
+    "KCL",
+    "nodal",
+    "DCOPF"
+  ],
+  "scope": {
+    "network": "lossless_dc",
+    "quantity": "active_power"
+  },
+  "version": 1,
+  "extraction": "RECONCILED",
+  "validation": "LOCAL_TESTED",
+  "reuse": "CONDITIONAL",
+  "checker": "dc-nodal-balance",
+  "checker_spec": {
+    "id": "dc-nodal-balance",
+    "file": "checker.py",
+    "api_version": 1
+  },
+  "checker_sha256": "d0b0f1297338f1494be6d8880a344ca65382a2c246d9089f60873011d029671b",
+  "checker_dependencies": {
+    "psaudit_pattern_checks.py": "1f53bbc49d1d230a8f2b85ac181bd2b71cf7b65b914b927cc00bee1431381fc5",
+    "psaudit_pattern_numeric.py": "34fd799a5ea3b9f1480948c2c0d5934c4046896bb0619724014dc11616440b9d"
+  },
+  "project_checks_sha256": "1e222da70a2e81b8a137901e8a68882d43d82b6c1572da93ac4267e860558285",
+  "card_sha256": "df7cff792711bbbf2e54170f2ae325bd50521e0acbb6d79008efb31bb3328b1d",
+  "cases_sha256": "20a758534a0b1a6696b2e90e31151d6564c29d2f4ee59be732b27f4c63831893",
+  "sources": [
+    {
+      "project": "course",
+      "path": "PowerSystemModelAudit/adapters/course-v015/examples/hw5/psaudit_hw5_check_solution.m",
+      "sha256": "59f2fd89bc30ab199e61116c8de589c2aa705606cae25a543057a7b1cd864d61",
+      "role": "ACTIVE_IMPLEMENTATION"
+    },
+    {
+      "project": "skill",
+      "path": "scripts/psaudit_dc_network.m",
+      "sha256": "abed287ef876d4d15364c614a9ba31c284fee17ceeb25c076b685b1e1bd4821a",
+      "role": "INDEPENDENT_RECONSTRUCTION"
+    }
+  ],
+  "review": {
+    "summary": "独立推导有向关联矩阵节点守恒，逐节点反例可区别于总功率检查。",
+    "basis": "基尔霍夫节点守恒及无损有功传输；手算两节点交换10MW负荷位置保持全网总和但违反节点关系。",
+    "reviewer": "Codex; 2026-10-23",
+    "independent_basis": true
+  }
+}

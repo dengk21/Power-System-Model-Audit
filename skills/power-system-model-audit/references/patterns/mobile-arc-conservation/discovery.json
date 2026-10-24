@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "aliases": [
+    "车辆流守恒",
+    "位置守恒",
+    "移动弧",
+    "vehicle flow conservation",
+    "mobile routing"
+  ],
+  "relation_tags": [
+    "movement_conservation",
+    "position_state",
+    "position_one_hot",
+    "outgoing_conservation",
+    "incoming_conservation",
+    "flow_domain"
+  ],
+  "families": [
+    "mobile-resource",
+    "restoration"
+  ]
+}

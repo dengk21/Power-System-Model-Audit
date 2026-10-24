@@ -1,0 +1,42 @@
+{
+  "id": "uc-minimum-duration",
+  "title": "机组最小开停机时间窗口",
+  "family": "UC",
+  "tags": [
+    "UC",
+    "机组组合",
+    "最小开机",
+    "minimum time"
+  ],
+  "scope": {
+    "model": "UC",
+    "boundary": [
+      "cyclic",
+      "truncated_with_initial"
+    ]
+  },
+  "checker": "uc-duration",
+  "sources": [
+    {
+      "project": "course",
+      "path": "PowerSystemModelAudit/adapters/course-v015/examples/hw5/math-spec.md",
+      "sha256": "42599231d8168b1ff2070d459a760ad720038fcb70929fae9cfdf20f88bbf6e3",
+      "role": "MATHEMATICAL_REFERENCE"
+    }
+  ],
+  "schema_version": 1,
+  "version": 2,
+  "extraction": "RECONCILED",
+  "validation": "LOCAL_TESTED",
+  "reuse": "CONDITIONAL",
+  "review": {
+    "summary": "按现有来源提取关系并将局部代数与来源模型完整验证分开。",
+    "basis": "独立状态序列的连续持续期计数；恰好持续L期应被接纳。",
+    "reviewer": "Codex; 2026-10-23",
+    "independent_basis": true
+  },
+  "cases_sha256": "6285e80d6660524a30a6a9f2111cdf65fb4d91fd6945a3f06e87ad2d5a004b91",
+  "checker_sha256": "1e20382de51d22802918c6c6f08d44bd6c14836772b12de5e995b90ab4b86cfb",
+  "card_sha256": "0d02d14ea738c24871898f12a18dd2e7bf2f0b1213f5de6eff141084c2cdae16",
+  "revision_note": "Reference relocated to project-owned adapter. Exact mathematical specification SHA-256 unchanged; formulas, scope and independent fixture expectations rechecked unchanged. No new full-model validation."
+}

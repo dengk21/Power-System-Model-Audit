@@ -13,8 +13,9 @@ from pathlib import Path
 import re
 import shutil
 import sys
+import unicodedata
 
-from psaudit_pattern_checks import CHECKERS, evaluate
+from psaudit_pattern_checks import validate_binding, load_checker, evaluate
 from psaudit_learning_policy import automatic_plan, preferences, require_automatic_permission
 
 SKILL = Path(__file__).resolve().parents[1]
@@ -55,7 +56,7 @@ def new_output(path):
     return result
 
 
-def load_pattern(folder):
+def load_pattern(folder, check_checker=True):
     folder = Path(folder)
     if folder.is_symlink():
         raise ValueError("Pattern folder must not be a symlink")
@@ -64,7 +65,7 @@ def load_pattern(folder):
                 "extraction", "validation", "reuse", "review", "sources", "checker"}
     if not required.issubset(record):
         raise ValueError("Incomplete pattern record")
-    if record["schema_version"] != 1 or not re.fullmatch(r"[a-z][a-z0-9-]{1,63}", record["id"]):
+    if record["schema_version"] not in {1, 2} or not re.fullmatch(r"[a-z][a-z0-9-]{1,63}", record["id"]):
         raise ValueError("Invalid schema or pattern identifier")
     if type(record["version"]) is not int or record["version"] < 1:
         raise ValueError("Version must be a positive integer")
@@ -79,8 +80,19 @@ def load_pattern(folder):
     if not isinstance(record["tags"], list) or not all(isinstance(x, str) for x in record["tags"]):
         raise ValueError("Tags must be strings")
     untested_candidate = record["validation"] == "UNTESTED" and record["reuse"] in {"CANDIDATE", "DISPUTED", "RETIRED"}
-    if record["checker"] not in CHECKERS and not (untested_candidate and record["checker"] is None):
-        raise ValueError("Unknown checker; implement and review it before registration")
+    if not (untested_candidate and record["checker"] is None):
+        if not isinstance(record["checker"], str) or not re.fullmatch(r"[a-z][a-z0-9-]{1,63}", record["checker"]):
+            raise ValueError("Invalid checker ID")
+        if record["schema_version"] == 2 and check_checker:
+            validate_binding(folder, record)
+    if record["schema_version"] == 2:
+        spec = read(inside(folder, "project-checks.json"))
+        if (record.get("project_checks_sha256") != digest(inside(folder, "project-checks.json"))
+                or spec.get("schema_version") != 1 or spec.get("pattern_id") != record["id"]
+                or not isinstance(spec.get("families"), list) or not spec["families"]
+                or not isinstance(spec.get("inputs"), dict) or not spec["inputs"]
+                or not isinstance(spec.get("relations"), list) or not spec["relations"]):
+            raise ValueError("Project-check contract changed or incomplete; review before rebinding")
     review = record["review"]
     if not all(isinstance(review.get(k), str) and review[k].strip() for k in ("summary", "basis", "reviewer")):
         raise ValueError("Substantive review and basis required")
@@ -115,8 +127,9 @@ def test_pattern(folder, record):
         if cases:
             raise ValueError("Untested drafts use an empty cases list; review labels before validation")
         return []
-    if record.get("checker_sha256") != digest(Path(__file__).with_name("psaudit_pattern_checks.py")):
-        raise ValueError("Checker changed; prior validation requires review")
+    if record["schema_version"] != 2:
+        raise ValueError("Legacy whole-file checker binding requires explicit migration")
+    function = load_checker(folder, record)
     if not CATEGORIES.issubset({x.get("category") for x in cases}):
         raise ValueError("Normal, violation, equivalent and inapplicable cases required")
     ids = [x["id"] for x in cases]
@@ -130,7 +143,7 @@ def test_pattern(folder, record):
                                 "not_applicable": "NOT_APPLICABLE", "data": "DATA_INSUFFICIENT"}
         if case.get("category") not in expected_by_category or case["expected"] != expected_by_category[case["category"]]:
             raise ValueError("Fixture category and independently reviewed label disagree")
-        actual = evaluate(record["checker"], case["data"])
+        actual = evaluate(function, case["data"])
         results.append({"id": case["id"], "category": case["category"],
                         "expected": case["expected"], "actual": actual,
                         "passed": actual == case["expected"]})
@@ -163,27 +176,104 @@ def applicability(record, context):
             "missing": unknown, "conflicts": conflicts}
 
 
-def inspect_pattern(folder, roots, context):
-    record = load_pattern(folder); tests = test_pattern(folder, record)
-    freshness = source_status(record, roots); scope = applicability(record, context)
+def inspect_pattern(folder, roots, context, force_tests=False, fixture_cache=None):
+    record = read(Path(folder) / 'record.json')
+    scope = applicability(record, context)
+    run_tests = force_tests or (scope['state'] == 'MATCH' and record['reuse'] not in {'DISPUTED', 'RETIRED'})
+    if run_tests:
+        record = load_pattern(folder)
+    cached = False
+    if run_tests and fixture_cache is not None and not force_tests:
+        tests, cached = fixture_cache.run(folder, record, lambda: test_pattern(folder, record), __file__)
+    else:
+        tests = test_pattern(folder, record) if run_tests else []
+    freshness = source_status(record, roots)
     passed = bool(tests) and all(x["passed"] for x in tests)
     use = "REVIEW_REQUIRED"
     if record["reuse"] in {"DISPUTED", "RETIRED"} or freshness["state"] == "STALE" or (tests and not passed) or scope["state"] == "MISMATCH":
         use = "DO_NOT_USE"
     elif record["reuse"] == "CANDIDATE":
         use = "CANDIDATE_ONLY"
-    elif freshness["state"] == "FRESH" and scope["state"] == "MATCH":
+    elif freshness["state"] == "FRESH" and scope["state"] == "MATCH" and passed:
         use = "CONDITIONAL_REFERENCE"
     return {"id": record["id"], "version": record["version"], "title": record["title"],
             "extraction": record["extraction"], "validation": record["validation"], "reuse": record["reuse"],
             "freshness": freshness, "applicability": scope, "use": use,
             "tests_passed": passed, "tests": tests,
+            "tests_state": ('CACHED' if cached else 'EXECUTED') if tests else ('UNTESTED' if run_tests else 'SKIPPED_SCOPE_OR_REUSE'),
             "card": str((Path(folder) / "card.md").relative_to(SKILL)) if Path(folder).is_relative_to(SKILL) else "candidate/card.md",
             "automatically_confirms_model_error": False}
 
 
 def folders():
     return sorted(p.parent for p in PATTERNS.glob("*/record.json"))
+
+
+def discovery(folder):
+    path = folder / 'discovery.json'
+    value = read(path) if path.is_file() else {'schema_version': 1}
+    if value.get('schema_version') != 1:
+        raise ValueError('Invalid discovery metadata version')
+    for field in ('aliases', 'relation_tags', 'families'):
+        values = value.setdefault(field, [])
+        if not isinstance(values, list) or any(not isinstance(x, str) or not x.strip() for x in values):
+            raise ValueError('Discovery aliases, relation tags and families must be text lists')
+    return value
+
+
+def normalized(value):
+    return re.sub(r'[^\w\u3400-\u9fff]+', ' ', unicodedata.normalize('NFKC', value).casefold()).replace('_', ' ').strip()
+
+
+def contains(text, term):
+    return bool(re.search(r'(?<![a-z0-9])' + re.escape(term) + r'(?![a-z0-9])', text)) if term.isascii() else term in text
+
+
+def search_records(query, context, limit=8, families=(), relations=(), scope_filter='compatible'):
+    """Metadata discovery only: never open card bodies, fixtures or checker code."""
+    if limit < 1:
+        raise ValueError('Search limit must be positive')
+    if scope_filter not in {'any', 'compatible', 'match'}:
+        raise ValueError('Invalid search scope filter')
+    query = normalized(query); terms = query.split()
+    rows = []
+    for folder in folders():
+        record = read(folder / 'record.json')
+        meta = discovery(folder)
+        available_families = set(meta['families']) | set(re.split(r'[/,]', record['family']))
+        if families and not {normalized(x) for x in families} & {normalized(x) for x in available_families}:
+            continue
+        if relations and not {normalized(x) for x in relations} & {normalized(x) for x in meta['relation_tags']}:
+            continue
+        scope = applicability(record, context)
+        if scope_filter == 'match' and scope['state'] != 'MATCH':
+            continue
+        if scope_filter == 'compatible' and scope['state'] == 'MISMATCH':
+            continue
+        phrases = [(record['id'], 20), (record['title'], 12), (record['family'], 10)]
+        phrases += [(x, 16) for x in meta['aliases']]
+        phrases += [(x, 8) for x in record['tags'] + meta['relation_tags']]
+        matched = {}; score = 0
+        for phrase, weight in phrases:
+            word = normalized(phrase)
+            if query and (contains(word, query) or contains(query, word)):
+                matched[phrase] = max(matched.get(phrase, 0), weight)
+            elif query and any(contains(word, term) for term in terms):
+                matched[phrase] = max(matched.get(phrase, 0), 2)
+        score = sum(matched.values())
+        if terms and score == 0:
+            continue
+        rows.append({'id': record['id'], 'version': record['version'], 'title': record['title'],
+                     'family': record['family'], 'scope': record['scope'],
+                     'reuse': record['reuse'], 'applicability': scope,
+                     'families': sorted(available_families), 'relation_tags': meta['relation_tags'],
+                     'matched_terms': sorted(matched),
+                     'card': (folder / 'card.md').relative_to(SKILL).as_posix(),
+                     'match_score': score, 'use': 'CANDIDATE_METADATA_ONLY',
+                     'freshness': 'NOT_CHECKED', 'tests_state': 'NOT_RUN',
+                     'automatically_confirms_model_error': False})
+    priority = {'MATCH': 0, 'NEEDS_CONTEXT': 1, 'MISMATCH': 2}
+    return sorted(rows, key=lambda row: (-row['match_score'], priority[row['applicability']['state']], row['id']))[:limit]
 
 
 def report(out, title, rows, checked):
@@ -208,7 +298,7 @@ def build_index():
     lines = ["# 约束模式索引", "", "本索引由知识工具生成。状态、来源新鲜度和本次适用性分别判断；LOCAL_TESTED不等于完整模型已验证。", "",
              "| 模式 | 模型族 | 提取/验证/复用 | 关键词 |", "| --- | --- | --- | --- |"]
     for folder in folders():
-        r = load_pattern(folder)
+        r = read(folder / 'record.json')
         lines.append(f"| [{r['title']}](patterns/{r['id']}/card.md) | {r['family']} | {r['extraction']} / {r['validation']} / {r['reuse']} | {', '.join(r['tags'])} |")
     lines += ["", "学习、审计和更新方法见[学习流程](learning-workflow.md)。", ""]
     (SKILL / "references" / "pattern-index.md").write_text("\n".join(lines), encoding="utf-8")
@@ -237,6 +327,15 @@ def prepare_learning(root, project, out, selected=None):
     return files
 
 
+def pattern_files(record):
+    names = ["record.json", "card.md", "cases.json"]
+    if record.get("schema_version") == 2:
+        names.append("project-checks.json")
+        if record["checker"] is not None:
+            names.append("checker.py")
+    return names
+
+
 def register(candidate, roots, expected=None):
     candidate = Path(candidate).resolve(); record = load_pattern(candidate)
     checks = test_pattern(candidate, record)
@@ -246,7 +345,7 @@ def register(candidate, roots, expected=None):
         raise ValueError("Conditional reuse requires available, matching source dependencies")
     target = inside(PATTERNS, record["id"])
     if target.exists():
-        old = load_pattern(target)
+        old = load_pattern(target, check_checker=False)
         if not expected or digest(target / "record.json") != expected:
             raise ValueError("Existing pattern requires an exact expected record SHA")
         if record["version"] != old["version"] + 1 or not record.get("revision_note", "").strip():
@@ -256,13 +355,13 @@ def register(candidate, roots, expected=None):
             raise ValueError("Revision archive already exists")
         history.parent.mkdir(parents=True, exist_ok=True)
         history.mkdir()
-        for name in ("record.json", "card.md", "cases.json"):
+        for name in pattern_files(old):
             shutil.copyfile(target / name, history / name)
     else:
         if expected or record["version"] != 1:
             raise ValueError("New patterns start at version 1 without an expected SHA")
         target.mkdir(parents=True)
-    for name in ("record.json", "card.md", "cases.json"):
+    for name in pattern_files(record):
         content = inside(candidate, name).read_bytes()
         temporary = target / (name + ".tmp")
         temporary.write_bytes(content); temporary.replace(target / name)
@@ -282,7 +381,7 @@ def key_values(values, paths=False):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=["search", "validate", "inspect", "learn", "update", "register", "index", "auto-plan", "preferences"])
+    parser.add_argument("command", choices=["search", "verify", "validate", "inspect", "learn", "update", "register", "index", "auto-plan", "preferences"])
     parser.add_argument("query", nargs="?", default="")
     parser.add_argument("--source", action="append", default=[], metavar="PROJECT=PATH")
     parser.add_argument("--context", action="append", default=[], metavar="KEY=VALUE")
@@ -290,6 +389,12 @@ def main(argv=None):
     parser.add_argument("--files", nargs="+"); parser.add_argument("--candidate"); parser.add_argument("--expected-record-sha")
     parser.add_argument("--verbose", action="store_true", help="Include every fixture result in console output")
     parser.add_argument("--limit", type=int, default=8, help="Maximum search matches to print")
+    parser.add_argument('--pattern', action='append', default=[], help='Explicit card ID; required for verify')
+    parser.add_argument('--family', action='append', default=[], help='Search model-family filter')
+    parser.add_argument('--relation', action='append', default=[], help='Search mathematical relation-tag filter')
+    parser.add_argument('--scope-filter', choices=['compatible', 'match', 'any'], default='compatible')
+    parser.add_argument('--cache-dir', help='Optional project-local fixture cache outside Skill/adapter')
+    parser.add_argument('--refresh-cache', action='store_true', help='Execute fixtures and replace cache entries')
     parser.add_argument("--assessment", help="Agent-authored structural assessment JSON")
     parser.add_argument("--decision", choices=["learn-once", "always", "skip"])
     parser.add_argument("--preferences", help="Local preference file, outside the shared Skill")
@@ -299,6 +404,8 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         roots = key_values(args.source, paths=True); context = key_values(args.context)
+        if args.refresh_cache and not args.cache_dir:
+            raise ValueError('--refresh-cache requires --cache-dir')
         if args.automatic:
             if args.command not in {"learn", "register"} or not args.policy_plan:
                 raise ValueError("Automatic learn/register requires --policy-plan")
@@ -329,20 +436,27 @@ def main(argv=None):
             if not args.candidate:
                 raise ValueError("register requires --candidate")
             result = register(args.candidate, roots, args.expected_record_sha)
+        elif args.command == 'search':
+            if args.pattern:
+                raise ValueError('Use verify --pattern ID for selected-card verification')
+            rows = search_records(args.query, context, args.limit, args.family, args.relation, args.scope_filter)
+            if args.output:
+                write(new_output(args.output) / 'candidates.json', {'state': 'METADATA_ONLY', 'results': rows})
+            result = {'state': 'METADATA_ONLY', 'patterns': len(rows), 'results': rows,
+                      'next': 'Read selected cards and verify --pattern ID with project context/source roots.'}
         else:
-            rows = []; terms = args.query.lower().split()
-            for folder in folders():
-                record = load_pattern(folder)
-                text = " ".join([record["id"], record["title"], record["family"]] + record["tags"]).lower()
-                score = sum(term in text for term in terms)
-                if args.command == "search" and terms and score == 0:
-                    continue
-                row = inspect_pattern(folder, roots, context); row["match_score"] = score; rows.append(row)
-            rows.sort(key=lambda r: (-r["match_score"], r["id"]))
-            if args.command == "search":
-                if args.limit < 1:
-                    raise ValueError("Search limit must be positive")
-                rows = rows[:args.limit]
+            available = {folder.name: folder for folder in folders()}
+            if args.command == 'verify' and not args.pattern:
+                raise ValueError('verify requires at least one --pattern ID')
+            if set(args.pattern) - set(available):
+                raise ValueError('Unknown selected pattern ID')
+            selected = [available[name] for name in sorted(set(args.pattern))] if args.pattern else list(available.values())
+            from psaudit_fixture_cache import FixtureCache
+            cache = FixtureCache(args.cache_dir, args.refresh_cache) if args.cache_dir else None
+            if cache is not None and cache.directory.is_relative_to(SKILL.resolve()):
+                raise ValueError('Fixture caches belong outside the selected Skill')
+            rows = [inspect_pattern(folder, roots, context, force_tests=args.command in {'validate', 'update'}, fixture_cache=cache)
+                    for folder in selected]
             if args.command in {"inspect", "update"} and not args.output:
                 raise ValueError("Inspection/update requires a new output directory")
             if args.output:
@@ -353,16 +467,19 @@ def main(argv=None):
                     write(out / "relearning-plan.json", {"state": "REVIEW_REQUIRED", "affected_patterns": changed,
                           "instruction": "Re-extract affected formulas and assumptions, add regression evidence, increment versions and preserve old snapshots. Do not merely refresh hashes."})
             result = {"patterns": len(rows), "fixture_cases": sum(len(r["tests"]) for r in rows),
+                      'executed_fixture_cases': sum(len(r['tests']) for r in rows if r['tests_state'] == 'EXECUTED'),
+                      'cached_fixture_cases': sum(len(r['tests']) for r in rows if r['tests_state'] == 'CACHED'),
                       "untested_patterns": sum(not r["tests"] for r in rows),
-                      "all_local_tests_passed": all(t["passed"] for r in rows for t in r["tests"]), "results": rows}
+                      "all_local_tests_passed": (False if any(not t['passed'] for r in rows for t in r['tests'])
+                          else (True if rows and all(r['tests'] for r in rows) else None)), "results": rows}
         console = result
-        if not args.verbose and "results" in result:
+        if not args.verbose and "results" in result and result.get('state') != 'METADATA_ONLY':
             console = dict(result)
             console["results"] = [{"id": r["id"], "card": r["card"], "use": r["use"],
                 "freshness": r["freshness"]["state"], "applicability": r["applicability"],
-                "local_tests_passed": r["tests_passed"]} for r in result["results"]]
+                "local_tests_passed": r["tests_passed"], 'tests_state': r['tests_state']} for r in result["results"]]
         print(json.dumps(console, ensure_ascii=False, indent=2))
-        return 0 if result.get("all_local_tests_passed", True) else 1
+        return 1 if result.get('all_local_tests_passed') is False else 0
     except (ValueError, OSError, KeyError, TypeError, json.JSONDecodeError) as error:
         print("ERROR: " + str(error), file=sys.stderr)
         return 2

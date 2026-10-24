@@ -13,18 +13,18 @@
     },
     {
       "path": "README.md",
-      "bytes": 7603,
-      "sha256": "e174a3ebf1f359c7c3a98793b0660ab594ca94d4b8d14261032d8be2d7aa0dad"
+      "bytes": 10093,
+      "sha256": "e7ed1e40382b279fe15ec9a6ce0760baa12259ed136e0c5a9d72735b6496b05f"
     },
     {
       "path": "docs/PACKAGING.md",
-      "bytes": 7629,
-      "sha256": "960433d141aaf4f9608401dbd8bdc401cc0e9542258a254263bec37e17b4e5bc"
+      "bytes": 8267,
+      "sha256": "e5d4f31e491b1fa92de9c1e7453a63a44e3b397397bb3810d28f8e1691ef6458"
     },
     {
       "path": "docs/PUBLICATION.md",
-      "bytes": 8459,
-      "sha256": "baa7f9c518ce408a902707e902b5f547771846b2d29b7756a97eacab713114a2"
+      "bytes": 15800,
+      "sha256": "78538e3072193ba52fdf2804a33d0976aff7c9db60beeb42509f161cfc18fcfd"
     },
     {
       "path": "docs/VALIDATION.md",
@@ -32,9 +32,44 @@
       "sha256": "ca6f3eeed5350360ad6421e9e454db17af25cf66d8d1ccdeb33f2a31493422f6"
     },
     {
+      "path": "docs/project/README.md",
+      "bytes": 995,
+      "sha256": "900d0895fa368d645912adb1f167609e6d9a14193b7a9693a0a3f29ddc6e4f74"
+    },
+    {
+      "path": "docs/project/iarticle.cls",
+      "bytes": 7284,
+      "sha256": "c13f31931674ef1a35d342da30d0614e2c0a23510e67e99ff84a7a501c3239f7"
+    },
+    {
+      "path": "docs/project/poster.pdf",
+      "bytes": 500086,
+      "sha256": "bf5a4abc1fd560751c33a7251bd559cb7f4a9ee6309afab94952f80e8362c82c"
+    },
+    {
+      "path": "docs/project/poster.pptx",
+      "bytes": 1826852,
+      "sha256": "f36b4c0a8bc60e20d1323c4d6fd4e35e6cb620ee4a9fcbbdb499a29eef6cd7c9"
+    },
+    {
+      "path": "docs/project/report.pdf",
+      "bytes": 162776,
+      "sha256": "cba8d6d37d16ded69cd37e835034f93e1a94da2f90c116e854888e4dd51a280f"
+    },
+    {
+      "path": "docs/project/report.tex",
+      "bytes": 18490,
+      "sha256": "1894824a2565269f97d1f2bf64e653c7dc0844af288cd0f00634f96e5395169a"
+    },
+    {
       "path": "docs/releases/v0.16.md",
       "bytes": 2559,
       "sha256": "b436ea5ef11ce561225d96efffe1848a94069cb8b39a799da956309f6dbf434b"
+    },
+    {
+      "path": "docs/releases/v1.1.md",
+      "bytes": 2603,
+      "sha256": "800965bba75e87c46e824137eb739259c51974a9382932e5502c17db683a952e"
     },
     {
       "path": "docs/source-manifest-v0.13.json",
@@ -43,8 +78,8 @@
     },
     {
       "path": "docs/source-manifest.json",
-      "bytes": 26899,
-      "sha256": "321e06081f211dcca19693bdebfcd9ce1af82519fbcdb2255b1ec298e7957a35"
+      "bytes": 51653,
+      "sha256": "130229e6f71f462db6eb2b97c101983a13f8ad29f1e42c4f3ff99812829cd676"
     },
     {
       "path": "projects/course-audit/README.md",
@@ -333,8 +368,8 @@
     },
     {
       "path": "skills/power-system-model-audit/SKILL.md",
-      "bytes": 11893,
-      "sha256": "e23691931a9a1eaa88aba0cd126cefa658bbcd2b59cfd12c6e47b0641c27b907"
+      "bytes": 5214,
+      "sha256": "ce77a88ab2629740e01fefd80bc7511a8aad6f41f045fce30b7c170ef5692b63"
     },
     {
       "path": "skills/power-system-model-audit/agents/openai.yaml",
@@ -348,23 +383,28 @@
     },
     {
       "path": "skills/power-system-model-audit/assets/audit-report.md",
-      "bytes": 3391,
-      "sha256": "638f725fcfe894634f7aedf025e3afd8972faf481a428c9e11bac78215f73a68"
+      "bytes": 4050,
+      "sha256": "a242e75961604d6add3bfb03381d968e87032864363290e721b1f27e50f9295f"
     },
     {
       "path": "skills/power-system-model-audit/assets/pattern-card.md",
-      "bytes": 940,
-      "sha256": "b3baa9fb56010fa43c1f10c07249108a7fee49508827de71dcd8ba3d9c3041dd"
+      "bytes": 1539,
+      "sha256": "fc3698079c98352940b2643c746959acd809ea364b273d217736f4a12707bf45"
     },
     {
       "path": "skills/power-system-model-audit/assets/project-adapter/mapping.md",
-      "bytes": 431,
-      "sha256": "238b6f49fe3aadf8e6e1c85f73202898cdd5fe5b22c2c8bebdae4aa6e0c81edb"
+      "bytes": 861,
+      "sha256": "de5ab6995772d679b0dbaebf5a4c5e26bf3dc7cd4ce6779d5a7d71be855f314c"
     },
     {
       "path": "skills/power-system-model-audit/assets/project-adapter/math-spec.md",
       "bytes": 328,
       "sha256": "2426122df161da7ea49d37463c7178e107e9880e2304b07b846be1cb5ad19642"
+    },
+    {
+      "path": "skills/power-system-model-audit/assets/project-adapter/review.md",
+      "bytes": 770,
+      "sha256": "2972160ff8512e415d054996ac0a15f123cfb1fb5d7e9894cc3148b3ad6b3da7"
     },
     {
       "path": "skills/power-system-model-audit/assets/project-adapter/run_audit.m",
@@ -373,18 +413,48 @@
     },
     {
       "path": "skills/power-system-model-audit/references/audit-workflow.md",
-      "bytes": 4422,
-      "sha256": "c2d1d5d2630aabc17dfddc5f8d14c6d7cd91039713dd6416028934239f5fd6bb"
+      "bytes": 5357,
+      "sha256": "5a3f069cc3b9b54905c5ec4e7cd32bb515466047589653114b6fee299ced8d70"
     },
     {
       "path": "skills/power-system-model-audit/references/capabilities.md",
-      "bytes": 6209,
-      "sha256": "79dcb33c41e19b98e17777e94d07f11573ff53fe2b5227862fcd82b410dd0159"
+      "bytes": 12961,
+      "sha256": "4d44cbb8cbc2a6e8e3c8c7480bf10b2c8ea668f6c29a8ed389323e5a08b492d7"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/card-driven-checks.md",
+      "bytes": 8943,
+      "sha256": "ba22c9b16f3c87b570ab0fbab9e6d723d0be50f34d94778d437ccbf806a9c196"
     },
     {
       "path": "skills/power-system-model-audit/references/diagnostic-repair-loop.md",
       "bytes": 3896,
       "sha256": "e3138ac646ae1e951e3fcc7d8f60f902fbba6f8a6a4a6768e7012792650a50ee"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/fixture-cache.md",
+      "bytes": 2075,
+      "sha256": "c5893857fc0c85956307c20c05b3b165930413dd4ca81c801c8037ad66a14b98"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-extraction.md",
+      "bytes": 3615,
+      "sha256": "fcb91f7d84aa048237d09dfb4dafeb4e1f0ddd7aeda65ad799df867079d5f9ef"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/communication-concave-loss/v1-3ae0a8a5e94a/card.md",
+      "bytes": 1150,
+      "sha256": "7dfbc036f76d7c31628dada9f17f0c225e7bd2fdd0398e64e6459c413f059c6e"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/communication-concave-loss/v1-3ae0a8a5e94a/cases.json",
+      "bytes": 2327,
+      "sha256": "5ba499759ea351efd6154a9b10c6950e5479b8df8b0efb1abec20fd769ef0df6"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/communication-concave-loss/v1-3ae0a8a5e94a/record.json",
+      "bytes": 1453,
+      "sha256": "3ae0a8a5e94a087aa6da72bd3709e090b9ea925f42d231ba35310c800dea5b87"
     },
     {
       "path": "skills/power-system-model-audit/references/learning-history/ed-power-balance/v1-2be786662291/card.md",
@@ -402,6 +472,96 @@
       "sha256": "2be7866622910f7563332353332b105ccc390d2541dd5355bc9359358f2ec67e"
     },
     {
+      "path": "skills/power-system-model-audit/references/learning-history/ed-power-balance/v2-bdf9b682952d/card.md",
+      "bytes": 1106,
+      "sha256": "cd138c83aecf7ec692d99d2690ba141fb09e71227eef3b1b7c70d86e751ced48"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/ed-power-balance/v2-bdf9b682952d/cases.json",
+      "bytes": 1246,
+      "sha256": "79c58982af85f9373ae68eaadf972b9f6a23236a9f2b079fca24dbaf38d81e2e"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/ed-power-balance/v2-bdf9b682952d/record.json",
+      "bytes": 1471,
+      "sha256": "bdf9b682952d52735dc1d87adefc89d80f414ac9b4e216f4a9e0812152a8225b"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/mobile-arc-conservation/v1-662a0a4a8b81/card.md",
+      "bytes": 1162,
+      "sha256": "bc6cab6c15e359e557534e77a877f94ec0ab111187f1398e5b5d2b8d3f430063"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/mobile-arc-conservation/v1-662a0a4a8b81/cases.json",
+      "bytes": 2747,
+      "sha256": "c18b1acfa5d0108498d4543a1dbefd943420485cfb5daa0d531285a17847a89f"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/mobile-arc-conservation/v1-662a0a4a8b81/record.json",
+      "bytes": 1266,
+      "sha256": "662a0a4a8b81c57bbfecab2c308490622e219db5129163170f7653986d68d94c"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/mobile-communication-endpoints/v1-1066611dfc57/card.md",
+      "bytes": 1196,
+      "sha256": "37071a5c8a81f870a58d7982842a6f8f38ce2b0c33a9aec7960786c481025650"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/mobile-communication-endpoints/v1-1066611dfc57/cases.json",
+      "bytes": 2215,
+      "sha256": "2d3e571fe83efb81642d61fa417653d3abc2568be6b7f0632c67aaa0a54cafd3"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/mobile-communication-endpoints/v1-1066611dfc57/record.json",
+      "bytes": 1647,
+      "sha256": "1066611dfc5760ab9cd948058fc78f8e5ec4d2a72c43e1ea55e1c10e8aad169c"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/mobile-travel-operation/v1-dc3b006bcea8/card.md",
+      "bytes": 1068,
+      "sha256": "3a64937a207d29f51ac6aa56a8fa9ac4286e5280fe542cc308b89be71f27c655"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/mobile-travel-operation/v1-dc3b006bcea8/cases.json",
+      "bytes": 1576,
+      "sha256": "4e8f055e1cf0d29aa27885e3c559dc9675d4908ba157ae2ba7b7d100999075d1"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/mobile-travel-operation/v1-dc3b006bcea8/record.json",
+      "bytes": 1233,
+      "sha256": "dc3b006bcea8ac2f64d6f519640de4dcf614b1bed370ad5ae21d470e0892b4d6"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/repair-cumulative-progress/v1-72c7a7ad366d/card.md",
+      "bytes": 1148,
+      "sha256": "8aec171b9cf598f0791406c26f3de4f19afbf9f36fcb722a82e5254fcbcfad83"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/repair-cumulative-progress/v1-72c7a7ad366d/cases.json",
+      "bytes": 2463,
+      "sha256": "66877111f7fe5f8a3bd846ad68e08cea282a73d6e8d72134e07097396d59dd64"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/repair-cumulative-progress/v1-72c7a7ad366d/record.json",
+      "bytes": 1249,
+      "sha256": "72c7a7ad366d6836edf91d79e944e76afc875f0c05b767d267edce4424082aac"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/storage-energy/v1-dec1b2bace66/card.md",
+      "bytes": 1094,
+      "sha256": "8909dc5956e24994ef49be74f952786b295e02fe295d4316a2fc32156dab239d"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/storage-energy/v1-dec1b2bace66/cases.json",
+      "bytes": 2128,
+      "sha256": "a485247951309eb8306dbb0b46afa5b1c8c8ecad4f01bfcc0a81ba1b1eb564ad"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/storage-energy/v1-dec1b2bace66/record.json",
+      "bytes": 1198,
+      "sha256": "dec1b2bace667c6673ab7b2d78c5d1e21cc8f02a4721ef2a0c1435486dd32885"
+    },
+    {
       "path": "skills/power-system-model-audit/references/learning-history/uc-minimum-duration/v1-827b8df61653/card.md",
       "bytes": 1158,
       "sha256": "db1ba37295e2e72de2af616fda4e6ca01e2a51117ae92f54df943386d1655c36"
@@ -417,9 +577,39 @@
       "sha256": "827b8df61653bc7fd965e5e1d3c63a34c55883015fbe7a566611f523057766d2"
     },
     {
+      "path": "skills/power-system-model-audit/references/learning-history/uc-minimum-duration/v2-31facc4e2fcc/card.md",
+      "bytes": 1200,
+      "sha256": "0d02d14ea738c24871898f12a18dd2e7bf2f0b1213f5de6eff141084c2cdae16"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/uc-minimum-duration/v2-31facc4e2fcc/cases.json",
+      "bytes": 1549,
+      "sha256": "6285e80d6660524a30a6a9f2111cdf65fb4d91fd6945a3f06e87ad2d5a004b91"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-history/uc-minimum-duration/v2-31facc4e2fcc/record.json",
+      "bytes": 1521,
+      "sha256": "31facc4e2fcc9b6c64afb99b3c6df99c61feba9ad2c3cc9d1eca8e03c9ceaaa7"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-maintenance.md",
+      "bytes": 3105,
+      "sha256": "073920c856e099357c19aef62e3bc3c34ee28edd5ec1d6134f9a4800744557d3"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-policy.md",
+      "bytes": 5018,
+      "sha256": "06df71df07ffe87227eca5cb159a9ba4f8151c14bdef5148250de4dabb5a3cfd"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/learning-registration.md",
+      "bytes": 3301,
+      "sha256": "1b137af69ea1247d97db69bd343b8d2fec3ebb2af27b93141a58488dfa56586e"
+    },
+    {
       "path": "skills/power-system-model-audit/references/learning-workflow.md",
-      "bytes": 14769,
-      "sha256": "8692607e3f8fbf4a42a2fa1f11b465c5a92a463140e1e142fb6ee6932e920577"
+      "bytes": 3711,
+      "sha256": "ff4be057eee04c0bc1074b18bc71c82bd53be47600d94af65aa4af22ab6c7321"
     },
     {
       "path": "skills/power-system-model-audit/references/math-model-review.md",
@@ -438,13 +628,13 @@
     },
     {
       "path": "skills/power-system-model-audit/references/pattern-index.md",
-      "bytes": 1820,
-      "sha256": "4ee2c5cbb28279302b8d07bf9db93d083c51319c949559c6ad0145dae147d4ab"
+      "bytes": 1998,
+      "sha256": "2c57efb2dac4d89f6623850e890f6182b5c3a1c23498cf5fc15502dba6afa5e0"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/communication-concave-loss/card.md",
-      "bytes": 1150,
-      "sha256": "7dfbc036f76d7c31628dada9f17f0c225e7bd2fdd0398e64e6459c413f059c6e"
+      "bytes": 1449,
+      "sha256": "c24c202733ce078511d9163e18c132f9ceed302408b6d88fcf383e6af9a9a2eb"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/communication-concave-loss/cases.json",
@@ -452,14 +642,59 @@
       "sha256": "5ba499759ea351efd6154a9b10c6950e5479b8df8b0efb1abec20fd769ef0df6"
     },
     {
+      "path": "skills/power-system-model-audit/references/patterns/communication-concave-loss/checker.py",
+      "bytes": 895,
+      "sha256": "3d1116a3ba4cd97bce4b48eebf34b286b998bb1d501ff131d3bd9f263df7e1bc"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/communication-concave-loss/discovery.json",
+      "bytes": 358,
+      "sha256": "7e5a2acf0b1e72319fcbcd477565d6ea2132f4f36fd51d34ce5f570cc6db980e"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/communication-concave-loss/project-checks.json",
+      "bytes": 746,
+      "sha256": "47be0e2c8c82fa03ddcc2024ee08a89305f0b73bc7c785dfc9afe518f6b3cbbd"
+    },
+    {
       "path": "skills/power-system-model-audit/references/patterns/communication-concave-loss/record.json",
-      "bytes": 1453,
-      "sha256": "3ae0a8a5e94a087aa6da72bd3709e090b9ea925f42d231ba35310c800dea5b87"
+      "bytes": 2219,
+      "sha256": "a48aeff3685f12fc9c112a67880d0ff6f97a245895b4c2322e066637f757f939"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/dc-nodal-power-balance/card.md",
+      "bytes": 1745,
+      "sha256": "df7cff792711bbbf2e54170f2ae325bd50521e0acbb6d79008efb31bb3328b1d"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/dc-nodal-power-balance/cases.json",
+      "bytes": 3678,
+      "sha256": "20a758534a0b1a6696b2e90e31151d6564c29d2f4ee59be732b27f4c63831893"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/dc-nodal-power-balance/checker.py",
+      "bytes": 1463,
+      "sha256": "d0b0f1297338f1494be6d8880a344ca65382a2c246d9089f60873011d029671b"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/dc-nodal-power-balance/discovery.json",
+      "bytes": 444,
+      "sha256": "748db074244c194a3fce5dbc22552a93e9bf1463e82f4a1344c9e2a08eb991a4"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/dc-nodal-power-balance/project-checks.json",
+      "bytes": 706,
+      "sha256": "1e222da70a2e81b8a137901e8a68882d43d82b6c1572da93ac4267e860558285"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/dc-nodal-power-balance/record.json",
+      "bytes": 2023,
+      "sha256": "ad1b24cf1f38d86af73d338834aeeacb8b867d2318763ef62bcd319362ed62a0"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/ed-power-balance/card.md",
-      "bytes": 1106,
-      "sha256": "cd138c83aecf7ec692d99d2690ba141fb09e71227eef3b1b7c70d86e751ced48"
+      "bytes": 1373,
+      "sha256": "81dd92df7bef56c4303e16fcc9c807fdabf6d08694e54205258a326088abcbd8"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/ed-power-balance/cases.json",
@@ -467,14 +702,29 @@
       "sha256": "79c58982af85f9373ae68eaadf972b9f6a23236a9f2b079fca24dbaf38d81e2e"
     },
     {
+      "path": "skills/power-system-model-audit/references/patterns/ed-power-balance/checker.py",
+      "bytes": 365,
+      "sha256": "9fd90f7f2fed231eeb98fd5f42df2493520730c960a9111e2fdb9c6e6ba869b6"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/ed-power-balance/discovery.json",
+      "bytes": 368,
+      "sha256": "b2d1e7fd443e8ce62b6e6879b6d1566eef7fd5969e1d6765c49950350147d294"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/ed-power-balance/project-checks.json",
+      "bytes": 647,
+      "sha256": "005e0cac1591f728b10d1111c70dc326aed00de22714019fac11fc1bd830f602"
+    },
+    {
       "path": "skills/power-system-model-audit/references/patterns/ed-power-balance/record.json",
-      "bytes": 1471,
-      "sha256": "bdf9b682952d52735dc1d87adefc89d80f414ac9b4e216f4a9e0812152a8225b"
+      "bytes": 1964,
+      "sha256": "a51f23f7a1fc0c81d389670aa8c2ce793fd7d37b9afc7529fa224c3e2da54d32"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/mobile-arc-conservation/card.md",
-      "bytes": 1162,
-      "sha256": "bc6cab6c15e359e557534e77a877f94ec0ab111187f1398e5b5d2b8d3f430063"
+      "bytes": 1460,
+      "sha256": "bdefc6f5d465e742da0cf4143225da07681b457fba5031b4b8f1915e39adaf0b"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/mobile-arc-conservation/cases.json",
@@ -482,14 +732,29 @@
       "sha256": "c18b1acfa5d0108498d4543a1dbefd943420485cfb5daa0d531285a17847a89f"
     },
     {
+      "path": "skills/power-system-model-audit/references/patterns/mobile-arc-conservation/checker.py",
+      "bytes": 1687,
+      "sha256": "aab9b4428b635b8ebe10e2aef1a9bed583af523fdceb723e4add0cb921375654"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/mobile-arc-conservation/discovery.json",
+      "bytes": 421,
+      "sha256": "951571a522537cd63c19979a64d9b0703c4abc13c45b6db5af4e787475cff9d9"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/mobile-arc-conservation/project-checks.json",
+      "bytes": 735,
+      "sha256": "e7a3602e11d87c3ba5a96c3c7c9ff0639c7f4233ca17cee7cf4f56ce43273ffe"
+    },
+    {
       "path": "skills/power-system-model-audit/references/patterns/mobile-arc-conservation/record.json",
-      "bytes": 1266,
-      "sha256": "662a0a4a8b81c57bbfecab2c308490622e219db5129163170f7653986d68d94c"
+      "bytes": 2025,
+      "sha256": "239e5302153ee070418a530a46b35cdcec5ae4fabd7c637a58b457303b341ef2"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/mobile-communication-endpoints/card.md",
-      "bytes": 1196,
-      "sha256": "37071a5c8a81f870a58d7982842a6f8f38ce2b0c33a9aec7960786c481025650"
+      "bytes": 1496,
+      "sha256": "2ade504d52d98159ef485a3902174d7f7c73fd04519532dae036aaf598e51612"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/mobile-communication-endpoints/cases.json",
@@ -497,14 +762,29 @@
       "sha256": "2d3e571fe83efb81642d61fa417653d3abc2568be6b7f0632c67aaa0a54cafd3"
     },
     {
+      "path": "skills/power-system-model-audit/references/patterns/mobile-communication-endpoints/checker.py",
+      "bytes": 1298,
+      "sha256": "23bf9439eaec1669bf35ab7ba98236a75f7eb8a382c42a40445fa7785b0ac32d"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/mobile-communication-endpoints/discovery.json",
+      "bytes": 401,
+      "sha256": "cb6e3294a6c6d8af94f76daf19c674e06976007af81d87de1b4e677acc7258c1"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/mobile-communication-endpoints/project-checks.json",
+      "bytes": 773,
+      "sha256": "01dec9e66baced78675d662f582c191a9a5ad21a6fb3a1f0ed261b0ecfdc999d"
+    },
+    {
       "path": "skills/power-system-model-audit/references/patterns/mobile-communication-endpoints/record.json",
-      "bytes": 1647,
-      "sha256": "1066611dfc5760ab9cd948058fc78f8e5ec4d2a72c43e1ea55e1c10e8aad169c"
+      "bytes": 2424,
+      "sha256": "765b1ad73232bb77fe8e478d69a7f4e17d0f4b95327e78acc3f9846802afd7c4"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/mobile-travel-operation/card.md",
-      "bytes": 1068,
-      "sha256": "3a64937a207d29f51ac6aa56a8fa9ac4286e5280fe542cc308b89be71f27c655"
+      "bytes": 1366,
+      "sha256": "5b96da26225fa97d7be5d74ac35d857e38fbe9cbf5b4dbb6c750803e1ddc8762"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/mobile-travel-operation/cases.json",
@@ -512,14 +792,29 @@
       "sha256": "4e8f055e1cf0d29aa27885e3c559dc9675d4908ba157ae2ba7b7d100999075d1"
     },
     {
+      "path": "skills/power-system-model-audit/references/patterns/mobile-travel-operation/checker.py",
+      "bytes": 610,
+      "sha256": "1e8d4547bd2695afc8d689a90d5b1108aa7051ad54a58355f602fd572f76d6e2"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/mobile-travel-operation/discovery.json",
+      "bytes": 356,
+      "sha256": "e56f54354ac745c49805db33fdda044aa8827021af2fa6fd665537723967d2c5"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/mobile-travel-operation/project-checks.json",
+      "bytes": 782,
+      "sha256": "d5e3a846fb8886332af03d2e8404d0261e2de17cd1d5a54c39912658f5dcec9f"
+    },
+    {
       "path": "skills/power-system-model-audit/references/patterns/mobile-travel-operation/record.json",
-      "bytes": 1233,
-      "sha256": "dc3b006bcea8ac2f64d6f519640de4dcf614b1bed370ad5ae21d470e0892b4d6"
+      "bytes": 1996,
+      "sha256": "dfb7d24602b4603dd6ae1ccbedd26aadff733fedd37d6632f5b9e1b65b2630d0"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/repair-cumulative-progress/card.md",
-      "bytes": 1148,
-      "sha256": "8aec171b9cf598f0791406c26f3de4f19afbf9f36fcb722a82e5254fcbcfad83"
+      "bytes": 1446,
+      "sha256": "4558078c18225c46f9439fcb54fbf3f8d4f13de6a5e5e5d4563e39457c0d5676"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/repair-cumulative-progress/cases.json",
@@ -527,14 +822,29 @@
       "sha256": "66877111f7fe5f8a3bd846ad68e08cea282a73d6e8d72134e07097396d59dd64"
     },
     {
+      "path": "skills/power-system-model-audit/references/patterns/repair-cumulative-progress/checker.py",
+      "bytes": 1152,
+      "sha256": "cfe0ca55f9a19f31e084a12c210f679b3bb21b9880de42ba869af8d2a7a0b9d5"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/repair-cumulative-progress/discovery.json",
+      "bytes": 399,
+      "sha256": "fde00b3b4455a71b5af91cce4ce2486c3e13fc6ea5d5e09328fa1963cbb1ab95"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/repair-cumulative-progress/project-checks.json",
+      "bytes": 823,
+      "sha256": "1a3314647093593607436c2e0cd32ee6bc6d18b62bc996e6e61f13fa04a83730"
+    },
+    {
       "path": "skills/power-system-model-audit/references/patterns/repair-cumulative-progress/record.json",
-      "bytes": 1249,
-      "sha256": "72c7a7ad366d6836edf91d79e944e76afc875f0c05b767d267edce4424082aac"
+      "bytes": 2011,
+      "sha256": "c09a6f6a7ad2e0b39845524c48b380e7a95ca6e66126f4f65fc2984e31c2c82f"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/storage-energy/card.md",
-      "bytes": 1094,
-      "sha256": "8909dc5956e24994ef49be74f952786b295e02fe295d4316a2fc32156dab239d"
+      "bytes": 1392,
+      "sha256": "f351836aeb14ee4fcded877dab750c6293b9fbc7e923e86f45a0b6c4b4faa73f"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/storage-energy/cases.json",
@@ -542,14 +852,29 @@
       "sha256": "a485247951309eb8306dbb0b46afa5b1c8c8ecad4f01bfcc0a81ba1b1eb564ad"
     },
     {
+      "path": "skills/power-system-model-audit/references/patterns/storage-energy/checker.py",
+      "bytes": 1089,
+      "sha256": "7d29d440e7f6651a09a92d9dcbbe69f76f1f435d8fdeeac35b00acd8f9b88923"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/storage-energy/discovery.json",
+      "bytes": 388,
+      "sha256": "d256966e004983e67e4aea18aa8eeb514302049b9034098456fc19e0501437e7"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/storage-energy/project-checks.json",
+      "bytes": 827,
+      "sha256": "27823b38b6925efb7360ffd89597f279bf05b7fbd918196163fad0ee2cf515d7"
+    },
+    {
       "path": "skills/power-system-model-audit/references/patterns/storage-energy/record.json",
-      "bytes": 1198,
-      "sha256": "dec1b2bace667c6673ab7b2d78c5d1e21cc8f02a4721ef2a0c1435486dd32885"
+      "bytes": 1960,
+      "sha256": "7d78ed6c8b0a97ca1d1c231684af2a0875973e45fec99fa47a6486d274f297ed"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/uc-minimum-duration/card.md",
-      "bytes": 1200,
-      "sha256": "0d02d14ea738c24871898f12a18dd2e7bf2f0b1213f5de6eff141084c2cdae16"
+      "bytes": 1467,
+      "sha256": "b23998c0a28ee7dc43d7fd6fc2ddf9b72f66627ef0e438a8d56a2d9584efc541"
     },
     {
       "path": "skills/power-system-model-audit/references/patterns/uc-minimum-duration/cases.json",
@@ -557,9 +882,24 @@
       "sha256": "6285e80d6660524a30a6a9f2111cdf65fb4d91fd6945a3f06e87ad2d5a004b91"
     },
     {
+      "path": "skills/power-system-model-audit/references/patterns/uc-minimum-duration/checker.py",
+      "bytes": 1480,
+      "sha256": "c43c47db08cd11d32e1d08bc0fde1973eb0b66ee3f7da86ff26fa1bb9fd6b74f"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/uc-minimum-duration/discovery.json",
+      "bytes": 401,
+      "sha256": "f1fd83729a9fd522227f2808e9b592d1e1f613f43921ef09cdf3e5c9800be96b"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/patterns/uc-minimum-duration/project-checks.json",
+      "bytes": 787,
+      "sha256": "9a4a3055f0a3ee1e78df9db1615e7f731744a7cf208af9777564bffa697e78dd"
+    },
+    {
       "path": "skills/power-system-model-audit/references/patterns/uc-minimum-duration/record.json",
-      "bytes": 1521,
-      "sha256": "31facc4e2fcc9b6c64afb99b3c6df99c61feba9ad2c3cc9d1eca8e03c9ceaaa7"
+      "bytes": 2015,
+      "sha256": "6e76c8c4d7ee4d1519c1c8ce3889fbb69dfacc2998e0863538f51a490029b148"
     },
     {
       "path": "skills/power-system-model-audit/references/power-system-checks.md",
@@ -568,8 +908,23 @@
     },
     {
       "path": "skills/power-system-model-audit/references/project-adapters.md",
-      "bytes": 4652,
-      "sha256": "aac79570e754a52075c355af2071338f656f45e31211eed7d1772322ae058795"
+      "bytes": 7064,
+      "sha256": "5a95ce904c2ff1d61af6b6027898e2eb1c71b0e9d839a202924a1a1ad17e05fe"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/project-checker-acceptance.md",
+      "bytes": 3222,
+      "sha256": "05ca5bc43dfdfd2fc056d965edd7389f2c8e954025ba22a26d6e725d9ee9058f"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/relation-inventory.md",
+      "bytes": 3223,
+      "sha256": "68c27141d4b9205283aea2456a2db07652e887da9e23ab495669582c6f8a3b54"
+    },
+    {
+      "path": "skills/power-system-model-audit/references/reporting.md",
+      "bytes": 2397,
+      "sha256": "1ee46ba6e0051e6e6707867281e8d6fa4d554a41c1e0b27564e6bb658f8f5887"
     },
     {
       "path": "skills/power-system-model-audit/references/resilience-source-map.json",
@@ -583,8 +938,8 @@
     },
     {
       "path": "skills/power-system-model-audit/references/running.md",
-      "bytes": 2077,
-      "sha256": "eb6af37aaa964929d91c055c5239b963dd2b186b99aea674b6023c730709aa6e"
+      "bytes": 1416,
+      "sha256": "eea81d420f31d07d6909171a7e0834e652283858826ca06f508c8eb20281abb8"
     },
     {
       "path": "skills/power-system-model-audit/references/semantic-verification.md",
@@ -593,8 +948,8 @@
     },
     {
       "path": "skills/power-system-model-audit/references/tool-catalog.md",
-      "bytes": 4201,
-      "sha256": "4739e94b78e6797a7b0bc08c98e1de368cf58390c0a39630c83405fa0dba24cf"
+      "bytes": 5440,
+      "sha256": "928f60d3cf837555624aea1c6d72f4bd7305b79d7539a97143770f6ebf400e87"
     },
     {
       "path": "skills/power-system-model-audit/references/validation-records.md",
@@ -612,6 +967,11 @@
       "sha256": "9c21b0e9857453ab8f073319c91c97c9f58c18c05c209ef4aa0e6492ccb02133"
     },
     {
+      "path": "skills/power-system-model-audit/scripts/psaudit_card_checks.py",
+      "bytes": 15502,
+      "sha256": "38eaac9f8724864a64ad993d2f7d04cd70b5312a3fe88d52cd01ada18e5abb62"
+    },
+    {
       "path": "skills/power-system-model-audit/scripts/psaudit_check_commitment.m",
       "bytes": 2575,
       "sha256": "0a61d1a623a2bb579418876c570a1944606ac15d891b5adf765ea6b2c3e786ed"
@@ -620,6 +980,11 @@
       "path": "skills/power-system-model-audit/scripts/psaudit_check_relations.m",
       "bytes": 2767,
       "sha256": "95f6ddb3cc6213a3bc1ccf932d18707ab84cada438f794900dbe0a55b58bf342"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_collect.py",
+      "bytes": 11277,
+      "sha256": "b9a50244f63b99c6dccb22e6496ef8ee1ebd008cc6c5220b51ec04123c984c25"
     },
     {
       "path": "skills/power-system-model-audit/scripts/psaudit_compare_affine.m",
@@ -642,6 +1007,11 @@
       "sha256": "80b8a3397be5921315a7b8c3f8de8272a9a77cdda93d1fc4daa26ec4dbb0bccd"
     },
     {
+      "path": "skills/power-system-model-audit/scripts/psaudit_fixture_cache.py",
+      "bytes": 4537,
+      "sha256": "d48eb762d151afffa9c70e5e1d5007255df7ceba51b6279c3216ce343d232dcf"
+    },
+    {
       "path": "skills/power-system-model-audit/scripts/psaudit_frequency_extremum.m",
       "bytes": 1264,
       "sha256": "d96bb2cfbe7a53c2005588a7ed4adfae1ad5f394134f81a9a418c0e6ed191723"
@@ -653,8 +1023,8 @@
     },
     {
       "path": "skills/power-system-model-audit/scripts/psaudit_knowledge.py",
-      "bytes": 21635,
-      "sha256": "64ab57c2b16deebf246dab6388b6d41634e910dc9b038450d202e0def57cedea"
+      "bytes": 28910,
+      "sha256": "faf69da9d4fb46ac7bd51af5d13c4834aa068332b5b5c7d1d302444c945c1497"
     },
     {
       "path": "skills/power-system-model-audit/scripts/psaudit_learning_policy.py",
@@ -662,14 +1032,29 @@
       "sha256": "da5b8537e1e598b4b59ade7aa77946002487842eb6e6321e1423a00e595f23db"
     },
     {
+      "path": "skills/power-system-model-audit/scripts/psaudit_observe.m",
+      "bytes": 564,
+      "sha256": "08797a58139d473a746079cef56652aeb2e01f98e8089ff6e3458789f1975786"
+    },
+    {
       "path": "skills/power-system-model-audit/scripts/psaudit_pattern_checks.py",
-      "bytes": 8408,
-      "sha256": "1e20382de51d22802918c6c6f08d44bd6c14836772b12de5e995b90ab4b86cfb"
+      "bytes": 2473,
+      "sha256": "1f53bbc49d1d230a8f2b85ac181bd2b71cf7b65b914b927cc00bee1431381fc5"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_pattern_numeric.py",
+      "bytes": 850,
+      "sha256": "34fd799a5ea3b9f1480948c2c0d5934c4046896bb0619724014dc11616440b9d"
     },
     {
       "path": "skills/power-system-model-audit/scripts/psaudit_project.py",
-      "bytes": 8421,
-      "sha256": "7ac5bc2492a1d862e2cc2dbe1e7bd2af5ebb8aa2ac77a1fee6deed2a5c4e9151"
+      "bytes": 14028,
+      "sha256": "7112d2355467e4c6fd2915d877f6ebef4862cf176a948bb017476428416bff06"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_project_acceptance.py",
+      "bytes": 5825,
+      "sha256": "e256f6b39ef786b7566ac1aeb7d304bbc88249b87406a25e1a84e6cda6a1cdbd"
     },
     {
       "path": "skills/power-system-model-audit/scripts/psaudit_read_diagnostic.m",
@@ -680,6 +1065,11 @@
       "path": "skills/power-system-model-audit/scripts/psaudit_reconstruct_storage.m",
       "bytes": 1139,
       "sha256": "63086a5ca013cd92c1b70897f9345519c321c7f7917e7e7b04e5a003ad3326be"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/psaudit_relation_inventory.py",
+      "bytes": 8322,
+      "sha256": "78859485248e33bf279a57afb1b4c2709041c2efacaab2c0e0da41d07bfc2d2c"
     },
     {
       "path": "skills/power-system-model-audit/scripts/psaudit_repair_gate.m",
@@ -737,6 +1127,11 @@
       "sha256": "6293e635200fd71e1d8909959c0f9dfd49c5eb283596f13415b998f4a01c4884"
     },
     {
+      "path": "skills/power-system-model-audit/scripts/psaudit_write_facts.m",
+      "bytes": 947,
+      "sha256": "5b69de2813e823fc822183a6412f1417380e5a1ee16ba4fea7ea908348ffbd58"
+    },
+    {
       "path": "skills/power-system-model-audit/scripts/psaudit_write_model_review.m",
       "bytes": 1700,
       "sha256": "513e04c573903a73b955f4a39be0d6aff8c48bf07320455130cf574888893464"
@@ -747,9 +1142,24 @@
       "sha256": "ec1b0b132ed27bc3992353732b13476c353cce3837a439cb6a1c516df634fb9f"
     },
     {
+      "path": "skills/power-system-model-audit/scripts/test_psaudit_card_checks.py",
+      "bytes": 23176,
+      "sha256": "ddf1a748ee8c7e6b707f7df81fb7ab3f486e7572108c1c0584610c68dacdefcc"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/test_psaudit_collect.py",
+      "bytes": 8859,
+      "sha256": "c77554e8bdd7d0d7dbb8baf5280720eec668926b01fb518b49c1620b4adcc08b"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/test_psaudit_fixture_cache.py",
+      "bytes": 5729,
+      "sha256": "5a0d5c212bb52aa5bc0fa97df62056fc1c297473449c041d34933cfa242e74f8"
+    },
+    {
       "path": "skills/power-system-model-audit/scripts/test_psaudit_knowledge.py",
-      "bytes": 9056,
-      "sha256": "74fa74f155609dad77b1419aafda940b23d71cde00169a3f90813db789d9fa48"
+      "bytes": 14925,
+      "sha256": "266ed3924da083e6f01004860d1c066672b45851e4c46423d6d526d225e92a0f"
     },
     {
       "path": "skills/power-system-model-audit/scripts/test_psaudit_learning_policy.py",
@@ -758,8 +1168,13 @@
     },
     {
       "path": "skills/power-system-model-audit/scripts/test_psaudit_project.py",
-      "bytes": 6881,
-      "sha256": "a666e39687e2f48aa7024fa31c91a8dea6915b0dfc6e5b538cd0a34f1f44cd5e"
+      "bytes": 7093,
+      "sha256": "77559f27634e4ea5e5a52c9367228ff913227d6124c9a472485519be51050efd"
+    },
+    {
+      "path": "skills/power-system-model-audit/scripts/test_psaudit_relation_inventory.py",
+      "bytes": 4614,
+      "sha256": "12322aca7057fb300ce435086690b90d743fe7694b201ae32aac20abfd431455"
     },
     {
       "path": "tools/refresh_manifests.py",
