@@ -13,8 +13,13 @@
     },
     {
       "path": "README.md",
-      "bytes": 6829,
-      "sha256": "cdd210f0d5210b7f5513b8494829a70342c2e5a62995caa8bc016d6fb59947fb"
+      "bytes": 6860,
+      "sha256": "1e4077326e628e74dc2da1fb428176ab650654b4f50e7c3228cdd8fd5a2ce619"
+    },
+    {
+      "path": "docs/NAMING.md",
+      "bytes": 633,
+      "sha256": "4686ae2a0f5a1e30abcf1b17ac3900dfc8256a1d8d286fec549d50c16bf70375"
     },
     {
       "path": "docs/PACKAGING.md",
@@ -23,8 +28,8 @@
     },
     {
       "path": "docs/PUBLICATION.md",
-      "bytes": 16654,
-      "sha256": "27167748a05f7fc7e13a365e09430d715e93052926159256bfa9e73026fbe1db"
+      "bytes": 17230,
+      "sha256": "9061d12867d3ac2a91a79fb200974f73e75245e86519dca9c57e763927104ea2"
     },
     {
       "path": "docs/VALIDATION.md",
@@ -33,8 +38,8 @@
     },
     {
       "path": "docs/project/README.md",
-      "bytes": 1321,
-      "sha256": "9096db1ffec06866657d66ce49caa9dbd133e5be554df4c16099de10307ac0b6"
+      "bytes": 1371,
+      "sha256": "64268a9ff36814f89f1dec85702946af7fac12906ecb21454bb968a6ece5638e"
     },
     {
       "path": "docs/project/iarticle.cls",
@@ -43,23 +48,23 @@
     },
     {
       "path": "docs/project/poster.pdf",
-      "bytes": 500086,
-      "sha256": "bf5a4abc1fd560751c33a7251bd559cb7f4a9ee6309afab94952f80e8362c82c"
+      "bytes": 542926,
+      "sha256": "9b85ad0c8302a949375e1f51da9301a29542f41079bab2dc1e12fa31b041a2f7"
     },
     {
       "path": "docs/project/poster.pptx",
-      "bytes": 1826852,
-      "sha256": "f36b4c0a8bc60e20d1323c4d6fd4e35e6cb620ee4a9fcbbdb499a29eef6cd7c9"
+      "bytes": 1823726,
+      "sha256": "de8ad1a6ae6a1f7dfe2aa3c1275492657a84cd87c06790c42ca781153075c006"
     },
     {
       "path": "docs/project/report.pdf",
-      "bytes": 162459,
-      "sha256": "ed01c80947b8a80270b62dab83d345f5164142a146b3bea3deed683e3972158f"
+      "bytes": 162630,
+      "sha256": "90e6ab2e4a3a265ba5a7cd70635d277d294c892dff11262e7b295195002b4755"
     },
     {
       "path": "docs/project/report.tex",
-      "bytes": 19032,
-      "sha256": "e3f98d7f6859594674fb138b9920ad4c30df0e09c07f606c463acdc8d8453b59"
+      "bytes": 19191,
+      "sha256": "0840a59bfdc0ca262a9e4363543b29c50f4b4406b86627e14db5fb7ace3b7bc5"
     },
     {
       "path": "docs/releases/v0.16.md",
@@ -70,6 +75,11 @@
       "path": "docs/releases/v1.1.1.md",
       "bytes": 2154,
       "sha256": "a5f63e3da736fdaaa825de8c2c4b6ce956e92b0edbef033f5035040d583166e4"
+    },
+    {
+      "path": "docs/releases/v1.1.2.md",
+      "bytes": 1166,
+      "sha256": "df8246e3d36127a763a9219a534007f34a847cb70c8117e4b9ac588cc17b4634"
     },
     {
       "path": "docs/releases/v1.1.md",
@@ -84,7 +94,7 @@
     {
       "path": "docs/source-manifest.json",
       "bytes": 51655,
-      "sha256": "1abf5864d77a2a496fd422baac68bc17eef61e14f72f94ac5ddce27b47236544"
+      "sha256": "377f80a6b818ff571559bdad7ad38919a6e7089aa1c7e6a3579e949153b1d98d"
     },
     {
       "path": "projects/course-audit/README.md",
@@ -178,8 +188,8 @@
     },
     {
       "path": "projects/course-audit/examples/hw4/runbook.md",
-      "bytes": 6618,
-      "sha256": "bcc71153e7ab4ba9ae4f18b5d61cf6a8e1cd341e01282d25b0cc0abb6e99aba9"
+      "bytes": 6621,
+      "sha256": "17db88f266b43053761542f06cc0df3d751b7545b94198f3d769da9b1551faa8"
     },
     {
       "path": "projects/course-audit/examples/hw4/source-map.md",
@@ -373,13 +383,13 @@
     },
     {
       "path": "skills/power-system-model-audit/SKILL.md",
-      "bytes": 5216,
-      "sha256": "c04dee4211e06fd6fde6c4f2456c6039cc15c13aa657f83a285bba1de0a8def2"
+      "bytes": 5285,
+      "sha256": "c39ffdc43883eb2cae92e20fc2617fbfb3eb665b40b71b584885ba0e7143873e"
     },
     {
       "path": "skills/power-system-model-audit/agents/openai.yaml",
-      "bytes": 361,
-      "sha256": "b1628c30013b44dd80690c790ecff6eaeeb204db0c513c2f09ce2f5793b56bbf"
+      "bytes": 356,
+      "sha256": "3b8b56e35efc49f0e2f71d23d399983178c4a04c6730b4fbdb12273b3b88b7f7"
     },
     {
       "path": "skills/power-system-model-audit/assets/audit-brief.md",

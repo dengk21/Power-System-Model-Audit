@@ -2,7 +2,7 @@
 
 # HW4 验证案例运行说明
 
-HW4 是 PowerSystemModelAudit 的首个 ED/DCOPF 适配器，不是通用 skill 的范围限制。固定关系内核与参数/公式适配分离；新模型按 ../../references/verifier-contract.md 接入。
+HW4 是 Power System Model Audit 的首个 ED/DCOPF 适配器，不是通用 skill 的范围限制。固定关系内核与参数/公式适配分离；新模型按 ../../references/verifier-contract.md 接入。
 
 开发环境为 MATLAB R2025b。读取/检查结果需 MATLAB 与 JVM，独立参考直接读取 case 和负荷，不依赖 MATPOWER。捕获真实解另需 YALMIP、MATPOWER 及原求解器：Flow 为 COPT，其他四入口为 Gurobi。已验证 COPT 的本机接口和 TimeLimit 参数；不替换原始 solver。
 

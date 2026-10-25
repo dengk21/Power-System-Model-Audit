@@ -4,7 +4,8 @@
 \setlength{\headheight}{14pt}
 \setlength{\emergencystretch}{1em}
 \author{邓康~电博61 2026310543}
-\title{Power System Model Audit\\电力系统优化模型的自动校核与修正}
+\title{电力系统优化问题校核与修正Skill\\Power System Model Audit}
+\hypersetup{pdftitle={电力系统优化问题校核与修正Skill},pdfsubject={Power System Model Audit}}
 \date{2026.10.25}
 \begin{document}
 \maketitle
@@ -13,13 +14,13 @@
 
 AI辅助编程能够较快地完成电力系统优化模型，但程序正常运行、求解器返回最优解，并不说明模型中的约束已经写对。实际上，求解器处理的是程序中给定的数学问题。如果功率平衡中的设备编号对应错误，或者储能递推中漏掉时间步长，求解器仍可能给出结果，但这一结果已经偏离了原来的物理问题。因此，本文关注的问题是：如何让AI检查模型是否正确表达了运行规律，并进一步判断修改是否真正解决了错误。
 
-针对这一问题，本文开发了Power System Model Audit。它以Agent Skill的形式使用，即将检查步骤、领域知识和工具调用方法整理成AI编程助手可以读取和执行的技能。检查时，首先对照数学说明与实际运行的代码，再按照独立的物理依据重新计算关键关系，最后给出问题位置和修改建议。同时，将已经核实的典型约束保存为知识卡，供后续项目使用。由于电力模型求解往往耗时较长，工具优先利用已有结果验算，将重新求解留给确有必要的问题。
+针对这一问题，本文开发了电力系统优化问题校核与修正Skill（Power System Model Audit）。它以Agent Skill的形式使用，即将检查步骤、领域知识和工具调用方法整理成AI编程助手可以读取和执行的技能。检查时，首先对照数学说明与实际运行的代码，再按照独立的物理依据重新计算关键关系，最后给出问题位置和修改建议。同时，将已经核实的典型约束保存为知识卡，供后续项目使用。由于电力模型求解往往耗时较长，工具优先利用已有结果验算，将重新求解留给确有必要的问题。
 
 \section{Skill 设计与实现}
 
 \subsection{检查流程与程序组成}
 
-Skill名称为\texttt{power-system-model-audit}，当前版本为1.1.1。\texttt{SKILL.md}说明检查顺序，参考文档和知识卡提供判断依据，通用数值工具负责计算。除此之外，每个项目还需要一组适配程序，将该项目的变量、公式和数据传给通用工具。例如，通用工具可以计算功率平衡误差，但哪些机组连接到哪个节点，需要由项目程序给出\cite{skill}。
+Skill调用标识为\texttt{power-system-model-audit}，当前版本为1.1.2。\texttt{SKILL.md}说明检查顺序，参考文档和知识卡提供判断依据，通用数值工具负责计算。除此之外，每个项目还需要一组适配程序，将该项目的变量、公式和数据传给通用工具。例如，通用工具可以计算功率平衡误差，但哪些机组连接到哪个节点，需要由项目程序给出\cite{skill}。
 
 图\ref{fig:workflow}给出了完整过程。首先确定要检查的数学说明、代码、参数和已有结果；然后逐条核对公式与实现，选取适用的知识卡，并建立项目检查程序。数值检查完成后，报告说明错误在哪里、依据是什么、应当怎样修改。对于新发现且能够重复使用的约束，则进一步整理公式和适用条件，与已有卡片比较，检查后保存。这样，当前任务的检查结果也能成为下一次任务的知识来源。
 
@@ -170,7 +171,7 @@ M139保留正确容量约束后费用上涨，修复还需要删除“费用变�
 \begin{thebibliography}{9}
 \small
 \setlength{\itemsep}{1pt}
-\bibitem{skill} 项目维护源. \texttt{skills/power-system-model-audit/SKILL.md}；\texttt{references/audit-workflow.md}；知识卡与\texttt{scripts/}，1.1.1版，2026-10-25.
+\bibitem{skill} 项目维护源. \texttt{skills/power-system-model-audit/SKILL.md}；\texttt{references/audit-workflow.md}；知识卡与\texttt{scripts/}，1.1.2版，2026-10-25.
 \bibitem{onboarding} 项目维护源. \texttt{references/project-adapters.md}；\texttt{scripts/psaudit\_collect.py}；\texttt{scripts/psaudit\_project.py}，1.1版.
 \bibitem{semantic} 项目维护源. \texttt{references/semantic-verification.md}；\texttt{references/diagnostic-repair-loop.md}，v0.12验收规则.
 \bibitem{reloop} Lian J. J., Sun Y., Chen H., Zhang C., Qin H., Teo C.-P. ReLoop: Structured Modeling and Behavioral Verification for Reliable LLM-Based Optimization. NeurIPS 2026. \href{https://arxiv.org/abs/2602.15983v6}{arXiv:2602.15983v6}.

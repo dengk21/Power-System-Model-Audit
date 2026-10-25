@@ -1,20 +1,20 @@
 {
-  "skillVersion": "1.1.1",
+  "skillVersion": "1.1.2",
   "semanticContractVersion": "0.12",
   "source": "Git-maintained skills/power-system-model-audit; workspace copies are generated mirrors",
   "packagingEdits": [],
   "files": [
     {
       "path": "skills/power-system-model-audit/SKILL.md",
-      "sourceSha256": "c04dee4211e06fd6fde6c4f2456c6039cc15c13aa657f83a285bba1de0a8def2",
-      "packageSha256": "c04dee4211e06fd6fde6c4f2456c6039cc15c13aa657f83a285bba1de0a8def2",
-      "bytes": 5216
+      "sourceSha256": "c39ffdc43883eb2cae92e20fc2617fbfb3eb665b40b71b584885ba0e7143873e",
+      "packageSha256": "c39ffdc43883eb2cae92e20fc2617fbfb3eb665b40b71b584885ba0e7143873e",
+      "bytes": 5285
     },
     {
       "path": "skills/power-system-model-audit/agents/openai.yaml",
-      "sourceSha256": "b1628c30013b44dd80690c790ecff6eaeeb204db0c513c2f09ce2f5793b56bbf",
-      "packageSha256": "b1628c30013b44dd80690c790ecff6eaeeb204db0c513c2f09ce2f5793b56bbf",
-      "bytes": 361
+      "sourceSha256": "3b8b56e35efc49f0e2f71d23d399983178c4a04c6730b4fbdb12273b3b88b7f7",
+      "packageSha256": "3b8b56e35efc49f0e2f71d23d399983178c4a04c6730b4fbdb12273b3b88b7f7",
+      "bytes": 356
     },
     {
       "path": "skills/power-system-model-audit/assets/audit-brief.md",

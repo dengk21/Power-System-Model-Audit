@@ -1,8 +1,10 @@
 # Power System Model Audit
 
+中文名称：**电力系统优化问题校核与修正Skill**。
+
 电力系统优化模型能够求出结果，为什么还需要检查？因为求解器处理的是程序中已经写出的数学问题。如果储能效率用反、设备编号对应错误，或者最小开停机时间多算一期，程序仍可能正常运行，但它求解的已经不是原来的物理问题。
 
-本项目针对这类错误，将检查步骤、领域知识和数值工具整理为Agent Skill，让AI编程助手能够从公式、代码和已有结果三个方面检查模型，并给出修改建议。当前版本为**1.1.1**；本次主要修改报告、使用说明和报告模板的表达，计算方法沿用1.1版。
+本项目针对这类错误，将检查步骤、领域知识和数值工具整理为Agent Skill，让AI编程助手能够从公式、代码和已有结果三个方面检查模型，并给出修改建议。当前版本为**1.1.2**；本次统一项目名称，计算方法沿用1.1版。
 
 ## 怎样检查模型
 
@@ -20,7 +22,7 @@
 
 ## 安装和使用
 
-在[最新Release](https://github.com/dengk21/Power-System-Model-Audit/releases/latest)下载`power-system-model-audit-v1.1.1.zip`，将其中的`power-system-model-audit/`完整放入客户端的技能目录。Codex个人目录通常为`~/.codex/skills/`。已有同名版本时，先保留自己新增的知识，再更新并重新加载。
+在[最新Release](https://github.com/dengk21/Power-System-Model-Audit/releases/latest)下载`power-system-model-audit-v1.1.2.zip`，将其中的`power-system-model-audit/`完整放入客户端的技能目录。Codex个人目录通常为`~/.codex/skills/`。已有同名版本时，先保留自己新增的知识，再更新并重新加载。
 
 准备数学说明、实际求解代码、参数和可用结果后，可以直接提出要求：
 
@@ -46,7 +48,7 @@
 | [报告与海报](docs/project/README.md) | 项目报告PDF/TeX、A1海报PDF/PPTX |
 | [运行与完整性检查](tools/) | 程序测试、LP演示和文件校验工具 |
 
-完整源码可下载`PowerSystemModelAudit-v1.1.1-source.zip`，也可以直接克隆：
+完整源码可下载`PowerSystemModelAudit-v1.1.2-source.zip`，也可以直接克隆：
 
 ```bash
 git clone https://github.com/dengk21/Power-System-Model-Audit.git
@@ -54,7 +56,7 @@ cd Power-System-Model-Audit
 python tools/verify_package.py
 ```
 
-Release中的`SHA256SUMS.txt`列出每个附件的校验值，用于检查下载文件是否发生变化。[v1.1.1发布说明](docs/releases/v1.1.1.md)介绍了此次文档修改。
+Release中的`SHA256SUMS.txt`列出每个附件的校验值，用于检查下载文件是否发生变化。[v1.1.2发布说明](docs/releases/v1.1.2.md)介绍了此次名称统一。
 
 ## 运行环境
 
