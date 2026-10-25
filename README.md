@@ -1,124 +1,82 @@
 # Power System Model Audit
 
-面向电力系统优化模型的数学规范—代码双向审计工具与 Agent Skill。
+电力系统优化模型能够求出结果，为什么还需要检查？因为求解器处理的是程序中已经写出的数学问题。如果储能效率用反、设备编号对应错误，或者最小开停机时间多算一期，程序仍可能正常运行，但它求解的已经不是原来的物理问题。
 
-当前版本 **1.1**，发布标签 **v1.1**，语义验收契约 **v0.12**。
+本项目针对这类错误，将检查步骤、领域知识和数值工具整理为Agent Skill，让AI编程助手能够从公式、代码和已有结果三个方面检查模型，并给出修改建议。当前版本为**1.1.1**；本次主要修改报告、使用说明和报告模板的表达，计算方法沿用1.1版。
 
-工具同时核查数学说明、活动代码与数值结果，区分数学模型错误、实现错误、双方错误、文档遗漏及参考争议，并生成带来源、数值证据和数学补全内容的 Markdown 审计报告。求解成功或当前解残差为零，不等于模型语义正确。
+## 怎样检查模型
 
-最终交付两份报告：`audit_brief.md` 只列检查文件、可能有问题的位置和是否需要改正；`audit_report.md` 保留完整专业分析、公式与证据。逐模型报告使用同名 `_brief.md` 简报。两份报告共用本次审阅结论。
+首先，对照数学说明与实际运行的代码，查看每条约束是否正确实现，程序是否额外加入了条件。然后，按照独立的物理定义重新计算关键关系，比较单位、系数、设备编号和各时段结果。最后，在相同输入下检查修改后的程序，并判断它是否允许已经确认合法的参考运行方案。这样既能发现约束不足，也能发现限制过多的问题。
 
-v0.14增加持续学习工作流：按模式保存公式/条件、来源及反例，支持检索、来源变更检查、候选登记和版本归档。首批8张卡片有40个局部fixture；这些不是完整模型效果评测。Git仓库中的Skill是唯一维护源，课程目录副本由同步工具生成。
+例如，便宜机组漏掉容量上限时，调度费用可能很低；补回容量限制后，费用反而上涨。但由于修改后的方案满足了真实约束，这次修复仍然正确。因此，费用涨跌只能帮助分析结果，不能单独决定是否接受修改。
 
-v0.15把学习接入普通审计：无需额外声明“学习这个项目”。Agent根据活动代码识别经典结构并自动积累；含非经典机制或尚未确认的结构时，询问“本次学习 / 以后默认都自动学习 / 本次不学习”。永久偏好保存在本机，不随仓库发布。识别为经典模型不代表其约束正确，自动学习仍须提取、去重和审阅，未验证知识保持候选状态。
+每次检查输出两份文件：`audit_brief.md`用表格说明哪里有问题、应该改代码还是补充说明；`audit_report.md`给出公式、数值和判断依据。
 
-## 1.1：按需接入与自动运行记录
+## 知识卡和项目程序各负责什么
 
-静态审阅使用review，数值审计使用numeric；默认只生成配置、关系清单、合并审阅文档及未实现数值入口。card材料按需创建，旧项目布局继续兼容。明确执行本地测试时可用collect自动采集命令、退出状态、耗时、代码快照和一次测试事实，生成待审验收记录；审阅后直接freeze，不重复抄写哈希、形状和控制结果。详见[项目接入](skills/power-system-model-audit/references/project-adapters.md)。本次不新增模型效果评测或优化求解。
+知识卡保存可以重复使用的公式、适用条件、常见错误和小型测试。目前有9张卡片、45个局部公式测试，涉及功率平衡、储能、机组启停和移动资源。Agent先查看卡片是否适用于当前模型，再读取详细内容；新关系经过检查后保存，供后续任务使用。
 
-## 项目与Skill分离（v0.16）
+通用工具负责计算误差和比较公式，但具体模型的变量含义、设备连接和初末状态不同。因此，每个项目还需要自己的适配程序，把这些信息传给通用工具。新项目的公式、数据和运行记录留在项目中，Skill保存通用方法和知识卡。具体写法见[项目接入说明](skills/power-system-model-audit/references/project-adapters.md)。
 
-Skill只积累可复用的约束知识、审计规范和通用工具。新模型的适配器、数学规范、变量映射、测试和结果保存在模型项目自己的审计目录。首次接入由Agent生成并验证；后续先检查源码、参数、工具和卡片依赖，未变复用，有变局部更新并保留历史。现有课程适配器移到`projects/course-audit/`，不继续扩充Skill内固定caseId。
+## 安装和使用
 
-详见[项目适配器契约](skills/power-system-model-audit/references/project-adapters.md)。`psaudit_project.py init`只生成未实现骨架，不等于自动审计；完整语义提取、独立依据和测试仍由Agent完成。
+在[最新Release](https://github.com/dengk21/Power-System-Model-Audit/releases/latest)下载`power-system-model-audit-v1.1.1.zip`，将其中的`power-system-model-audit/`完整放入客户端的技能目录。Codex个人目录通常为`~/.codex/skills/`。已有同名版本时，先保留自己新增的知识，再更新并重新加载。
 
-## card驱动的项目检查
-
-新模型先追踪结构并匹配card条件，再在项目适配器内生成专项检查；通用内核负责残差与索引。知识fixture检查器已按card独立拆分，新card不修改集中注册表。工具生成骨架，Agent完成实际数学映射、测试和集成，详见[card驱动专项检查](skills/power-system-model-audit/references/card-driven-checks.md)。数值后端可由项目配置COPT、Gurobi等，Skill不安装这些环境。
-
-v0.18分开记录候选匹配与逐关系数值覆盖，card专项冻结须绑定项目实际输入观察、关系执行和控制测试证据。跨模块耦合公式和测试由项目适配器维护；Skill规定盘点及验收方法，当前不建立通用检查器接口。验收记录只表明已审阅证据被绑定，不证明完整模型正确。
-
-v0.19按阶段加载规则：主入口缩减约64%，学习分为识别、提取、登记和维护。`search`只查元数据，不执行检查器；选定ID并确认条件后，用`verify --pattern ID`显式核对来源及fixture。普通任务不运行全库validate，项目规划先排除不适用候选再加载完整知识包。具体用法见[知识检索](skills/power-system-model-audit/references/learning-workflow.md)。
-
-v0.20补充[源码关系清单](skills/power-system-model-audit/references/relation-inventory.md)，将无card的目标、边界和耦合保留在覆盖分母；检索支持card独立别名、关系标签、模型族与适用条件筛选。重复知识验证可使用[局部fixture缓存](skills/power-system-model-audit/references/fixture-cache.md)，来源和项目条件仍逐次核对，项目数值通过结论不缓存。项目公式和数值环境的归属保持原边界。
-
-## 学习与更新
-
-先读[学习流程](skills/power-system-model-audit/references/learning-workflow.md)和[模式索引](skills/power-system-model-audit/references/pattern-index.md)。普通请求“审计这个项目”已包含自动学习判断；也可显式要求：
+准备数学说明、实际求解代码、参数和可用结果后，可以直接提出要求：
 
 ```text
-使用 $power-system-model-audit 学习这个新模型，提取活动约束，
-与已有模式比较，验证新模式并登记；不要修改原模型。
+使用 power-system-model-audit 检查这个模型的公式、实际运行代码和数值结果。
+请说明错误位置和判断依据，区分应该修改代码还是补充数学说明，
+并生成简报和详细报告。
 ```
 
-```bash
-python3 skills/power-system-model-audit/scripts/psaudit_knowledge.py search "储能"
-python3 skills/power-system-model-audit/scripts/psaudit_knowledge.py validate
-python3 skills/power-system-model-audit/scripts/test_psaudit_knowledge.py
-python3 skills/power-system-model-audit/scripts/test_psaudit_learning_policy.py
-```
+只检查公式和代码时，可以先准备说明材料；需要验算结果时，再接入项目程序。默认`replay`模式使用已有结果，不重新求解。需要进一步定位错误或生成新结果时，分别使用`diagnose`和`capture`，并设置求解次数和时间限制。`collect`用于自动记录命令、耗时、退出状态和本次使用的文件版本，便于核对报告对应的是哪一次运行。
 
-检索来源不可用时返回SOURCE_UNAVAILABLE；条件未提供时返回NEEDS_CONTEXT。自动识别来源变化不等于自动完成数学重学，Agent按重学清单重新审阅、测试并递增版本。命令、候选格式和源目录映射见学习流程。
+普通检查也会判断是否整理新的知识卡。已经明确的经典结构按规则保存；含义不清或采用新假设的结构，则先确认条件，再决定如何记录。相关方法见[知识检索与学习](skills/power-system-model-audit/references/learning-workflow.md)。
 
-## 发布内容
+## 代码和示例在哪里
 
-| 路径 | 内容 |
+| 目录 | 内容 |
 | --- | --- |
-| [Skill 入口](skills/power-system-model-audit/SKILL.md) | 审计流程、定级、使用路由和能力边界 |
-| [通用工具](skills/power-system-model-audit/scripts/) | MATLAB 数值关系、网络重建、储能递推、系数比较、见证与验收工具 |
-| [独立课程项目](projects/course-audit/) | 已迁出Skill的课程适配器与两机LP；不随Skill安装 |
-| [参考文档](skills/power-system-model-audit/references/) | 工作流、数学审查、执行模式、验收契约与工具目录 |
-| [移动资源参考](skills/power-system-model-audit/references/mobile-resource-constraints.md) / [电力—通信恢复参考](skills/power-system-model-audit/references/restoration-coupling-constraints.md) | 从更新后活动代码整理的公式、开关、边界与来源哈希；尚无完整数值适配器 |
-| [报告模板](skills/power-system-model-audit/assets/audit-report.md) | 审计输出模板 |
-| [运行工具](tools/) | 自包含测试、独立 LP 示例与包完整性检查 |
-| [项目报告与海报](docs/project/README.md) | 当前5页报告、可编辑TeX、A1海报PDF与PPTX |
+| [Skill入口](skills/power-system-model-audit/SKILL.md) | Agent应遵循的检查步骤与工具调用方法 |
+| [数值工具](skills/power-system-model-audit/scripts/) | 误差计算、公式比较、运行记录和修复检查程序 |
+| [知识卡与参考说明](skills/power-system-model-audit/references/) | 常见约束、适用条件、检查方法和使用命令 |
+| [报告模板](skills/power-system-model-audit/assets/audit-report.md) | 详细报告需要说明的问题和依据 |
+| [课程项目程序](projects/course-audit/README.md) | HW4/HW5等课程模型的检查程序及双机LP示例 |
+| [报告与海报](docs/project/README.md) | 项目报告PDF/TeX、A1海报PDF/PPTX |
+| [运行与完整性检查](tools/) | 程序测试、LP演示和文件校验工具 |
 
-此仓库发布可分发的方法、工具与适配器。原课程作业、讲义、历史求解结果、全量 benchmark、第三方求解器及本机配置未随包提供。课程适配器仍需对应输入和证据，不能仅凭此仓库重放完整课程实验。
-
-## 从Release安装Skill
-
-在[Releases](https://github.com/dengk21/Power-System-Model-Audit/releases/latest)下载`power-system-model-audit-v1.1.zip`。解压后将整个`power-system-model-audit/`目录放入客户端技能目录（Codex个人目录通常为`~/.codex/skills/`），重新加载技能即可。已有同名Skill时先保留本地新增知识。纯Skill安装无需课程适配器或完整仓库。
-
-需要开发和运行示例时下载`PowerSystemModelAudit-v1.1-source.zip`，或克隆仓库。各资产的SHA-256见Release附件`SHA256SUMS.txt`。依赖、迁移及验证范围见[v1.1发布说明](docs/releases/v1.1.md)。
-
-## 快速开始
+完整源码可下载`PowerSystemModelAudit-v1.1.1-source.zip`，也可以直接克隆：
 
 ```bash
 git clone https://github.com/dengk21/Power-System-Model-Audit.git
 cd Power-System-Model-Audit
-python3 tools/verify_package.py
+python tools/verify_package.py
 ```
 
-在 MATLAB 中切换到仓库根目录，运行无需课程输入、无需外部求解器的六组通用内核检查：
+Release中的`SHA256SUMS.txt`列出每个附件的校验值，用于检查下载文件是否发生变化。[v1.1.1发布说明](docs/releases/v1.1.1.md)介绍了此次文档修改。
+
+## 运行环境
+
+Python管理工具只使用标准库，建议Python 3.10及以上版本。数值工具使用MATLAB，已在R2025b中检查。不同优化模型使用的Gurobi、COPT、YALMIP或MATPOWER等环境由项目自行配置。
+
+在MATLAB中进入仓库根目录，运行六组通用工具检查：
 
 ```matlab
 addpath(fullfile(pwd, 'tools'));
 summary = run_smoke_tests;
 ```
 
-输出写入新建的 `outputs/smoke-<UUID>/`。测试通过求解器抛错替身防止隐式求解；这些测试验证工具行为，不表示任意电力模型均已验证。
-
-### 独立两机 LP 示例
-
-需要 MATLAB 和已配置、具有有效许可的 Gurobi MATLAB 接口：
+这六组检查使用预设数值例子，不调用优化求解器。结果写入新建的`outputs/smoke-<UUID>/`目录。如果已经配置具有有效许可的Gurobi MATLAB接口，还可以运行真实双机LP示例：
 
 ```matlab
-addpath(fullfile(pwd, 'tools'));
 summary = run_semantic_demo;
 ```
 
-该入口会执行真实求解，演示候选模型的语义验收；它与零求解的自包含测试分开。
+该示例会新建结果目录，执行28次LP求解，比较正确修复、容量放宽、费用系数错误等六种情况。原课程模型的完整检查还需要对应输入和运行记录；本仓库提供程序和独立小例子。
 
-### 作为 Agent Skill 使用
+## 怎样理解已有结果
 
-将 `skills/power-system-model-audit/` 完整复制到所用客户端的技能目录，并在支持 Skill 的 Agent 中调用：
+v0.15对照实验中，A/B/C完整审计分别通过42/48、45/48、45/48项，三组都已指出全部36个确定错误。因此，这轮实验主要反映了问题分类和文档补全的差异。最终修复分别通过44/48、44/48、48/48项，但C组包含三项追加运行，不能将其100%解释为相同尝试次数下的优势。
 
-```text
-使用 $power-system-model-audit 审计这个项目的数学说明、活动代码和数值结果，
-核查独立物理或数学依据，区分错误来源，并生成 audit_report.md。
-```
-
-输入应包含待审说明或 TeX、实际求解入口、参数和可用结果。新模型需要按自身假设建立独立参考与适配，现有工具不是任意 TeX/源码的自动解析器或形式化证明器。
-
-## 环境与验证
-
-现有数值实现使用 MATLAB；历史封装验证环境为 MATLAB R2025b（启用 JVM）。零求解测试无需安装 Gurobi、YALMIP 或 MATPOWER；具体案例与真实求解需按各自运行说明配置依赖。Python 完整性检查仅使用标准库。
-
-- [封装与依赖说明](docs/PACKAGING.md)
-- [历史封装验证](docs/VALIDATION.md)
-- [本次发布核验](docs/PUBLICATION.md)
-- [当前能力与边界](skills/power-system-model-audit/references/capabilities.md)
-- [统一运行说明](skills/power-system-model-audit/references/running.md)
-- [语义验收契约](skills/power-system-model-audit/references/semantic-verification.md)
-
-历史审计数量仅描述原项目记录；完整原始证据未随本仓库公开。模型族支持、固定案例适配、工具测试与 Agent 效果评测应分别理解。
+1.1版工具通过131项Python功能与兼容性测试、45项知识卡公式测试，以及MATLAB六组通用工具和三组课程项目程序检查。工具测试回答的是程序是否按预期工作；模型效果对照回答的是Agent能否发现并修复错误，二者分别统计。原始数据、具体条件和引用来源见[项目报告](docs/project/report.pdf)及[发布记录](docs/PUBLICATION.md)。

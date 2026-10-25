@@ -2,7 +2,7 @@
 name: power-system-model-audit
 description: 审计电力系统优化模型，输出简短与专业报告；审计中自动识别经典模型并积累约束，非经典或不确定结构先询问学习偏好，按条件检索验证并版本化更新知识。适用于ED/OPF、UC、储能、移动资源及随机或鲁棒调度。
 metadata:
-  version: "1.1"
+  version: "1.1.1"
 ---
 
 # PowerSystemModelAudit

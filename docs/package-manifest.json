@@ -13,8 +13,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 10093,
-      "sha256": "e7ed1e40382b279fe15ec9a6ce0760baa12259ed136e0c5a9d72735b6496b05f"
+      "bytes": 6829,
+      "sha256": "cdd210f0d5210b7f5513b8494829a70342c2e5a62995caa8bc016d6fb59947fb"
     },
     {
       "path": "docs/PACKAGING.md",
@@ -23,8 +23,8 @@
     },
     {
       "path": "docs/PUBLICATION.md",
-      "bytes": 15800,
-      "sha256": "78538e3072193ba52fdf2804a33d0976aff7c9db60beeb42509f161cfc18fcfd"
+      "bytes": 16654,
+      "sha256": "27167748a05f7fc7e13a365e09430d715e93052926159256bfa9e73026fbe1db"
     },
     {
       "path": "docs/VALIDATION.md",
@@ -33,8 +33,8 @@
     },
     {
       "path": "docs/project/README.md",
-      "bytes": 995,
-      "sha256": "900d0895fa368d645912adb1f167609e6d9a14193b7a9693a0a3f29ddc6e4f74"
+      "bytes": 1321,
+      "sha256": "9096db1ffec06866657d66ce49caa9dbd133e5be554df4c16099de10307ac0b6"
     },
     {
       "path": "docs/project/iarticle.cls",
@@ -53,18 +53,23 @@
     },
     {
       "path": "docs/project/report.pdf",
-      "bytes": 162776,
-      "sha256": "cba8d6d37d16ded69cd37e835034f93e1a94da2f90c116e854888e4dd51a280f"
+      "bytes": 162459,
+      "sha256": "ed01c80947b8a80270b62dab83d345f5164142a146b3bea3deed683e3972158f"
     },
     {
       "path": "docs/project/report.tex",
-      "bytes": 18490,
-      "sha256": "1894824a2565269f97d1f2bf64e653c7dc0844af288cd0f00634f96e5395169a"
+      "bytes": 19032,
+      "sha256": "e3f98d7f6859594674fb138b9920ad4c30df0e09c07f606c463acdc8d8453b59"
     },
     {
       "path": "docs/releases/v0.16.md",
       "bytes": 2559,
       "sha256": "b436ea5ef11ce561225d96efffe1848a94069cb8b39a799da956309f6dbf434b"
+    },
+    {
+      "path": "docs/releases/v1.1.1.md",
+      "bytes": 2154,
+      "sha256": "a5f63e3da736fdaaa825de8c2c4b6ce956e92b0edbef033f5035040d583166e4"
     },
     {
       "path": "docs/releases/v1.1.md",
@@ -78,13 +83,13 @@
     },
     {
       "path": "docs/source-manifest.json",
-      "bytes": 51653,
-      "sha256": "130229e6f71f462db6eb2b97c101983a13f8ad29f1e42c4f3ff99812829cd676"
+      "bytes": 51655,
+      "sha256": "1abf5864d77a2a496fd422baac68bc17eef61e14f72f94ac5ddce27b47236544"
     },
     {
       "path": "projects/course-audit/README.md",
-      "bytes": 1239,
-      "sha256": "fbecdea3d35859f8c432dca6531db9b0aff52385637227b0c6dee4526de98eb8"
+      "bytes": 2060,
+      "sha256": "1fbced4f61802cf788064cea91c5cddbc8ffa7595f4a174ed92d2cce86d5513d"
     },
     {
       "path": "projects/course-audit/examples/course/math-spec.md",
@@ -368,8 +373,8 @@
     },
     {
       "path": "skills/power-system-model-audit/SKILL.md",
-      "bytes": 5214,
-      "sha256": "ce77a88ab2629740e01fefd80bc7511a8aad6f41f045fce30b7c170ef5692b63"
+      "bytes": 5216,
+      "sha256": "c04dee4211e06fd6fde6c4f2456c6039cc15c13aa657f83a285bba1de0a8def2"
     },
     {
       "path": "skills/power-system-model-audit/agents/openai.yaml",
@@ -378,13 +383,13 @@
     },
     {
       "path": "skills/power-system-model-audit/assets/audit-brief.md",
-      "bytes": 529,
-      "sha256": "f082912725476801e5afc96ba78bddf854ebc6a24d70cb226553dd8e637bd912"
+      "bytes": 577,
+      "sha256": "0915c60a43cd823ff5e949e7156789ef723d10f3c6fae267f39497493fc96a29"
     },
     {
       "path": "skills/power-system-model-audit/assets/audit-report.md",
-      "bytes": 4050,
-      "sha256": "a242e75961604d6add3bfb03381d968e87032864363290e721b1f27e50f9295f"
+      "bytes": 5220,
+      "sha256": "6cf97886d8580c3f3c0ca87772aafcbfd1cc2382ac859f175aa7a1fd7c98dc7e"
     },
     {
       "path": "skills/power-system-model-audit/assets/pattern-card.md",
