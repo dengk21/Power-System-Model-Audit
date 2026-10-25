@@ -28,8 +28,8 @@
     },
     {
       "path": "docs/PUBLICATION.md",
-      "bytes": 17230,
-      "sha256": "9061d12867d3ac2a91a79fb200974f73e75245e86519dca9c57e763927104ea2"
+      "bytes": 17279,
+      "sha256": "5f07f146ea70ac5ed502e30e3dfb5a8f633e6219274a28c09cbbae0bf6767554"
     },
     {
       "path": "docs/VALIDATION.md",
@@ -48,13 +48,13 @@
     },
     {
       "path": "docs/project/poster.pdf",
-      "bytes": 542926,
-      "sha256": "9b85ad0c8302a949375e1f51da9301a29542f41079bab2dc1e12fa31b041a2f7"
+      "bytes": 500086,
+      "sha256": "bf5a4abc1fd560751c33a7251bd559cb7f4a9ee6309afab94952f80e8362c82c"
     },
     {
       "path": "docs/project/poster.pptx",
-      "bytes": 1823726,
-      "sha256": "de8ad1a6ae6a1f7dfe2aa3c1275492657a84cd87c06790c42ca781153075c006"
+      "bytes": 1826852,
+      "sha256": "f36b4c0a8bc60e20d1323c4d6fd4e35e6cb620ee4a9fcbbdb499a29eef6cd7c9"
     },
     {
       "path": "docs/project/report.pdf",
@@ -78,8 +78,8 @@
     },
     {
       "path": "docs/releases/v1.1.2.md",
-      "bytes": 1166,
-      "sha256": "df8246e3d36127a763a9219a534007f34a847cb70c8117e4b9ac588cc17b4634"
+      "bytes": 1181,
+      "sha256": "69315b35312c54f38c33ac2d5c23bafb6af9163e622172b681dc0017907f7070"
     },
     {
       "path": "docs/releases/v1.1.md",
